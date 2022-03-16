@@ -1,0 +1,45 @@
+name: bank_lite
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.1 <3.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^1.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.1.7
+  flutter_lints: ^1.0.0
+  flutter_gen_runner: ^3.1.1
+
+flutter:
+  uses-material-design: true
+  assets:
+      - lib/assets/images/
+  fonts:
+    - family: sfProDisplay
+      fonts:
+        - asset: lib/assets/fonts/SFProDisplay-Bold.otf
+        - asset: lib/assets/fonts/SFProDisplay-Medium.otf
+        - asset: lib/assets/fonts/SFProDisplay-Regular.otf
+        - asset: lib/assets/fonts/SFProDisplay-Semibold.otf
+    - family: sfProText
+      fonts:
+        - asset: lib/assets/fonts/SFProText-Medium.otf
+
+flutter_gen:
+  output: lib/generated
+  line_length: 80
+  integrations:
+    flutter_svg: true
+    flare_flutter: false
+  assets:
+    enabled: true
+    package_parameter_enabled: false
+    style: dot-delimiter
