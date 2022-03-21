@@ -29,7 +29,8 @@ class Application extends StatelessWidget {
               children: [
                 Assets.lib.assets.images.alert.svg(color: Colors.red),
                 Assets.lib.assets.images.arrowUp.svg(color: Colors.grey),
-                Assets.lib.assets.images.appbarMain.svg(color: Colors.blue)
+                Assets.lib.assets.images.appbarMain.svg(color: Colors.blue),
+                Assets.lib.assets.images.vtbTitle.svg(color: Colors.black)
             ])
           ),
           resizeToAvoidBottomInset: false),

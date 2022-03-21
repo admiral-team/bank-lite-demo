@@ -51,6 +51,8 @@ class $LibAssetsImagesGen {
   SvgGenImage get staOnline =>
       const SvgGenImage('lib/assets/images/sta_online.svg');
   SvgGenImage get union => const SvgGenImage('lib/assets/images/union.svg');
+  SvgGenImage get vtbTitle =>
+      const SvgGenImage('lib/assets/images/vtb_title.svg');
 }
 
 class Assets {
