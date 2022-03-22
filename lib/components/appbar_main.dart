@@ -22,7 +22,7 @@ class _AppBarState extends State<AppBarMain> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Color.fromARGB(82, 6, 5, 34),
+        color: const Color(0xFF1D2128),
         height: 48.0,
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Padding(padding: EdgeInsets.only(left: 8)),
@@ -31,7 +31,8 @@ class _AppBarState extends State<AppBarMain> {
             padding: const EdgeInsets.all(0),
             alignment: Alignment.bottomRight,
             pressedOpacity: 1.0,
-            child: widget.leftBarButton.svg(height: 32, color: Colors.blue),
+            child: widget.leftBarButton
+                .svg(height: 32, color: const Color(0xFF3A83F1)),
             onPressed: widget.onPressedRightButton,
           ),
           Spacer(),
@@ -42,7 +43,8 @@ class _AppBarState extends State<AppBarMain> {
             padding: const EdgeInsets.all(0),
             alignment: Alignment.bottomRight,
             pressedOpacity: 1.0,
-            child: widget.rightBarButton.svg(height: 32, color: Colors.blue),
+            child:
+                widget.rightBarButton.svg(height: 32, color: Color(0xFF3A83F1)),
             onPressed: widget.onPressedRightButton,
           ),
           Padding(padding: EdgeInsets.only(right: 8)),
