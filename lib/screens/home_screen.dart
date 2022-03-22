@@ -58,9 +58,11 @@ class _SuggestionsState extends State<SuggestionWidget> {
         items: items,
         selectedIndex: _selectedIndex,
         onPressed: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
+          setState(
+            () {
+              _selectedIndex = index;
+            },
+          );
         },
       ),
     );

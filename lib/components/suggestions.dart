@@ -38,7 +38,7 @@ class _SuggestionsState extends State<Suggestions> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          buildTextTitle(),
+          const TitleText(),
           SizedBox(
             height: 152,
             child: ListView.builder(
@@ -52,20 +52,6 @@ class _SuggestionsState extends State<Suggestions> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget buildTextTitle() {
-    return const Padding(
-      padding: EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
-      child: Text(
-        "Рекомендуем",
-        style: TextStyle(
-            fontFamily: FontFamily.sfProDisplay,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFFE4E8EE)),
       ),
     );
   }
@@ -87,6 +73,27 @@ class _SuggestionsState extends State<Suggestions> {
     }
     widgets.removeLast();
     return widgets;
+  }
+}
+
+class TitleText extends StatelessWidget {
+  const TitleText({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
+      child: Text(
+        "Рекомендуем",
+        style: TextStyle(
+            fontFamily: FontFamily.sfProDisplay,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFFE4E8EE)),
+      ),
+    );
   }
 }
 
