@@ -11,9 +11,29 @@ abstract class HomeScreenModel {
 }
 
 class BannerScreenModel extends HomeScreenModel {
-  int index;
-  BannerScreenModel({required this.index});
+  VoidCallback? onPressed;
+  BannerScreenModel({required this.onPressed});
 }
+
+class CardCellModel extends HomeScreenModel {
+  final String title;
+  final String balance;
+  final String cardNumber;
+  final SvgGenImage icon;
+  final VoidCallback? addPressed;
+  final VoidCallback? sendPressed;
+
+  CardCellModel(
+      {Key? key,
+      required this.title,
+      required this.balance,
+      required this.cardNumber,
+      required this.icon,
+      this.addPressed,
+      this.sendPressed});
+}
+
+class CardsWidgetModel extends HomeScreenModel {}
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,10 +44,19 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<HomeScreenModel> _items = [
-    BannerScreenModel(index: 0),
-    BannerScreenModel(index: 1),
-    BannerScreenModel(index: 2),
-    BannerScreenModel(index: 3),
+    BannerScreenModel(onPressed: () {}),
+    CardCellModel(
+        title: "Цифровая Мультикарта",
+        balance: "2 000 ₽",
+        cardNumber: "• 2104",
+        icon: Assets.lib.assets.images.card,
+        addPressed: () {
+          print("TAP add Pressed");
+        },
+        sendPressed: () {
+          print("TAP send Pressed");
+        }),
+    CardsWidgetModel()
   ];
 
   @override
@@ -52,35 +81,19 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (ctx, index) {
                 final item = _items[index];
                 if (item is BannerScreenModel) {
-                  switch (item.index) {
-                    case 0:
-                      return AddNewWidget(onPressed: () {
-                        print("TAP");
-                      });
-                    case 1:
-                      return CardCellWidget(
-                          title: "Цифровая Мультикарта",
-                          balance: "2 000 ₽",
-                          cardNumber: "• 2104",
-                          icon: Assets.lib.assets.images.card,
-                          addPressed: () {
-                            print("TAP add Pressed");
-                          },
-                          sendPressed: () {
-                            print("TAP send Pressed");
-                          });
-                    case 2:
-                      return const CardsWidget();
-                    case 3:
-                      return Container(
-                          height: 50.0,
-                          width: double.infinity,
-                          color: Colors.blue);
-                  }
-                  return Container();
-                } else {
-                  return Container();
+                  return AddNewWidget(onPressed: item.onPressed);
+                } else if (item is CardCellModel) {
+                  return CardCellWidget(
+                          title: item.title,
+                          balance: item.balance,
+                          cardNumber: item.cardNumber,
+                          icon: item.icon,
+                          addPressed: item.addPressed,
+                          sendPressed: item.sendPressed);
+                } else if (item is CardsWidgetModel) {
+                  return const CardsWidget();
                 }
+                return Container();
               },
               separatorBuilder: (ctx, index) {
                 return const SizedBox(height: 8);
