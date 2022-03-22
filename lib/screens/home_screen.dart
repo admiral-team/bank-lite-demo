@@ -17,7 +17,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       children: <Widget>[
-        CardCellWidget(title: "Цифровая Мультикарта", balance: "2 000 ₽", cardNumber: "• 2104", cardContent: Assets.lib.assets.images.card)
+        CardCellWidget(
+          title: "Цифровая Мультикарта",
+           balance: "2 000 ₽", 
+           cardNumber: "• 2104", 
+           cardContent: Assets.lib.assets.images.card,
+           sendPressed: (){},
+           addPressed: (){})
       ]
     );
   }

@@ -24,8 +24,6 @@ class CardCellWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var imageColor = const Color(0xFF0B1D37);
-
     List<Widget> widgets = [];
     widgets = [
       Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -64,6 +62,7 @@ class CardCellWidget extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 fontFamily: FontFamily.sfProDisplay))
       ]),
+
       const SizedBox(height: 8.0),
 
       Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -82,7 +81,7 @@ class CardCellWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-              onPressed: () => {},
+              onPressed: addPressed,
               icon: Assets.lib.assets.images.add.svg(height: 16.0, width: 16.0),
               label: const Text('Пополнить'),
             )),
@@ -101,7 +100,7 @@ class CardCellWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
-              onPressed: () => {},
+              onPressed: sendPressed,
               icon:
                   Assets.lib.assets.images.send.svg(height: 16.0, width: 16.0),
               label: const Text('Оплатить'),
