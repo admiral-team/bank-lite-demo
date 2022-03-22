@@ -38,14 +38,17 @@ class _HomeScreenState extends State<HomeScreen> {
       color: const Color(0xFF1D2128),
       child: Column(children: [
         AppBarMain(
-          onPressedLeftButton: () {
-            print("onPressedLeftButton");
-          }, onPressedRightButton: () {
-            print("onPressedRightButton");
-        }),
+            count: 5,
+            onPressedLeftButton: () {
+              print("onPressedLeftButton");
+            },
+            onPressedRightButton: () {
+              print("onPressedRightButton");
+            }),
         Expanded(
           child: ListView.separated(
-              padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
               physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
               itemCount: _items.length,
