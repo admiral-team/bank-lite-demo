@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bank_lite/components/addnew.dart';
 import 'package:bank_lite/components/appbar_main.dart';
 import 'package:bank_lite/components/banner.dart';
@@ -77,39 +79,44 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      color: const Color(0xFF1D2128),
-      alignment: Alignment.center,
-      child: Column(
-        children: [
-          AppBarMain(
-              count: 6,
-              onPressedLeftButton: () {
-                print("onPressedLeftButton");
-              },
-              onPressedRightButton: () {
-                print("onPressedRightButton");
-              }),
-          Expanded(
-            child: AnimatedList(
-              key: _key,
-              padding:
-                  const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
-              physics: const BouncingScrollPhysics(
-                  parent: AlwaysScrollableScrollPhysics()),
-              initialItemCount: _items.length,
-              itemBuilder: (ctx, index, animation) {
-                return Container(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  child: _buildItem(_items[index], index, animation),
-                );
-              },
+    return RefreshIndicator(
+      child: Container(
+        height: double.infinity,
+        width: double.infinity,
+        color: const Color(0xFF1D2128),
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+            AppBarMain(
+                count: 6,
+                onPressedLeftButton: () {
+                  print("onPressedLeftButton");
+                },
+                onPressedRightButton: () {
+                  print("onPressedRightButton");
+                }),
+            Expanded(
+              child: AnimatedList(
+                key: _key,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
+                physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
+                initialItemCount: _items.length,
+                itemBuilder: (ctx, index, animation) {
+                  return Container(
+                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                    child: _buildItem(_items[index], index, animation),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+      onRefresh: () {
+        return Future.delayed(const Duration(seconds: 1));
+      },
     );
   }
 
