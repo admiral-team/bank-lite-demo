@@ -1,7 +1,6 @@
 import 'package:bank_lite/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import '../components/airbar.dart';
-import '../components/appbar_main.dart';
 import '../generated/assets.gen.dart';
 
 class RootScreen extends StatefulWidget {
@@ -49,7 +48,7 @@ class _RootScreenState extends State<RootScreen> {
       case 0:
         return const HomeScreen();
       case 1:
-        return const AppBarMain();
+        return Container(color: Colors.blueGrey);
       case 2:
         return Container(color: Colors.green);
       case 3:

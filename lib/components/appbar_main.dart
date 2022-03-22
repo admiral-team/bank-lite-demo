@@ -1,14 +1,9 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class AppBarMain extends StatefulWidget {
-  SvgGenImage get title => Assets.lib.assets.images.vtbTitle;
-  SvgGenImage get leftBarButton => Assets.lib.assets.images.profile;
-  SvgGenImage get rightBarButton => Assets.lib.assets.images.alert;
-
-  final Function()? onPressedLeftButton;
-  final Function()? onPressedRightButton;
+  final VoidCallback? onPressedLeftButton;
+  final VoidCallback? onPressedRightButton;
 
   const AppBarMain(
       {Key? key, this.onPressedLeftButton, this.onPressedRightButton})
@@ -19,35 +14,47 @@ class AppBarMain extends StatefulWidget {
 }
 
 class _AppBarState extends State<AppBarMain> {
+  SvgGenImage get _title => Assets.lib.assets.images.vtbTitle;
+  SvgGenImage get _leftBarButton => Assets.lib.assets.images.profile;
+  SvgGenImage get _rightBarButton => Assets.lib.assets.images.alert;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: const Color(0xFF1D2128),
+      padding: EdgeInsets.only(top:  MediaQuery.of(context).padding.top),
+      color: const Color(0xFF1D2128),
+      child: SizedBox(
         height: 48.0,
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Padding(padding: EdgeInsets.only(left: 8)),
+          const SizedBox(width: 8),
           CupertinoButton(
             minSize: 0,
             padding: const EdgeInsets.all(0),
             alignment: Alignment.bottomRight,
-            pressedOpacity: 1.0,
-            child: widget.leftBarButton
-                .svg(height: 32, color: const Color(0xFF3A83F1)),
-            onPressed: widget.onPressedRightButton,
+            pressedOpacity: 0.6,
+            child: _leftBarButton.svg(
+              height: 32,
+              color: const Color(0xFF3A83F1),
+            ),
+            onPressed: widget.onPressedLeftButton,
           ),
-          Spacer(),
-          widget.title.svg(height: 20),
-          Spacer(),
+          const Spacer(),
+          _title.svg(height: 20),
+          const Spacer(),
           CupertinoButton(
             minSize: 0,
             padding: const EdgeInsets.all(0),
             alignment: Alignment.bottomRight,
-            pressedOpacity: 1.0,
-            child:
-                widget.rightBarButton.svg(height: 32, color: Color(0xFF3A83F1)),
+            pressedOpacity: 0.6,
+            child: _rightBarButton.svg(
+              height: 32,
+              color: const Color(0xFF3A83F1),
+            ),
             onPressed: widget.onPressedRightButton,
           ),
-          Padding(padding: EdgeInsets.only(right: 8)),
-        ]));
+          const SizedBox(width: 8)
+        ]),
+      ),
+    );
   }
 }
