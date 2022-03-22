@@ -37,6 +37,7 @@ class $LibAssetsImagesGen {
   SvgGenImage get growDown =>
       const SvgGenImage('lib/assets/images/grow_down.svg');
   SvgGenImage get growUp => const SvgGenImage('lib/assets/images/grow_up.svg');
+  SvgGenImage get plus => const SvgGenImage('lib/assets/images/plus.svg');
   SvgGenImage get profile => const SvgGenImage('lib/assets/images/profile.svg');
   SvgGenImage get serviceComputer =>
       const SvgGenImage('lib/assets/images/service_computer.svg');
