@@ -1,6 +1,7 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../components/cards.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: CupertinoButton(child: const Text("123132123"), onPressed: () { })
+      child: const CardsWidget(),
     );
   }
 }
