@@ -28,35 +28,45 @@ class Suggestions extends StatefulWidget {
 class _SuggestionsState extends State<Suggestions> {
   @override
   Widget build(BuildContext context) {
+    var _items = _itemsWidgets();
+
     return Container(
-        decoration: BoxDecoration(
-            color: const Color(0xFF272C35),
-            borderRadius: BorderRadius.circular(8.0)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
-              child: buildTextTitle(),
-            ),
-            SingleChildScrollView(
+      decoration: BoxDecoration(
+        color: const Color(0xFF272C35),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildTextTitle(),
+          SizedBox(
+            height: 152,
+            child: ListView.builder(
               padding:
                   const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
               scrollDirection: Axis.horizontal,
-              child: Row(children: _itemsWidgets()),
+              itemCount: _items.length,
+              itemBuilder: (BuildContext context, int index) {
+                return _items[index];
+              },
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 
   Widget buildTextTitle() {
-    return const Text(
-      "Рекомендуем",
-      style: TextStyle(
-          fontFamily: FontFamily.sfProDisplay,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Color(0xFFE4E8EE)),
+    return const Padding(
+      padding: EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
+      child: Text(
+        "Рекомендуем",
+        style: TextStyle(
+            fontFamily: FontFamily.sfProDisplay,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFFE4E8EE)),
+      ),
     );
   }
 
@@ -116,36 +126,39 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
           width: 104.0,
           height: 120.0,
           child: Container(
-              decoration: BoxDecoration(
-                color: accentColor,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    widget.content.svg(height: 40.0, width: 40.0),
-                    const Spacer(),
-                    Text(
-                      widget.title,
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: FontFamily.sfProText),
-                    ),
-                  ])),
+            decoration: BoxDecoration(
+              color: accentColor,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                widget.content.svg(height: 40.0, width: 40.0),
+                const Spacer(),
+                Text(
+                  widget.title,
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: FontFamily.sfProText),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
 
   setHighlighted(bool highlighted) {
-    setState(() {
-      _opacity = highlighted ? 0.7 : 1.0;
-    });
+    setState(
+      () {
+        _opacity = highlighted ? 0.7 : 1.0;
+      },
+    );
   }
 }

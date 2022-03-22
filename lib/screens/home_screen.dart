@@ -14,10 +14,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: const Color(0xFF222222),
-        child: Column(
-          children: [const SizedBox(height: 70), SuggestionWidget()],
-        ));
+      color: const Color(0xFF222222),
+      child: Column(
+        children: [
+          const SizedBox(height: 70),
+          SuggestionWidget(),
+        ],
+      ),
+    );
   }
 }
 
