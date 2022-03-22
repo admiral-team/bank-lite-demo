@@ -1,5 +1,6 @@
 import 'package:bank_lite/components/addnew.dart';
 import 'package:bank_lite/components/appbar_main.dart';
+import 'package:bank_lite/components/cards.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
 
@@ -69,10 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             print("TAP send Pressed");
                           });
                     case 2:
-                      return Container(
-                          height: 50.0,
-                          width: double.infinity,
-                          color: Colors.red);
+                      return const CardsWidget();
                     case 3:
                       return Container(
                           height: 50.0,
