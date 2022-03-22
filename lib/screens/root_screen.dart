@@ -1,7 +1,6 @@
 import 'package:bank_lite/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import '../components/airbar.dart';
-import '../components/addnew.dart';
 import '../generated/assets.gen.dart';
 
 class RootScreen extends StatefulWidget {
@@ -28,9 +27,7 @@ class _RootScreenState extends State<RootScreen> {
       SafeArea(
           child: Container(
         alignment: Alignment.bottomCenter,
-        child: Column(children: [
-          AddNewWidget(),
-          Airbar(
+        child: Airbar(
             selectedIndex: _selectedIndex,
             items: items,
             onPressed: (index) {
@@ -39,7 +36,6 @@ class _RootScreenState extends State<RootScreen> {
               });
             },
         ),
-        ],)
       ))
     ]);
   }

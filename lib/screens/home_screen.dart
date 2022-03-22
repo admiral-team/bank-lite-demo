@@ -1,4 +1,5 @@
 
+import 'package:bank_lite/components/addnew.dart';
 import 'package:flutter/material.dart';
 
 abstract class HomeScreenModel {
@@ -37,7 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
           if (item is BannerScreenModel) {
             switch (item.index) {
               case 0:
-                return Container(height: 50.0, width: double.infinity, color: Colors.black87);
+                return AddNewWidget(onPressed: () {
+                  print("TAP");
+                });
               case 1:
                 return Container(height: 50.0, width: double.infinity, color: Colors.green);
               case 2:
