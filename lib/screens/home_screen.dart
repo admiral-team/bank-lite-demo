@@ -1,10 +1,11 @@
 import 'package:bank_lite/components/addnew.dart';
 import 'package:bank_lite/components/appbar_main.dart';
-import 'package:bank_lite/components/cards.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 import '../components/card_cell.dart';
+import '../components/card_widget.dart';
+import '../components/cards_widget.dart';
 
 abstract class HomeScreenModel {
   //
@@ -91,7 +92,22 @@ class _HomeScreenState extends State<HomeScreen> {
                           addPressed: item.addPressed,
                           sendPressed: item.sendPressed);
                 } else if (item is CardsWidgetModel) {
-                  return const CardsWidget();
+                  return CardsWidget(
+                      collapsed: true,
+                      cards: [
+                        CardModel(
+                          title: "Сбербанк",
+                          lastNumbers: "• 3267",
+                          image: Assets.lib.assets.images.cardVisa,
+                        )
+                      ],
+                      onAddNewCardPressed: () {
+                        print("onAddNewCardPressed pressed");
+                      },
+                      onCardPressed: (cardModel) {
+                        print("onCardPressed pressed ${cardModel.title}");
+                      }
+                  );
                 }
                 return Container();
               },
