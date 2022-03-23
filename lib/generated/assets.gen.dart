@@ -36,6 +36,7 @@ class $LibAssetsImagesGen {
       const SvgGenImage('lib/assets/images/arrow_up.svg');
   SvgGenImage get card => const SvgGenImage('lib/assets/images/card.svg');
   SvgGenImage get close => const SvgGenImage('lib/assets/images/close.svg');
+  SvgGenImage get cloud => const SvgGenImage('lib/assets/images/cloud.svg');
   SvgGenImage get growDown =>
       const SvgGenImage('lib/assets/images/grow_down.svg');
   SvgGenImage get growUp => const SvgGenImage('lib/assets/images/grow_up.svg');

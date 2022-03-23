@@ -17,6 +17,7 @@ class _AddNewWidgetState extends State<AddNewWidget> {
   @override
   Widget build(BuildContext context) {
     final SvgGenImage image = Assets.lib.assets.images.plus;
+
     return GestureDetector(
       onTap: widget.onPressed,
       child: Container(
