@@ -7,7 +7,6 @@ import '../components/card_cell.dart';
 import '../components/card_widget.dart';
 import '../components/cards_widget.dart';
 
-
 abstract class HomeScreenModel {
   //
 }
@@ -72,87 +71,89 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: const Color(0xFF1D2128),
-        alignment: Alignment.center,
-        child: Column(
-          children: [
-            AppBarMain(
+      height: double.infinity,
+      width: double.infinity,
+      color: const Color(0xFF1D2128),
+      alignment: Alignment.center,
+      child: Column(
+        children: [
+          AppBarMain(
+              count: 6,
               onPressedLeftButton: () {
                 print("onPressedLeftButton");
-              }, onPressedRightButton: () {
+              },
+              onPressedRightButton: () {
                 print("onPressedRightButton");
-            }),
-            Expanded(
-              child: AnimatedList(
-                key: _key,
-                padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
-                physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics()),
-                initialItemCount: _items.length,
-                itemBuilder: (ctx, index, animation) {      
-                  return Container(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: _buildItem(_items[index], index, animation),
-                  );
-                },
-              ),
+              }),
+          Expanded(
+            child: AnimatedList(
+              key: _key,
+              padding:
+                  const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
+              physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics()),
+              initialItemCount: _items.length,
+              itemBuilder: (ctx, index, animation) {
+                return Container(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: _buildItem(_items[index], index, animation),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _buildItem(HomeScreenModel item, int index, Animation<double> animation) {
+  Widget _buildItem(
+      HomeScreenModel item, int index, Animation<double> animation) {
     if (item is AddNewModel) {
-        return SizeTransition(
-            sizeFactor: animation,
-            child: AddNewWidget(onPressed: item.onPressed),
-        );
+      return SizeTransition(
+        sizeFactor: animation,
+        child: AddNewWidget(onPressed: item.onPressed),
+      );
     } else if (item is CardCellModel) {
-        return SizeTransition(
-            sizeFactor: animation,
-            child: CardCellWidget(
-              title: item.title,
-              balance: item.balance,
-              cardNumber: item.cardNumber,
-              icon: item.icon,
-              addPressed: item.addPressed,
-              sendPressed: item.sendPressed
-          ),
-        );
+      return SizeTransition(
+        sizeFactor: animation,
+        child: CardCellWidget(
+            title: item.title,
+            balance: item.balance,
+            cardNumber: item.cardNumber,
+            icon: item.icon,
+            addPressed: item.addPressed,
+            sendPressed: item.sendPressed),
+      );
     } else if (item is BannerScreenModel) {
-        return SizeTransition(
-          sizeFactor: animation,
-          child: BannerWidget(
-              onClosePressed: () {
-                setState(() {
-                  _removeItem(index);
-                });
-              },
-            ),
-        );
+      return SizeTransition(
+        sizeFactor: animation,
+        child: BannerWidget(
+          onClosePressed: () {
+            setState(() {
+              _removeItem(index);
+            });
+          },
+        ),
+      );
     } else if (item is CardsWidgetModel) {
-       return SizeTransition(
-            sizeFactor: animation,
-            child: CardsWidget(
-              collapsed: true,
-              cards: [
-                CardModel(
-                  title: "Сбербанк",
-                  lastNumbers: "• 3267",
-                  image: Assets.lib.assets.images.cardVisa,
-                )
-              ],
-              onAddNewCardPressed: () {
-                print("onAddNewCardPressed pressed");
-              },
-              onCardPressed: (cardModel) {
-                print("onCardPressed pressed ${cardModel.title}");
-              }
-          ),
-        );
+      return SizeTransition(
+        sizeFactor: animation,
+        child: CardsWidget(
+            collapsed: true,
+            cards: [
+              CardModel(
+                title: "Сбербанк",
+                lastNumbers: "• 3267",
+                image: Assets.lib.assets.images.cardVisa,
+              )
+            ],
+            onAddNewCardPressed: () {
+              print("onAddNewCardPressed pressed");
+            },
+            onCardPressed: (cardModel) {
+              print("onCardPressed pressed ${cardModel.title}");
+            }),
+      );
     }
     return Container();
   }
@@ -165,5 +166,4 @@ class _HomeScreenState extends State<HomeScreen> {
     };
     _key.currentState?.removeItem(index, builder);
   }
-
 }

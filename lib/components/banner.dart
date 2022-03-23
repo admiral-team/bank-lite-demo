@@ -62,7 +62,7 @@ class _BannerWidgetState extends State<BannerWidget> {
             children: [
               const Spacer(),
               Container(
-                margin: const EdgeInsets.only(left: 60.0, bottom: 20.0),
+                margin: const EdgeInsets.only(left: 10.0, bottom: 20.0),
                 child: CircleAvatar(
                   backgroundColor: const Color(0xFFE1D2128),
                   radius: 16,
@@ -75,8 +75,12 @@ class _BannerWidgetState extends State<BannerWidget> {
               ),
               const Spacer(),
               ClipRRect(
-                borderRadius: const BorderRadius.only(bottomRight: Radius.circular(16),),
-                child: backgroundImage.svg(color: const Color(0xFFE343C48),),
+                borderRadius: const BorderRadius.only(
+                  bottomRight: Radius.circular(16),
+                ),
+                child: backgroundImage.svg(
+                  color: const Color(0xFFE343C48),
+                ),
               ),
             ],
           ),
