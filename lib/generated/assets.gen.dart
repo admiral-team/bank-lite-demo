@@ -32,6 +32,8 @@ class $LibAssetsImagesGen {
       const SvgGenImage('lib/assets/images/appbar_payments.svg');
   SvgGenImage get appbarServices =>
       const SvgGenImage('lib/assets/images/appbar_services.svg');
+  SvgGenImage get arrowDown24 =>
+      const SvgGenImage('lib/assets/images/arrow_down_24.svg');
   SvgGenImage get arrowUp =>
       const SvgGenImage('lib/assets/images/arrow_up.svg');
   SvgGenImage get arrowUp24 =>
@@ -42,6 +44,7 @@ class $LibAssetsImagesGen {
   SvgGenImage get cardVisa =>
       const SvgGenImage('lib/assets/images/card_visa.svg');
   SvgGenImage get close => const SvgGenImage('lib/assets/images/close.svg');
+  SvgGenImage get cloud => const SvgGenImage('lib/assets/images/cloud.svg');
   SvgGenImage get growDown =>
       const SvgGenImage('lib/assets/images/grow_down.svg');
   SvgGenImage get growUp => const SvgGenImage('lib/assets/images/grow_up.svg');
