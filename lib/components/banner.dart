@@ -60,7 +60,6 @@ class _BannerWidgetState extends State<BannerWidget> {
                   progressColor: const Color(0xFF3A83F1),
                 ),
               ),
-              const Spacer(),
               Column(
                 children: [
                   const Spacer(),
