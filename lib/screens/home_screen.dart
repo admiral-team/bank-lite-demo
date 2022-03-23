@@ -6,6 +6,7 @@ import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
 
 import '../components/card_cell.dart';
+import '../components/cards.dart';
 
 abstract class HomeScreenModel {
   //
@@ -96,8 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
         case 3:
           return SizeTransition(
             sizeFactor: animation,
-            child: Container(
-                height: 50.0, width: double.infinity, color: Colors.blue),
+            child: const CardsWidget(),
           );
       }
       return Container();

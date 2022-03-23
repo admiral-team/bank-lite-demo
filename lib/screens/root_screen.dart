@@ -4,7 +4,7 @@ import '../components/airbar.dart';
 import '../generated/assets.gen.dart';
 
 class RootScreen extends StatefulWidget {
-  const RootScreen({Key? key }) : super(key: key);
+  const RootScreen({Key? key}) : super(key: key);
 
   @override
   State<RootScreen> createState() => _RootScreenState();
@@ -16,9 +16,12 @@ class _RootScreenState extends State<RootScreen> {
   @override
   Widget build(BuildContext context) {
     final items = [
-      AirbarItem(title: "Главный", content: Assets.lib.assets.images.appbarMain),
-      AirbarItem(title: "Платежи", content: Assets.lib.assets.images.appbarPayments),
-      AirbarItem(title: "Услуги", content: Assets.lib.assets.images.appbarServices),
+      AirbarItem(
+          title: "Главный", content: Assets.lib.assets.images.appbarMain),
+      AirbarItem(
+          title: "Платежи", content: Assets.lib.assets.images.appbarPayments),
+      AirbarItem(
+          title: "Услуги", content: Assets.lib.assets.images.appbarServices),
       AirbarItem(title: "Чат", content: Assets.lib.assets.images.appbarChat),
     ];
 
@@ -42,21 +45,18 @@ class _RootScreenState extends State<RootScreen> {
 
   Widget _currentScreen() {
     switch (_selectedIndex) {
-    case 0:
-      return const HomeScreen();
-    case 1:
-      return Container(color: Colors.orange);
-    case 2:
-      return Container(color: Colors.green);
-    case 3:
-      return Container(color: Colors.red);
-    case 4:
-      return Container(color: Colors.blue);
+      case 0:
+        return const HomeScreen();
+      case 1:
+        return Container(color: Colors.blueGrey);
+      case 2:
+        return Container(color: Colors.green);
+      case 3:
+        return Container(color: Colors.red);
+      case 4:
+        return Container(color: Colors.blue);
     }
 
     throw Exception('Screen not found');
   }
 }
-
-
-
