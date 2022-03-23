@@ -104,7 +104,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
   Widget _buildItem(HomeScreenModel item, int index, Animation<double> animation) {
     if (item is AddNewModel) {
         return SizeTransition(
