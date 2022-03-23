@@ -12,10 +12,35 @@ abstract class HomeScreenModel {
   //
 }
 
-class BannerScreenModel extends HomeScreenModel {
-  int index;
-  BannerScreenModel({required this.index});
+class AddNewModel extends HomeScreenModel {
+  VoidCallback? onPressed;
+  AddNewModel({required this.onPressed});
 }
+
+class BannerScreenModel extends HomeScreenModel {
+  VoidCallback? onClosePressed;
+  BannerScreenModel({required this.onClosePressed});
+}
+
+class CardCellModel extends HomeScreenModel {
+  final String title;
+  final String balance;
+  final String cardNumber;
+  final SvgGenImage icon;
+  final VoidCallback? addPressed;
+  final VoidCallback? sendPressed;
+
+  CardCellModel(
+      {Key? key,
+      required this.title,
+      required this.balance,
+      required this.cardNumber,
+      required this.icon,
+      this.addPressed,
+      this.sendPressed});
+}
+
+class CardsWidgetModel extends HomeScreenModel {}
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,10 +51,19 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<HomeScreenModel> _items = [
-    BannerScreenModel(index: 0),
-    BannerScreenModel(index: 1),
-    BannerScreenModel(index: 2),
-    BannerScreenModel(index: 3),
+    AddNewModel(onPressed: () {}),
+    CardCellModel(
+        title: "Цифровая Мультикарта",
+        balance: "2 000 ₽",
+        cardNumber: "• 2104",
+        icon: Assets.lib.assets.images.card,
+        addPressed: () {
+          print("TAP add Pressed");
+        },
+        sendPressed: () {
+          print("TAP send Pressed");
+        }),
+    CardsWidgetModel()
   ];
 
   final GlobalKey<AnimatedListState> _key = GlobalKey();
@@ -52,57 +86,58 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-        ),);
+        ),
+      );
   }
 
   Widget _buildItem(HomeScreenModel item, int index, Animation<double> animation) {
-    if (item is BannerScreenModel) {
-      switch (item.index) {
-        case 0:
-          return SizeTransition(
+    if (item is AddNewModel) {
+        return SizeTransition(
             sizeFactor: animation,
-            child: AddNewWidget(
-              onPressed: () {
-                print("TAP");
-              },
-            ),
-          );
-        case 1:
-           return SizeTransition(
+            child: AddNewWidget(onPressed: item.onPressed),
+        );
+    } else if (item is CardCellModel) {
+        return SizeTransition(
             sizeFactor: animation,
             child: CardCellWidget(
-              title: "Цифровая Мультикарта",
-              balance: "2 000 ₽",
-              cardNumber: "• 2104",
-              icon: Assets.lib.assets.images.card,
-              addPressed: () {
-                print("TAP add Pressed");
-              },
-              sendPressed: () {
-                print("TAP send Pressed");
-              },
-            ),
-          );
-        case 2:
-          return SizeTransition(
-            sizeFactor: animation,
-            child: BannerWidget(
+              title: item.title,
+              balance: item.balance,
+              cardNumber: item.cardNumber,
+              icon: item.icon,
+              addPressed: item.addPressed,
+              sendPressed: item.sendPressed
+          ),
+        );
+    } else if (item is BannerScreenModel) {
+        return SizeTransition(
+          sizeFactor: animation,
+          child: BannerWidget(
               onClosePressed: () {
                 setState(() {
                   _removeItem(index);
                 });
               },
             ),
-          );
-        case 3:
-          return SizeTransition(
+        );
+    } else if (item is CardsWidgetModel) {
+       return SizeTransition(
             sizeFactor: animation,
-            child: const CardsWidget(),
-          );
-      }
-      return Container();
-    } else {
-      return Container();
+            child: CardsWidget(
+              collapsed: true,
+              cards: [
+                CardModel(
+                  title: "Сбербанк",
+                  lastNumbers: "• 3267",
+                  image: Assets.lib.assets.images.cardVisa,
+                )],
+                onAddNewCardPressed: () {
+                  print("onAddNewCardPressed pressed");
+                },
+                onCardPressed: (cardModel) {
+                  print("onCardPressed pressed ${cardModel.title}");
+                });
+            },
+        );
     }
   }
 
