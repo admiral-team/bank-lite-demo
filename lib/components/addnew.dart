@@ -24,7 +24,7 @@ class _AddNewWidgetState extends State<AddNewWidget> {
           width: double.infinity,
           height: 74.0,
           alignment: Alignment.center,
-          color: const Color(0xFF272C35),
+          color: const Color(0xFF1D2128),
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
           child: Row(
             children: [
