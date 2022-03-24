@@ -1,7 +1,9 @@
 import 'package:bank_lite/screens/home_screen.dart';
+import 'package:bank_lite/screens/map_screen.dart';
 import 'package:flutter/material.dart';
 import '../components/airbar.dart';
 import '../generated/assets.gen.dart';
+import 'place_marker_page.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({Key? key}) : super(key: key);
@@ -50,7 +52,7 @@ class _RootScreenState extends State<RootScreen> {
       case 1:
         return Container(color: Colors.blueGrey);
       case 2:
-        return Container(color: Colors.green);
+        return const MapScreen();
       case 3:
         return Container(color: Colors.red);
       case 4:
