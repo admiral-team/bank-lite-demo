@@ -37,29 +37,16 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _loading() async {
-    print("Loading");
-    if (_isLoading) {
-      return;
-    }
-
-    setState(() {
-      _isLoading = true;
-    });
-
     final items = await widget.request();
-
-    print("Finish Loading");
     setState(() {
       _items = items;
-      print("Update");
-      _isLoading = false;
     });
   }
 
   Future<void> _pullRefresh() async {
-    if (_isLoading) {
-      return;
-    }
+    setState(() {
+      _items = [];
+    });
 
     final items = await widget.request();
 
@@ -87,18 +74,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   print("onPressedRightButton");
                 }),
             Expanded(
-              child: AnimatedList(
+              child: ListView.builder(
                 key: _key,
                 padding:
                     const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
                 physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics()),
-                initialItemCount: _items.length,
-                itemBuilder: (ctx, index, animation) {
+                itemCount: _items.length,
+                itemBuilder: (ctx, index) {
                   print("itemBuilder");
                   return Container(
                     padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: _buildItem(_items[index], index, animation),
+                    child: _buildItem(_items[index], index),
                   );
                 },
               ),
@@ -113,38 +100,27 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildItem(
-      HomeScreenModel item, int index, Animation<double> animation) {
+      HomeScreenModel item, int index) {
     if (item is AddNewModel) {
-      return SizeTransition(
-        sizeFactor: animation,
-        child: AddNewWidget(onPressed: item.onPressed),
-      );
+      return AddNewWidget(onPressed: item.onPressed);
     } else if (item is CardCellModel) {
-      return SizeTransition(
-        sizeFactor: animation,
-        child: CardCellWidget(
+      return CardCellWidget(
             title: item.title,
             balance: item.balance,
             cardNumber: item.cardNumber,
             icon: item.icon,
             addPressed: item.addPressed,
-            sendPressed: item.sendPressed),
-      );
+            sendPressed: item.sendPressed);
     } else if (item is BannerScreenModel) {
-      return SizeTransition(
-        sizeFactor: animation,
-        child: BannerWidget(
+      return BannerWidget(
           onClosePressed: () {
             setState(() {
               _removeItem(index);
             });
           },
-        ),
-      );
+        );
     } else if (item is CardsWidgetModel) {
-      return SizeTransition(
-        sizeFactor: animation,
-        child: CardsWidget(
+      return CardsWidget(
             collapsed: true,
             cards: [
               CardModel(
@@ -158,13 +134,9 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             onCardPressed: (cardModel) {
               print("onCardPressed pressed ${cardModel.title}");
-            }),
-      );
+            });
     } else if (item is SuggestionsCellModel) {
-      return SizeTransition(
-        sizeFactor: animation,
-        child: const SuggestionWidget(),
-      );
+      return SuggestionWidget();
     }
     return Container();
   }
@@ -173,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeScreenModel item = _items.removeAt(index);
     // ignore: prefer_function_declarations_over_variables
     AnimatedListRemovedItemBuilder builder = (context, animation) {
-      return _buildItem(item, index, animation);
+      return _buildItem(item, index);
     };
     _key.currentState?.removeItem(index, builder);
   }
