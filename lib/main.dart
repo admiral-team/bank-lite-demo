@@ -11,7 +11,8 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  var initializationSettingsAndroid = const AndroidInitializationSettings('');
+  var initializationSettingsAndroid =
+      const AndroidInitializationSettings('@mipmap/ic_launcher');
 
   var initializationSettingsIOS = const IOSInitializationSettings(
     requestAlertPermission: true,
