@@ -10,72 +10,63 @@ import 'package:flutter/material.dart';
 import '../components/card_cell.dart';
 import '../components/card_widget.dart';
 import '../components/cards_widget.dart';
-
-abstract class HomeScreenModel {
-  //
-}
-
-class AddNewModel extends HomeScreenModel {
-  VoidCallback? onPressed;
-
-  AddNewModel({required this.onPressed});
-}
-
-class BannerScreenModel extends HomeScreenModel {
-  VoidCallback? onClosePressed;
-
-  BannerScreenModel({required this.onClosePressed});
-}
-
-class CardCellModel extends HomeScreenModel {
-  final String title;
-  final String balance;
-  final String cardNumber;
-  final SvgGenImage icon;
-  final VoidCallback? addPressed;
-  final VoidCallback? sendPressed;
-
-  CardCellModel(
-      {Key? key,
-      required this.title,
-      required this.balance,
-      required this.cardNumber,
-      required this.icon,
-      this.addPressed,
-      this.sendPressed});
-}
-
-class CardsWidgetModel extends HomeScreenModel {}
-
-class SuggestionsCellModel extends HomeScreenModel {}
+import '../model/home_model.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final Future<List<HomeScreenModel>> Function() request;
+
+  const HomeScreen({Key? key, required this.request}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<HomeScreenModel> _items = [
-    BannerScreenModel(onClosePressed: () {}),
-    CardCellModel(
-        title: "Цифровая Мультикарта",
-        balance: "2 000 ₽",
-        cardNumber: "• 2104",
-        icon: Assets.lib.assets.images.card,
-        addPressed: () {
-          print("TAP add Pressed");
-        },
-        sendPressed: () {
-          print("TAP send Pressed");
-        }),
-    CardsWidgetModel(),
-    SuggestionsCellModel(),
-    AddNewModel(onPressed: () {}),
-  ];
+
+  List<HomeScreenModel> _items = [];
+  bool _isLoading = false;
 
   final GlobalKey<AnimatedListState> _key = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      _loading();
+    });
+  }
+
+  Future<void> _loading() async {
+    print("Loading");
+    if (_isLoading) {
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    final items = await widget.request();
+
+    print("Finish Loading");
+    setState(() {
+      _items = items;
+      print("Update");
+      _isLoading = false;
+    });
+  }
+
+  Future<void> _pullRefresh() async {
+    if (_isLoading) {
+      return;
+    }
+
+    final items = await widget.request();
+
+    setState(() {
+      _items = items;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     parent: AlwaysScrollableScrollPhysics()),
                 initialItemCount: _items.length,
                 itemBuilder: (ctx, index, animation) {
+                  print("itemBuilder");
                   return Container(
                     padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                     child: _buildItem(_items[index], index, animation),
@@ -115,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       onRefresh: () {
-        return Future.delayed(const Duration(seconds: 1));
+        return _pullRefresh();
       },
     );
   }

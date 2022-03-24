@@ -1,4 +1,5 @@
 import 'package:bank_lite/screens/home_screen.dart';
+import 'package:bank_lite/service/home_service.dart';
 import 'package:flutter/material.dart';
 import '../components/airbar.dart';
 import '../generated/assets.gen.dart';
@@ -12,6 +13,7 @@ class RootScreen extends StatefulWidget {
 
 class _RootScreenState extends State<RootScreen> {
   int _selectedIndex = 0;
+  final _service = HomeService.shared;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class _RootScreenState extends State<RootScreen> {
   Widget _currentScreen() {
     switch (_selectedIndex) {
       case 0:
-        return const HomeScreen();
+        return HomeScreen(request: () => _service.homeItems().then((value) => value.items));
       case 1:
         return Container(color: Colors.blueGrey);
       case 2:
