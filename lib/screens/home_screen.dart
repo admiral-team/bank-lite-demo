@@ -66,8 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
         cardNumber: "• 2104",
         icon: Assets.lib.assets.images.card,
         addPressed: () {
-          NotificationService.showNotification(
-              title: 'Успешно!', body: 'Ваша карты выпущена');
+          Future.delayed(Duration(seconds: 3), () {
+            NotificationService.showNotification(
+                title: 'Успешно!', body: 'Ваша карты выпущена');
+          });
         },
         sendPressed: () {
           print("TAP send Pressed");
