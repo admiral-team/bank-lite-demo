@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../components/card_cell.dart';
 import '../components/card_widget.dart';
 import '../components/cards_widget.dart';
+import '../services/notification_service.dart';
 
 abstract class HomeScreenModel {
   //
@@ -57,7 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
         cardNumber: "• 2104",
         icon: Assets.lib.assets.images.card,
         addPressed: () {
-          print("TAP add Pressed");
+          NotificationService.showNotification(
+              title: 'Успешно!', body: 'Ваша карты выпущена');
         },
         sendPressed: () {
           print("TAP send Pressed");
@@ -78,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         children: [
           AppBarMain(
-              count: 6,
+              count: 4,
               onPressedLeftButton: () {
                 print("onPressedLeftButton");
               },
@@ -125,16 +127,17 @@ class _HomeScreenState extends State<HomeScreen> {
             sendPressed: item.sendPressed),
       );
     } else if (item is BannerScreenModel) {
-      return SizeTransition(
-        sizeFactor: animation,
-        child: BannerWidget(
-          onClosePressed: () {
-            setState(() {
-              _removeItem(index);
-            });
-          },
-        ),
-      );
+      return Container();
+      // return SizeTransition(
+      //   sizeFactor: animation,
+      //   child: BannerWidget(
+      //     onClosePressed: () {
+      //       setState(() {
+      //         _removeItem(index);
+      //       });
+      //     },
+      //   ),
+      // );
     } else if (item is CardsWidgetModel) {
       return SizeTransition(
         sizeFactor: animation,
