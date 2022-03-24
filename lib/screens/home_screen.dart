@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
         cardNumber: "• 2104",
         icon: Assets.lib.assets.images.card,
         addPressed: () {
-          Future.delayed(Duration(seconds: 3), () {
+          Future.delayed(const Duration(seconds: 3), () {
             NotificationService.showNotification(
                 title: 'Успешно!', body: 'Ваша карты выпущена');
           });
