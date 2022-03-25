@@ -12,34 +12,47 @@ import 'package:flutter/material.dart';
 import '../components/card_cell.dart';
 import '../components/card_widget.dart';
 import '../components/cards_widget.dart';
-
-abstract class HomeScreenModel {}
+import '../model/home_model.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final Future<List<HomeScreenModel>> Function() request;
+
+  const HomeScreen({Key? key, required this.request}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<HomeScreenModel> _items = [
-    BannerScreenModel(onClosePressed: () {}),
-    CardCellModel(
-        title: "Цифровая Мультикарта",
-        balance: "2 000 ₽",
-        cardNumber: "• 2104",
-        icon: Assets.lib.assets.images.card,
-        addPressed: () {
-          print("TAP add Pressed");
-        },
-        sendPressed: () {
-          print("TAP send Pressed");
-        }),
-    CardsWidgetModel(),
-    SuggestionsCellModel(),
-    AddNewModel(onPressed: () {}),
-  ];
+
+  List<HomeScreenModel> _items = [];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      _loading();
+    });
+  }
+
+  Future<void> _loading() async {
+    final items = await widget.request();
+    setState(() {
+      _items = items;
+    });
+  }
+
+  Future<void> _pullRefresh() async {
+    setState(() {
+      _items = [];
+    });
+
+    final items = await widget.request();
+
+    setState(() {
+      _items = items;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       onRefresh: () {
-        return Future.delayed(const Duration(seconds: 1));
+        return _pullRefresh();
       },
     );
   }

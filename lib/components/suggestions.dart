@@ -3,8 +3,6 @@ import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import '../screens/home_screen.dart';
 
-class SuggestionsCellModel extends HomeScreenModel {}
-
 class SuggestionWidget extends StatefulWidget {
   const SuggestionWidget({Key? key}) : super(key: key);
 

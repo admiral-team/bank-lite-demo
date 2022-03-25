@@ -4,14 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import '../screens/home_screen.dart';
 
-class BannerScreenModel extends HomeScreenModel {
-  VoidCallback? onClosePressed;
-
-  BannerScreenModel({required this.onClosePressed});
-
-  get onPressed => null;
-}
-
 class BannerWidget extends StatefulWidget {
   final VoidCallback? onClosePressed;
   const BannerWidget({Key? key, this.onClosePressed}) : super(key: key);
