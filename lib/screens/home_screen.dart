@@ -52,34 +52,34 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             AppBarMain(
-                count: 6,
-                onPressedLeftButton: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const EstimateApp()),
-                  );
-                },
-                onPressedRightButton: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const StatusScreen()),
-                  );
-                }),
+              count: 6,
+              onPressedLeftButton: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const EstimateApp()),
+                );
+              },
+              onPressedRightButton: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const StatusScreen()),
+                );
+              },
+            ),
             Expanded(
               child: ListView.separated(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 0.0, horizontal: 8.0),
-                  physics: const BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics()),
-                  itemCount: _items.length,
-                  itemBuilder: (ctx, index) {
-                    return _buildView(ctx, index);
-                  },
-                  separatorBuilder: (ctx, index) {
-                    return const SizedBox(height: 8);
-                  }),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
+                physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
+                itemCount: _items.length,
+                itemBuilder: (ctx, index) {
+                  return _buildView(ctx, index);
+                },
+                separatorBuilder: (ctx, index) {
+                  return const SizedBox(height: 8);
+                },
+              ),
             ),
           ],
         ),
