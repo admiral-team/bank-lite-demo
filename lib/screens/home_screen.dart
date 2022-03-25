@@ -57,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
+      edgeOffset: 40.0,
       child: Container(
         height: double.infinity,
         width: double.infinity,
