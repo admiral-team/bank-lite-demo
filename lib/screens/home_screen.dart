@@ -26,7 +26,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   List<HomeScreenModel> _items = [];
-  bool _isLoading = false;
 
   @override
   void initState() {

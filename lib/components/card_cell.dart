@@ -4,24 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../screens/home_screen.dart';
 
-class CardCellModel extends HomeScreenModel {
-  final String title;
-  final String balance;
-  final String cardNumber;
-  final SvgGenImage icon;
-  final VoidCallback? addPressed;
-  final VoidCallback? sendPressed;
-
-  CardCellModel(
-      {Key? key,
-      required this.title,
-      required this.balance,
-      required this.cardNumber,
-      required this.icon,
-      this.addPressed,
-      this.sendPressed});
-}
-
 // TODO: Opacity animation on buttons: spacing between buttons
 class CardCellWidget extends StatelessWidget {
   final String title;

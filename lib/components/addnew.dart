@@ -2,12 +2,7 @@ import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import '../screens/home_screen.dart';
-
-class AddNewModel extends HomeScreenModel {
-  VoidCallback? onPressed;
-
-  AddNewModel({required this.onPressed});
-}
+import '../model/home_model.dart';
 
 class AddNewWidget extends StatefulWidget {
   final VoidCallback? onPressed;

@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:collapsible/collapsible.dart';
 import '../generated/assets.gen.dart';
 import '../screens/home_screen.dart';
+import '../model/home_model.dart';
 import 'card_widget.dart';
-
-class CardsWidgetModel extends HomeScreenModel {}
 
 class CardsWidget extends StatefulWidget {
   final bool collapsed;
