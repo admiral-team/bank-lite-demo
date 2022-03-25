@@ -2,7 +2,10 @@ import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:collapsible/collapsible.dart';
 import '../generated/assets.gen.dart';
+import '../screens/home_screen.dart';
 import 'card_widget.dart';
+
+class CardsWidgetModel extends HomeScreenModel {}
 
 class CardsWidget extends StatefulWidget {
   final bool collapsed;
