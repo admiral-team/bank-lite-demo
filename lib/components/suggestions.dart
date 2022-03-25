@@ -1,6 +1,50 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
+import '../screens/home_screen.dart';
+
+class SuggestionsCellModel extends HomeScreenModel {}
+
+class SuggestionWidget extends StatefulWidget {
+  const SuggestionWidget({Key? key}) : super(key: key);
+
+  @override
+  State<SuggestionWidget> createState() {
+    return _SuggestionsWrapperState();
+  }
+}
+
+class _SuggestionsWrapperState extends State<SuggestionWidget> {
+  int _selectedIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final items = [
+      SuggestionItem(
+          title: "Пригласить друга",
+          content: Assets.lib.assets.images.serviceLike),
+      SuggestionItem(
+          title: "Оплатить сотовую связь",
+          content: Assets.lib.assets.images.serviceDone),
+      SuggestionItem(
+          title: "Перевести деньги",
+          content: Assets.lib.assets.images.serviceNext),
+      SuggestionItem(
+          title: "Оплатить услуги ЖКХ",
+          content: Assets.lib.assets.images.serviceHome),
+    ];
+
+    return Suggestions(
+      items: items,
+      selectedIndex: _selectedIndex,
+      onPressed: (index) {
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+    );
+  }
+}
 
 class SuggestionItem {
   final String title;

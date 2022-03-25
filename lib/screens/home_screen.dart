@@ -5,6 +5,8 @@ import 'package:bank_lite/components/appbar_main.dart';
 import 'package:bank_lite/components/banner.dart';
 import 'package:bank_lite/components/suggestions.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
+import 'package:bank_lite/screens/estimate_app.dart';
+import 'package:bank_lite/screens/status_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../components/card_cell.dart';
@@ -25,8 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<HomeScreenModel> _items = [];
   bool _isLoading = false;
-
-  final GlobalKey<AnimatedListState> _key = GlobalKey();
 
   @override
   void initState() {
@@ -66,27 +66,32 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             AppBarMain(
-                count: 6,
-                onPressedLeftButton: () {
-                  print("onPressedLeftButton");
-                },
-                onPressedRightButton: () {
-                  print("onPressedRightButton");
-                }),
+              count: 6,
+              onPressedLeftButton: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const EstimateApp()),
+                );
+              },
+              onPressedRightButton: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const StatusScreen()),
+                );
+              },
+            ),
             Expanded(
-              child: ListView.builder(
-                key: _key,
+              child: ListView.separated(
                 padding:
                     const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
                 physics: const BouncingScrollPhysics(
                     parent: AlwaysScrollableScrollPhysics()),
                 itemCount: _items.length,
                 itemBuilder: (ctx, index) {
-                  print("itemBuilder");
-                  return Container(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: _buildItem(_items[index], index),
-                  );
+                  return _buildView(ctx, index);
+                },
+                separatorBuilder: (ctx, index) {
+                  return const SizedBox(height: 8);
                 },
               ),
             ),
@@ -99,95 +104,46 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildItem(
-      HomeScreenModel item, int index) {
-    if (item is AddNewModel) {
+  Widget _buildView(BuildContext ctx, int index) {
+    final item = _items[index];
+    if (item is BannerScreenModel) {
+      return BannerWidget(
+        onClosePressed: () {
+          setState(() {
+            _items.removeAt(index);
+          });
+        },
+      );
+    } else if (item is AddNewModel) {
       return AddNewWidget(onPressed: item.onPressed);
     } else if (item is CardCellModel) {
       return CardCellWidget(
-            title: item.title,
-            balance: item.balance,
-            cardNumber: item.cardNumber,
-            icon: item.icon,
-            addPressed: item.addPressed,
-            sendPressed: item.sendPressed);
-    } else if (item is BannerScreenModel) {
-      return BannerWidget(
-          onClosePressed: () {
-            setState(() {
-              _removeItem(index);
-            });
-          },
-        );
+          title: item.title,
+          balance: item.balance,
+          cardNumber: item.cardNumber,
+          icon: item.icon,
+          addPressed: item.addPressed,
+          sendPressed: item.sendPressed);
     } else if (item is CardsWidgetModel) {
       return CardsWidget(
-            collapsed: true,
-            cards: [
-              CardModel(
-                title: "Сбербанк",
-                lastNumbers: "• 3267",
-                image: Assets.lib.assets.images.cardVisa,
-              )
-            ],
-            onAddNewCardPressed: () {
-              print("onAddNewCardPressed pressed");
-            },
-            onCardPressed: (cardModel) {
-              print("onCardPressed pressed ${cardModel.title}");
-            });
+        collapsed: true,
+        cards: [
+          CardModel(
+            title: "Сбербанк",
+            lastNumbers: "• 3267",
+            image: Assets.lib.assets.images.cardVisa,
+          )
+        ],
+        onAddNewCardPressed: () {
+          print("onAddNewCardPressed pressed");
+        },
+        onCardPressed: (cardModel) {
+          print("onCardPressed pressed ${cardModel.title}");
+        },
+      );
     } else if (item is SuggestionsCellModel) {
-      return SuggestionWidget();
+      return const SuggestionWidget();
     }
     return Container();
-  }
-
-  void _removeItem(int index) {
-    HomeScreenModel item = _items.removeAt(index);
-    // ignore: prefer_function_declarations_over_variables
-    AnimatedListRemovedItemBuilder builder = (context, animation) {
-      return _buildItem(item, index);
-    };
-    _key.currentState?.removeItem(index, builder);
-  }
-}
-
-class SuggestionWidget extends StatefulWidget {
-  const SuggestionWidget({Key? key}) : super(key: key);
-
-  @override
-  State<SuggestionWidget> createState() {
-    return _SuggestionsState();
-  }
-}
-
-class _SuggestionsState extends State<SuggestionWidget> {
-  int _selectedIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    final items = [
-      SuggestionItem(
-          title: "Пригласить друга",
-          content: Assets.lib.assets.images.serviceLike),
-      SuggestionItem(
-          title: "Оплатить сотовую связь",
-          content: Assets.lib.assets.images.serviceDone),
-      SuggestionItem(
-          title: "Перевести деньги",
-          content: Assets.lib.assets.images.serviceNext),
-      SuggestionItem(
-          title: "Оплатить услуги ЖКХ",
-          content: Assets.lib.assets.images.serviceHome),
-    ];
-
-    return Suggestions(
-      items: items,
-      selectedIndex: _selectedIndex,
-      onPressed: (index) {
-        setState(() {
-          _selectedIndex = index;
-        });
-      },
-    );
   }
 }
