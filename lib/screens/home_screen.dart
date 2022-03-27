@@ -13,6 +13,7 @@ import '../components/card_cell.dart';
 import '../components/card_widget.dart';
 import '../components/cards_widget.dart';
 import '../model/home_model.dart';
+import '../services/notification_service.dart';
 
 class HomeScreen extends StatefulWidget {
   final Future<List<HomeScreenModel>> Function() request;
@@ -24,7 +25,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   List<HomeScreenModel> _items = [];
 
   @override
@@ -136,6 +136,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         onAddNewCardPressed: () {
           print("onAddNewCardPressed pressed");
+          Future.delayed(const Duration(seconds: 3), () {
+            NotificationService.showNotification(
+                title: 'Успешно!', body: 'Ваша карты выпущена');
+          });
         },
         onCardPressed: (cardModel) {
           print("onCardPressed pressed ${cardModel.title}");
