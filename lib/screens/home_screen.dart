@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import '../components/card_cell.dart';
 import '../components/card_widget.dart';
 import '../components/cards_widget.dart';
+import '../components/expanded_cell.dart';
 import '../model/home_model.dart';
 import '../services/notification_service.dart';
 
@@ -26,6 +27,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<HomeScreenModel> _items = [];
+  bool _expanded = true;
 
   @override
   void initState() {
@@ -107,12 +109,22 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildView(BuildContext ctx, int index) {
     final item = _items[index];
     if (item is BannerScreenModel) {
-      return BannerWidget(
-        onClosePressed: () {
-          setState(() {
+      return ExpandedCell(
+        expanded: _expanded,
+        completion: () {
+          if (_expanded == false) {
             _items.removeAt(index);
-          });
+          }
         },
+        child: BannerWidget(
+          onClosePressed: () {
+            setState(
+              () {
+                _expanded = !_expanded;
+              },
+            );
+          },
+        ),
       );
     } else if (item is AddNewModel) {
       return AddNewWidget(onPressed: item.onPressed);

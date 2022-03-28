@@ -2,17 +2,20 @@ import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import '../screens/home_screen.dart';
 
 class BannerWidget extends StatefulWidget {
   final VoidCallback? onClosePressed;
-  const BannerWidget({Key? key, this.onClosePressed}) : super(key: key);
+  const BannerWidget({
+    Key? key,
+    this.onClosePressed,
+  }) : super(key: key);
 
   @override
   State<BannerWidget> createState() => _BannerWidgetState();
 }
 
 class _BannerWidgetState extends State<BannerWidget> {
+
   final SvgGenImage backgroundImage = Assets.lib.assets.images.cloud;
   final SvgGenImage closeIcon = Assets.lib.assets.images.close;
 
