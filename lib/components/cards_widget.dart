@@ -1,9 +1,9 @@
 import 'package:bank_lite/generated/fonts.gen.dart';
-import 'package:flutter/material.dart';
 import 'package:collapsible/collapsible.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../generated/assets.gen.dart';
-import '../screens/home_screen.dart';
-import '../model/home_model.dart';
 import 'card_widget.dart';
 
 class CardsWidget extends StatefulWidget {
@@ -57,7 +57,7 @@ class _CardsWidgetState extends State<CardsWidget> {
     widgets.add(
       CardWidget(
         model: CardModel(
-          title: "Добавить карту другого банка",
+          title: AppLocalizations.of(context).addNewCard,
           image: Assets.lib.assets.images.cardAdd,
         ),
         onPressed: widget.onAddNewCardPressed,
@@ -85,9 +85,9 @@ class _CardsWidgetState extends State<CardsWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(width: 16),
-                  const Text(
-                    "Привязанные карты",
-                    style: TextStyle(
+                  Text(
+                    AppLocalizations.of(context).linkedCards,
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18.0,
                         fontWeight: FontWeight.w700,

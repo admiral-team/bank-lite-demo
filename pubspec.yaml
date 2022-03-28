@@ -11,6 +11,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^1.0.3
   collapsible: ^1.0.0
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
+  intl_utils: ^2.1.0
+  flutter_secure_storage: ^4.2.1
+  provider: ^5.0.0
   flutter_local_notifications: ^9.4.0
 
 dev_dependencies:
@@ -23,8 +29,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
   assets:
-      - lib/assets/images/
+    - lib/assets/images/
   fonts:
     - family: sfProDisplay
       fonts:

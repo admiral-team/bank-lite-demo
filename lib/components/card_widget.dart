@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../generated/assets.gen.dart';
 import '../generated/fonts.gen.dart';
 
@@ -68,18 +69,18 @@ class _CardWidgetState extends State<CardWidget> {
       onTapCancel: () => setHighlighted(false),
       child: Opacity(
         opacity: _opacity,
-          child: Container(
-            decoration: BoxDecoration(
-              color: const Color(0xFF272C35),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-            height: 64,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: widgets,
-            ),
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color(0xFF272C35),
+            borderRadius: BorderRadius.circular(8.0),
           ),
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+          height: 64,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: widgets,
+          ),
+        ),
       ),
     );
   }

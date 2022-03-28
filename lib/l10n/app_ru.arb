@@ -1,0 +1,21 @@
+{
+  "appTitle": "ВТБ",
+  "addNewProductButton": "Открыть новый продукт",
+  "recommendationTitle": "Рекомендуем",
+  "inviteFriend": "Пригласить друга",
+  "payCellular": "Оплатить сотовую связь",
+  "transferMoney": "Перевести деньги",
+  "payHousingCommunalServices": "Оплатить услуги ЖКХ",
+  "linkedCards": "Привязанные карты",
+  "sberBankTitle": "Сбербанк",
+  "addNewCard": "Добавить карту другого банка",
+  "digitalMulticard": "Цифровая Мультикарта",
+  "deposit": "Пополнить",
+  "pay": "Оплатить",
+  "bannerTitle": "Используйте все\nвозможности вашей\nМультикарты",
+  "main": "Главный",
+  "payments": "Платежи",
+  "services": "Услуги",
+  "chat": "Чат",
+  "language": "Выберите язык"
+}

@@ -1,11 +1,11 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
-import '../screens/home_screen.dart';
-import '../model/home_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddNewWidget extends StatefulWidget {
   final VoidCallback? onPressed;
+
   const AddNewWidget({Key? key, this.onPressed}) : super(key: key);
 
   @override
@@ -46,9 +46,9 @@ class _AddNewWidgetState extends State<AddNewWidget> {
                 child: image.svg(color: Colors.white),
               ),
               const SizedBox(width: 14.0),
-              const Text(
-                "Открыть новый продукт",
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context).addNewProductButton,
+                style: const TextStyle(
                     color: Color(0xFFE4E8EE),
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500,

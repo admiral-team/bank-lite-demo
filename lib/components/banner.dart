@@ -1,21 +1,19 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class BannerWidget extends StatefulWidget {
   final VoidCallback? onClosePressed;
-  const BannerWidget({
-    Key? key,
-    this.onClosePressed,
-  }) : super(key: key);
+
+  const BannerWidget({Key? key, this.onClosePressed}) : super(key: key);
 
   @override
   State<BannerWidget> createState() => _BannerWidgetState();
 }
 
 class _BannerWidgetState extends State<BannerWidget> {
-
   final SvgGenImage backgroundImage = Assets.lib.assets.images.cloud;
   final SvgGenImage closeIcon = Assets.lib.assets.images.close;
 
@@ -33,9 +31,9 @@ class _BannerWidgetState extends State<BannerWidget> {
         children: [
           Container(
             margin: const EdgeInsets.only(left: 16.0),
-            child: const Text(
-              " Используйте все \n возможности вашей \n Мультикарты",
-              style: TextStyle(
+            child: Text(
+              AppLocalizations.of(context).bannerTitle,
+              style: const TextStyle(
                   color: Color(0xFFE4E8EE),
                   fontSize: 16.0,
                   fontWeight: FontWeight.w500,

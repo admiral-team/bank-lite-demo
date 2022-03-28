@@ -6,8 +6,10 @@ import 'package:bank_lite/components/banner.dart';
 import 'package:bank_lite/components/suggestions.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/screens/estimate_app.dart';
+import 'package:bank_lite/screens/settings_screen.dart';
 import 'package:bank_lite/screens/status_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../components/card_cell.dart';
 import '../components/card_widget.dart';
@@ -81,6 +83,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   MaterialPageRoute(builder: (context) => const StatusScreen()),
                 );
               },
+              onPressedSettings: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SettingsScreen()),
+                );
+              },
             ),
             Expanded(
               child: ListView.separated(
@@ -141,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
         collapsed: true,
         cards: [
           CardModel(
-            title: "Сбербанк",
+            title: AppLocalizations.of(context).sberBankTitle,
             lastNumbers: "• 3267",
             image: Assets.lib.assets.images.cardVisa,
           )

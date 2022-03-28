@@ -1,6 +1,8 @@
 import 'package:bank_lite/screens/home_screen.dart';
 import 'package:bank_lite/service/home_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../components/airbar.dart';
 import '../generated/assets.gen.dart';
 
@@ -19,12 +21,13 @@ class _RootScreenState extends State<RootScreen> {
   Widget build(BuildContext context) {
     final items = [
       AirbarItem(
-          title: "Главный", content: Assets.lib.assets.images.appbarMain),
+          title: AppLocalizations.of(context).main,
+          content: Assets.lib.assets.images.appbarMain),
       AirbarItem(
-          title: "Платежи", content: Assets.lib.assets.images.appbarPayments),
+          title: AppLocalizations.of(context).payments, content: Assets.lib.assets.images.appbarPayments),
       AirbarItem(
-          title: "Услуги", content: Assets.lib.assets.images.appbarServices),
-      AirbarItem(title: "Чат", content: Assets.lib.assets.images.appbarChat),
+          title: AppLocalizations.of(context).services, content: Assets.lib.assets.images.appbarServices),
+      AirbarItem(title: AppLocalizations.of(context).chat, content: Assets.lib.assets.images.appbarChat),
     ];
 
     return Stack(children: [
@@ -33,13 +36,13 @@ class _RootScreenState extends State<RootScreen> {
           child: Container(
         alignment: Alignment.bottomCenter,
         child: Airbar(
-            selectedIndex: _selectedIndex,
-            items: items,
-            onPressed: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
+          selectedIndex: _selectedIndex,
+          items: items,
+          onPressed: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
         ),
       ))
     ]);
