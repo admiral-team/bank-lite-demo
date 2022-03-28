@@ -1,15 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
-import 'screens/root_screen.dart';
-import 'generated/assets.gen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
 import 'l10n/locale_provider.dart';
+import 'screens/root_screen.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -37,23 +33,6 @@ Future<void> main() async {
   });
 
   runApp(const Application());
-
-  const storage = FlutterSecureStorage();
-  storage.delete(key: "e");
-  storage.delete(key: "p");
-
-  const email = "email";
-  const password = "1234";
-
-  await storage.write(key: "e", value: email);
-  await storage.write(key: "p", value: password);
-
-  final mail = await storage.read(key: "e");
-  final pass = await storage.read(key: "p");
-
-  if (kDebugMode) {
-    print("mail = $mail, pass = $pass");
-  }
 }
 
 class Application extends StatelessWidget {
@@ -70,8 +49,8 @@ class Application extends StatelessWidget {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           theme: const CupertinoThemeData(brightness: Brightness.light),
-          home: Scaffold(
-              body: const RootScreen(), resizeToAvoidBottomInset: false),
+          home: const Scaffold(
+              body: RootScreen(), resizeToAvoidBottomInset: false),
         ),
       ),
     );

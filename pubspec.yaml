@@ -15,7 +15,6 @@ dependencies:
     sdk: flutter
   intl: ^0.17.0
   intl_utils: ^2.1.0
-  flutter_secure_storage: ^4.2.1
   provider: ^5.0.0
   flutter_local_notifications: ^9.4.0
   flutter_secure_storage: ^4.2.1

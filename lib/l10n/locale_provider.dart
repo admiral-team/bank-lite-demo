@@ -1,3 +1,5 @@
+import 'package:bank_lite/storage/locale_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'locale.dart';
@@ -14,6 +16,7 @@ class LocaleProvider with ChangeNotifier {
   void setLocale(Locale loc) {
     if (!L10n.support.contains(loc)) return;
     _locale = loc;
+    LanguageStorage().setLocale(loc.languageCode);
     notifyListeners();
   }
 
@@ -25,9 +28,7 @@ class LocaleProvider with ChangeNotifier {
       _loc = loc;
     }
     var locale = Locale(_loc);
-    if (!L10n.support.contains(locale)) return;
-    _locale = locale;
-    notifyListeners();
+    setLocale(locale);
   }
 
   void setNextLocale() {

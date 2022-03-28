@@ -1,5 +1,6 @@
 import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/l10n/locale_provider.dart';
+import 'package:bank_lite/storage/locale_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +41,21 @@ class _LanguageChooseWidgetState extends State<LanguageChooseWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var futureLanguage = LanguageStorage().getLocaleFromStorage();
+
+    futureLanguage.then(
+      (value) => {
+        if (value != null)
+          {
+            setState(
+              () {
+                _lang = value;
+              },
+            )
+          },
+      },
+    );
+
     return Theme(
       data: ThemeData.dark(),
       child: Column(
