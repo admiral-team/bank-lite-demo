@@ -36,7 +36,7 @@ class HomeService {
   }
 
 Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/json/sample.json');
+    final String response = await rootBundle.loadString('lib/assets/json/sample.json');
     final data = await json.decode(response);
     print(data["items"]);
   }
