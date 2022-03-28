@@ -1,4 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:bank_lite/components/addnew.dart';
 import 'package:bank_lite/components/appbar_main.dart';
@@ -33,9 +36,19 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) {
+      getJson();
       _loading();
     });
   }
+
+Future<List> getJson() async {
+  String apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+  var url = Uri.parse(apiUrl); 
+  http.Response response = await http.get(url);
+  var js = json.decode(response.body);
+  print(js);
+  return js;
+}
 
   Future<void> _loading() async {
     final items = await widget.request();

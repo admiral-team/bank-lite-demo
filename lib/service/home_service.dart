@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:flutter/services.dart';
+
 import '../model/home_model.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 
@@ -10,6 +13,7 @@ class HomeService {
   static final shared = HomeService();
 
   Future<HomeItemsResponse> homeItems() async {
+    readJson();
     return Future<HomeItemsResponse>.delayed(const Duration(seconds: 2), () {
       return HomeItemsResponse(items: [
         BannerScreenModel(onClosePressed: () {}),
@@ -30,4 +34,11 @@ class HomeService {
       ]);
     });
   }
+
+Future<void> readJson() async {
+    final String response = await rootBundle.loadString('assets/json/sample.json');
+    final data = await json.decode(response);
+    print(data["items"]);
+  }
+
 }
