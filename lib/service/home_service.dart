@@ -5,19 +5,24 @@ import '../model/home_model.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 
 class HomeItemsResponse {
-  final List<HomeScreenModel> items;
-  const HomeItemsResponse({ required this.items });
+  List<HomeScreenModel> items;
+  HomeItemsResponse({ required this.items });
 }
 
 class HomeService {
   static final shared = HomeService();
 
   Future<HomeItemsResponse> homeItems() async {
-    readJson();
-    return Future<HomeItemsResponse>.delayed(const Duration(seconds: 2), () {
-      return HomeItemsResponse(items: [
-        BannerScreenModel(onClosePressed: () {}),
-        CardCellModel(
+    var itemsJSON = await readJson();
+    var response = HomeItemsResponse(items: []);
+    for (var item in itemsJSON) {
+      switch (item["type"]) {
+        case "Banner":
+          response.items.add(BannerScreenModel(onClosePressed: () {}));
+          break;
+        case "Card":
+          response.items.add(
+            CardCellModel(
             title: "Цифровая Мультикарта",
             balance: "2 000 ₽",
             cardNumber: "• 2104",
@@ -27,18 +32,26 @@ class HomeService {
             },
             sendPressed: () {
               print("TAP send Pressed");
-            }),
-        CardsWidgetModel(),
-        SuggestionsCellModel(),
-        AddNewModel(onPressed: () {})
-      ]);
-    });
+            })
+          );
+          break;
+        case "Cards":
+          response.items.add(CardsWidgetModel());
+          break;
+        case "Suggestions":
+          response.items.add(SuggestionsCellModel());
+          break;
+        case "AddNewModel":
+          response.items.add(AddNewModel(onPressed: () {}));
+          break;
+      }
+    }
+    return response;
   }
 
-Future<void> readJson() async {
-    final String response = await rootBundle.loadString('lib/assets/json/sample.json');
-    final data = await json.decode(response);
-    print(data["items"]);
+  Future<List<dynamic>> readJson() async {
+      final String response = await rootBundle.loadString('lib/assets/json/items500000.json');
+      final data = await json.decode(response);
+      return data["items"];
   }
-
 }

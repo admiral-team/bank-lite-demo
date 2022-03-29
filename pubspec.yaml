@@ -26,7 +26,6 @@ flutter:
   uses-material-design: true
   assets:
     - lib/assets/images/
-    - lib/assets/json/vegetable.json
     - lib/assets/json/
   fonts:
     - family: sfProDisplay
