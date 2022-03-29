@@ -1,7 +1,8 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../screens/home_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SuggestionWidget extends StatefulWidget {
   const SuggestionWidget({Key? key}) : super(key: key);
@@ -19,16 +20,16 @@ class _SuggestionsWrapperState extends State<SuggestionWidget> {
   Widget build(BuildContext context) {
     final items = [
       SuggestionItem(
-          title: "Пригласить друга",
+          title: AppLocalizations.of(context).inviteFriend,
           content: Assets.lib.assets.images.serviceLike),
       SuggestionItem(
-          title: "Оплатить сотовую связь",
+          title: AppLocalizations.of(context).payCellular,
           content: Assets.lib.assets.images.serviceDone),
       SuggestionItem(
-          title: "Перевести деньги",
+          title: AppLocalizations.of(context).transferMoney,
           content: Assets.lib.assets.images.serviceNext),
       SuggestionItem(
-          title: "Оплатить услуги ЖКХ",
+          title: AppLocalizations.of(context).payHousingCommunalServices,
           content: Assets.lib.assets.images.serviceHome),
     ];
 
@@ -125,11 +126,11 @@ class TitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
       child: Text(
-        "Рекомендуем",
-        style: TextStyle(
+        AppLocalizations.of(context).addNewCard,
+        style: const TextStyle(
             fontFamily: FontFamily.sfProDisplay,
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -189,6 +190,8 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
                 Text(
                   widget.title,
                   textAlign: TextAlign.left,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                       color: Colors.white,
                       fontSize: 14.0,

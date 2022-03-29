@@ -32,6 +32,8 @@ class $LibAssetsImagesGen {
       const SvgGenImage('lib/assets/images/appbar_payments.svg');
   SvgGenImage get appbarServices =>
       const SvgGenImage('lib/assets/images/appbar_services.svg');
+  SvgGenImage get appbarSettings =>
+      const SvgGenImage('lib/assets/images/settings.svg');
   SvgGenImage get arrowDown24 =>
       const SvgGenImage('lib/assets/images/arrow_down_24.svg');
   SvgGenImage get arrowUp =>
