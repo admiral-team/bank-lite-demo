@@ -9,9 +9,7 @@ import 'package:yandex_mapkit/yandex_mapkit.dart';
 MapWidget getMapWidget() => const MapScreenMobile();
 
 class MapScreenMobile extends MapWidget {
-  const MapScreenMobile({
-    Key? key
-  }) : super(key: key);
+  const MapScreenMobile({Key? key}) : super(key: key);
 
   @override
   noSuchMethod(Invocation invocation) => _MapScreenMobileState(mockPoints);
@@ -26,12 +24,13 @@ class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
 
   _MapScreenMobileState(List<MapPoint> points) : super(points);
 
-  Future<bool> get locationPermissionNotGranted async =>
-      !(await Permission.location.request().isGranted);
+  Future<bool> get locationPermissionIsGranted async =>
+      (await Permission.location.request().isGranted);
 
   @override
   void initState() {
     super.initState();
+
     List<MapObject> placeMarks = [];
     for (var i = 0; i < points.length; i++) {
       placeMarks.add(
@@ -64,7 +63,6 @@ class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
 
   @override
   Widget build(BuildContext context) {
-    AndroidYandexMap.useAndroidViewSurface = false;
     return Stack(children: [
       YandexMap(
         logoAlignment: const MapAlignment(
@@ -85,6 +83,8 @@ class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
               ),
             ),
           );
+
+          showCurrentLocation();
         },
       ),
       Row(
@@ -128,23 +128,7 @@ class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
                 ),
                 backgroundColor: Colors.white,
                 onPressed: () async {
-                  if (await locationPermissionNotGranted) {
-                    widget.showMessage("Location permission was NOT granted");
-                    return;
-                  }
-
-                  final CameraPosition? userPosition =
-                      await _controller.getUserCameraPosition();
-
-                  if (userPosition != null) {
-                    await _controller.moveCamera(
-                      CameraUpdate.newCameraPosition(
-                        CameraPosition(
-                          target: userPosition.target,
-                        ),
-                      ),
-                    );
-                  }
+                  await showCurrentLocation();
                 },
               ),
               const SizedBox(height: 130.0)
@@ -154,5 +138,28 @@ class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
         ],
       ),
     ]);
+  }
+
+  Future<void> showCurrentLocation() async {
+    if (await locationPermissionIsGranted) {
+      _controller.toggleUserLayer(visible: true);
+
+      final CameraPosition? userPosition = await Future.delayed(
+        const Duration(seconds: 2),
+        () => _controller.getUserCameraPosition(),
+      );
+
+      if (userPosition != null) {
+        await _controller.moveCamera(
+          CameraUpdate.newCameraPosition(
+            CameraPosition(
+              target: userPosition.target,
+            ),
+          ),
+        );
+      }
+    } else {
+      widget.showMessage("Location permission was NOT granted");
+    }
   }
 }
