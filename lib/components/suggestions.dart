@@ -1,6 +1,49 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+class SuggestionWidget extends StatefulWidget {
+  const SuggestionWidget({Key? key}) : super(key: key);
+
+  @override
+  State<SuggestionWidget> createState() {
+    return _SuggestionsWrapperState();
+  }
+}
+
+class _SuggestionsWrapperState extends State<SuggestionWidget> {
+  int _selectedIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final items = [
+      SuggestionItem(
+          title: AppLocalizations.of(context).inviteFriend,
+          content: Assets.lib.assets.images.serviceLike),
+      SuggestionItem(
+          title: AppLocalizations.of(context).payCellular,
+          content: Assets.lib.assets.images.serviceDone),
+      SuggestionItem(
+          title: AppLocalizations.of(context).transferMoney,
+          content: Assets.lib.assets.images.serviceNext),
+      SuggestionItem(
+          title: AppLocalizations.of(context).payHousingCommunalServices,
+          content: Assets.lib.assets.images.serviceHome),
+    ];
+
+    return Suggestions(
+      items: items,
+      selectedIndex: _selectedIndex,
+      onPressed: (index) {
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+    );
+  }
+}
 
 class SuggestionItem {
   final String title;
@@ -83,11 +126,11 @@ class TitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
       child: Text(
-        "Рекомендуем",
-        style: TextStyle(
+        AppLocalizations.of(context).addNewCard,
+        style: const TextStyle(
             fontFamily: FontFamily.sfProDisplay,
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -147,6 +190,8 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
                 Text(
                   widget.title,
                   textAlign: TextAlign.left,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                       color: Colors.white,
                       fontSize: 14.0,

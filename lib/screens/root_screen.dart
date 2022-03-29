@@ -1,8 +1,9 @@
 import 'package:bank_lite/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bank_lite/components/airbar.dart';
-import 'package:bank_lite/components/map/map.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
+import '../l10n/locale_provider.dart';
+import 'in_progress.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({Key? key}) : super(key: key);
@@ -13,17 +14,33 @@ class RootScreen extends StatefulWidget {
 
 class _RootScreenState extends State<RootScreen> {
   int _selectedIndex = 0;
+  final _service = HomeService.shared;
 
   @override
   Widget build(BuildContext context) {
+    var futureLanguage = LanguageStorage().getLocaleFromStorage();
+    futureLanguage.then(
+      (value) => {
+        if (value != null)
+          {
+            context.read<LocaleProvider>().setLocaleByString(value),
+          },
+      },
+    );
+
     final items = [
       AirbarItem(
-          title: "Главный", content: Assets.lib.assets.images.appbarMain),
+          title: AppLocalizations.of(context).main,
+          content: Assets.lib.assets.images.appbarMain),
       AirbarItem(
-          title: "Платежи", content: Assets.lib.assets.images.appbarPayments),
+          title: AppLocalizations.of(context).payments,
+          content: Assets.lib.assets.images.appbarPayments),
       AirbarItem(
-          title: "Услуги", content: Assets.lib.assets.images.appbarServices),
-      AirbarItem(title: "Чат", content: Assets.lib.assets.images.appbarChat),
+          title: AppLocalizations.of(context).services,
+          content: Assets.lib.assets.images.appbarServices),
+      AirbarItem(
+          title: AppLocalizations.of(context).chat,
+          content: Assets.lib.assets.images.appbarChat),
     ];
 
     return Stack(children: [
@@ -32,13 +49,13 @@ class _RootScreenState extends State<RootScreen> {
           child: Container(
         alignment: Alignment.bottomCenter,
         child: Airbar(
-            selectedIndex: _selectedIndex,
-            items: items,
-            onPressed: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
+          selectedIndex: _selectedIndex,
+          items: items,
+          onPressed: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
         ),
       ))
     ]);
@@ -47,15 +64,16 @@ class _RootScreenState extends State<RootScreen> {
   Widget _currentScreen() {
     switch (_selectedIndex) {
       case 0:
-        return const HomeScreen();
+        return HomeScreen(
+            request: () => _service.homeItems().then((value) => value.items));
       case 1:
-        return Container(color: Colors.blueGrey);
+        return const InProgress(appBarHidden: true);
       case 2:
-        return MapWidget.instance;
+        return const InProgress(appBarHidden: true);
       case 3:
-        return Container(color: Colors.red);
+        return const InProgress(appBarHidden: true);
       case 4:
-        return Container(color: Colors.blue);
+        return const InProgress(appBarHidden: true);
     }
 
     throw Exception('Screen not found');

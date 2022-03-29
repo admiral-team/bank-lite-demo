@@ -1,0 +1,24 @@
+{
+    "items": [
+      {
+        "id": "p1",
+        "type": "Banner"
+      },
+      {
+        "id": "p2",
+        "type": "Card"
+      },
+      {
+        "id": "p3",
+        "type": "Cards"
+      },
+      {
+        "id": "p4",
+        "type": "Suggestions"
+      },
+      {
+        "id": "p5",
+        "type": "AddNew"
+      }
+    ]
+  }

@@ -32,14 +32,14 @@ class $LibAssetsImagesGen {
       const SvgGenImage('lib/assets/images/appbar_payments.svg');
   SvgGenImage get appbarServices =>
       const SvgGenImage('lib/assets/images/appbar_services.svg');
+  SvgGenImage get appbarSettings =>
+      const SvgGenImage('lib/assets/images/settings.svg');
   SvgGenImage get arrowDown24 =>
       const SvgGenImage('lib/assets/images/arrow_down_24.svg');
   SvgGenImage get arrowUp =>
       const SvgGenImage('lib/assets/images/arrow_up.svg');
   SvgGenImage get arrowUp24 =>
       const SvgGenImage('lib/assets/images/arrow_up_24.svg');
-  AssetGenImage get atm => const AssetGenImage('lib/assets/images/atm.png');
-  SvgGenImage get atmWeb => const SvgGenImage('lib/assets/images/atm_web.svg');
   SvgGenImage get card => const SvgGenImage('lib/assets/images/card.svg');
   SvgGenImage get cardAdd =>
       const SvgGenImage('lib/assets/images/card_add.svg');
@@ -50,7 +50,13 @@ class $LibAssetsImagesGen {
   SvgGenImage get growDown =>
       const SvgGenImage('lib/assets/images/grow_down.svg');
   SvgGenImage get growUp => const SvgGenImage('lib/assets/images/grow_up.svg');
-  AssetGenImage get place => const AssetGenImage('lib/assets/images/place.png');
+  SvgGenImage get heart => const SvgGenImage('lib/assets/images/heart.svg');
+  SvgGenImage get ilStart =>
+      const SvgGenImage('lib/assets/images/il_start.svg');
+  SvgGenImage get luckStatus =>
+      const SvgGenImage('lib/assets/images/luck_status.svg');
+  SvgGenImage get partnership =>
+      const SvgGenImage('lib/assets/images/partnership.svg');
   SvgGenImage get plus => const SvgGenImage('lib/assets/images/plus.svg');
   SvgGenImage get profile => const SvgGenImage('lib/assets/images/profile.svg');
   SvgGenImage get send => const SvgGenImage('lib/assets/images/send.svg');

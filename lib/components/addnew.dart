@@ -1,10 +1,12 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AddNewWidget extends StatefulWidget {
   final VoidCallback? onPressed;
-  const AddNewWidget({Key? key, this.onPressed }) : super(key: key);
+
+  const AddNewWidget({Key? key, this.onPressed}) : super(key: key);
 
   @override
   State<AddNewWidget> createState() => _AddNewWidgetState();
@@ -19,8 +21,13 @@ class _AddNewWidgetState extends State<AddNewWidget> {
     final SvgGenImage image = Assets.lib.assets.images.plus;
 
     return GestureDetector(
-      onTap: widget.onPressed,
-      child: Container(
+      onTap: () => widget.onPressed?.call(),
+      onTapUp: (_) => setHighlighted(false),
+      onTapDown: (_) => setHighlighted(true),
+      onTapCancel: () => setHighlighted(false),
+      child: Opacity(
+        opacity: _opacity,
+        child: Container(
           width: double.infinity,
           height: 74.0,
           alignment: Alignment.center,
@@ -39,9 +46,9 @@ class _AddNewWidgetState extends State<AddNewWidget> {
                 child: image.svg(color: Colors.white),
               ),
               const SizedBox(width: 14.0),
-              const Text(
-                "Открыть новый продукт",
-                style: TextStyle(
+              Text(
+                AppLocalizations.of(context).addNewProductButton,
+                style: const TextStyle(
                     color: Color(0xFFE4E8EE),
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500,
@@ -50,7 +57,14 @@ class _AddNewWidgetState extends State<AddNewWidget> {
             ],
             mainAxisSize: MainAxisSize.min,
           ),
+        ),
       ),
     );
+  }
+
+  setHighlighted(bool highlighted) {
+    setState(() {
+      _opacity = highlighted ? 0.7 : 1.0;
+    });
   }
 }

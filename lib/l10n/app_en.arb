@@ -1,0 +1,21 @@
+{
+  "appTitle": "VTB",
+  "addNewProductButton": "Add new product",
+  "recommendationTitle": "Recommendations",
+  "inviteFriend": "Invite a friend",
+  "payCellular": "Pay for cellular communication",
+  "transferMoney": "Transfer money",
+  "payHousingCommunalServices": "Pay for housing and communal services",
+  "linkedCards": "Linked cards",
+  "sberBankTitle": "Sberbank",
+  "addNewCard": "Add a card of another bank",
+  "digitalMulticard": "Digital Multicard",
+  "deposit": "Pop up",
+  "pay": "To pay",
+  "bannerTitle": "Use all the\nfeatures of your \nMulticard",
+  "main": "Main",
+  "payments": "Payments",
+  "services": "Services",
+  "chat": "Chat",
+  "language": "Choose language"
+}

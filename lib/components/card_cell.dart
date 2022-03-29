@@ -2,6 +2,7 @@ import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // TODO: Opacity animation on buttons: spacing between buttons
 class CardCellWidget extends StatelessWidget {
@@ -117,14 +118,14 @@ class _CardButtons extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       const SizedBox(width: 72.0),
       CardButtonWidget(
-        title: "Пополнить",
-         icon: Assets.lib.assets.images.add,
-         onPressed: addPressed),
+          title: AppLocalizations.of(context).deposit,
+          icon: Assets.lib.assets.images.add,
+          onPressed: addPressed),
       const SizedBox(width: 16.0),
       CardButtonWidget(
-        title: "Оплатить",
-         icon: Assets.lib.assets.images.send,
-         onPressed: sendPressed),
+          title: AppLocalizations.of(context).pay,
+          icon: Assets.lib.assets.images.send,
+          onPressed: sendPressed),
     ]);
   }
 }
@@ -158,28 +159,28 @@ class _CardButtonWidgetState extends State<CardButtonWidget> {
       child: Opacity(
         opacity: _opacity,
         child: Container(
-            padding:
-              const EdgeInsets.only(left: 12.0, top: 10.0, right: 12.0, bottom: 10.0),
-            height: 36.0,
-            decoration: BoxDecoration(
-              color: const Color(0xFF343C48),
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                widget.icon.svg(height: 16.0, width: 16.0),
-                const SizedBox(width: 8.0),
-                Text(
-                  widget.title,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      color: Color(0xFF3A83F1),
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: FontFamily.sfProDisplay),
-                ),
-              ]),
+          padding: const EdgeInsets.only(
+              left: 12.0, top: 10.0, right: 12.0, bottom: 10.0),
+          height: 36.0,
+          decoration: BoxDecoration(
+            color: const Color(0xFF343C48),
+            borderRadius: BorderRadius.circular(8.0),
           ),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            widget.icon.svg(height: 16.0, width: 16.0),
+            const SizedBox(width: 8.0),
+            Text(
+              widget.title,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  color: Color(0xFF3A83F1),
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: FontFamily.sfProDisplay),
+            ),
+          ]),
+        ),
       ),
     );
   }

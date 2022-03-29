@@ -1,0 +1,57 @@
+import 'dart:convert';
+import 'package:flutter/services.dart';
+
+import '../model/home_model.dart';
+import 'package:bank_lite/generated/assets.gen.dart';
+
+class HomeItemsResponse {
+  List<HomeScreenModel> items;
+  HomeItemsResponse({ required this.items });
+}
+
+class HomeService {
+  static final shared = HomeService();
+
+  Future<HomeItemsResponse> homeItems() async {
+    var itemsJSON = await readJson();
+    var response = HomeItemsResponse(items: []);
+    for (var item in itemsJSON) {
+      switch (item["type"]) {
+        case "Banner":
+          response.items.add(BannerScreenModel(onClosePressed: () {}));
+          break;
+        case "Card":
+          response.items.add(
+            CardCellModel(
+            title: "Цифровая Мультикарта",
+            balance: "2 000 ₽",
+            cardNumber: "• 2104",
+            icon: Assets.lib.assets.images.card,
+            addPressed: () {
+              print("TAP add Pressed");
+            },
+            sendPressed: () {
+              print("TAP send Pressed");
+            })
+          );
+          break;
+        case "Cards":
+          response.items.add(CardsWidgetModel());
+          break;
+        case "Suggestions":
+          response.items.add(SuggestionsCellModel());
+          break;
+        case "AddNewModel":
+          response.items.add(AddNewModel(onPressed: () {}));
+          break;
+      }
+    }
+    return response;
+  }
+
+  Future<List<dynamic>> readJson() async {
+      final String response = await rootBundle.loadString('lib/assets/json/items500000.json');
+      final data = await json.decode(response);
+      return data["items"];
+  }
+}

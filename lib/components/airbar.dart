@@ -1,4 +1,3 @@
-
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +5,8 @@ import 'package:flutter/material.dart';
 class AirbarItem {
   final String title;
   final SvgGenImage content;
-  const AirbarItem({required this.title , required this.content});
+
+  const AirbarItem({required this.title, required this.content});
 }
 
 class Airbar extends StatefulWidget {
@@ -14,12 +14,12 @@ class Airbar extends StatefulWidget {
   final int selectedIndex;
   final Function(int)? onPressed;
 
-  const Airbar({
-    Key? key, 
-    required this.items,
-    required this.selectedIndex,
-    this.onPressed
-  }) : super(key: key);
+  const Airbar(
+      {Key? key,
+      required this.items,
+      required this.selectedIndex,
+      this.onPressed})
+      : super(key: key);
 
   @override
   State<Airbar> createState() => _AirbarState();
@@ -33,13 +33,9 @@ class _AirbarState extends State<Airbar> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
       decoration: BoxDecoration(
-        color: const Color(0xFF3A4A61),
-        borderRadius: BorderRadius.circular(20.0)
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: widgets
-      ),
+          color: const Color(0xFF3A4A61),
+          borderRadius: BorderRadius.circular(20.0)),
+      child: Row(mainAxisSize: MainAxisSize.min, children: widgets),
     );
   }
 
@@ -86,7 +82,8 @@ class _AirbarItemWidgetState extends State<AirbarItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final accentColor = widget.selected ? const Color(0xFF3A83F1) : Colors.white;
+    final accentColor =
+        widget.selected ? const Color(0xFF3A83F1) : Colors.white;
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
       onTapUp: (_) => setHighlighted(false),
@@ -94,10 +91,12 @@ class _AirbarItemWidgetState extends State<AirbarItemWidget> {
       onTapCancel: () => setHighlighted(false),
       child: Opacity(
         opacity: _opacity,
-        child: SizedBox(
-            width: 56.0,
-            height: 56.0,
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
+        child: Container(
+          constraints:
+              const BoxConstraints(minHeight: 56, maxWidth: 56, minWidth: 56),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
               widget.content.svg(color: accentColor, height: 40.0, width: 40.0),
               Text(
                 widget.title,
@@ -110,8 +109,9 @@ class _AirbarItemWidgetState extends State<AirbarItemWidget> {
                     fontFamily: FontFamily.sfProText),
               ),
               const SizedBox(height: 4.0)
-            ]),
+            ],
           ),
+        ),
       ),
     );
   }
