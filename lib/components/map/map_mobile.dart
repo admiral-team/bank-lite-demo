@@ -67,7 +67,7 @@ class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
       YandexMap(
         logoAlignment: const MapAlignment(
           horizontal: HorizontalAlignment.left,
-          vertical: VerticalAlignment.top,
+          vertical: VerticalAlignment.bottom,
         ),
         mapObjects: _mapObjects,
         onMapCreated: (YandexMapController yandexMapController) async {
