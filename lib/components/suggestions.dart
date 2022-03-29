@@ -1,7 +1,6 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:flutter/material.dart';
-import '../screens/home_screen.dart';
 
 class SuggestionWidget extends StatefulWidget {
   const SuggestionWidget({Key? key}) : super(key: key);

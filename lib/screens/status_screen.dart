@@ -39,6 +39,7 @@ class StatusScreen extends StatelessWidget {
               padding:
                   const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 30.0),
               child: PrimaryButtonWidget(
+                title: "Понятно",
                 onPressed: () {
                   Navigator.of(context).pop();
                 },

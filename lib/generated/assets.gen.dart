@@ -48,10 +48,13 @@ class $LibAssetsImagesGen {
   SvgGenImage get growDown =>
       const SvgGenImage('lib/assets/images/grow_down.svg');
   SvgGenImage get growUp => const SvgGenImage('lib/assets/images/grow_up.svg');
+  SvgGenImage get heart => const SvgGenImage('lib/assets/images/heart.svg');
   SvgGenImage get ilStart =>
       const SvgGenImage('lib/assets/images/il_start.svg');
   SvgGenImage get luckStatus =>
       const SvgGenImage('lib/assets/images/luck_status.svg');
+  SvgGenImage get partnership =>
+      const SvgGenImage('lib/assets/images/partnership.svg');
   SvgGenImage get plus => const SvgGenImage('lib/assets/images/plus.svg');
   SvgGenImage get profile => const SvgGenImage('lib/assets/images/profile.svg');
   SvgGenImage get send => const SvgGenImage('lib/assets/images/send.svg');
