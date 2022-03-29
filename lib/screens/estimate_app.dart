@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:bank_lite/components/status_widget.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/components/action_window.dart';
@@ -34,7 +32,7 @@ class EstimateApp extends StatelessWidget {
               title: "Оценить приложение",
               description:
                   "Мы постоянно развиваем наше приложение, будем рады получить от вас оценку в AppStore",
-              image: Assets.lib.assets.images.ilStart.svg(),
+              image: Assets.lib.assets.images.heart.svg(color: const Color(0xFF28B5FF)),
               imageContainer: BoundingBox(width: 120.0, height: 120.0),
               titleContainerHeight: 64,
             ),

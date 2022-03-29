@@ -37,6 +37,7 @@ class StatusWidget extends StatefulWidget {
 }
 
 class _StatusWidgetState extends State<StatusWidget> {
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,10 +49,11 @@ class _StatusWidgetState extends State<StatusWidget> {
           alignment: Alignment.center,
           child: widget.model.image,
         ),
-        Container(
+        SizedBox(
           height: widget.model.titleContainerHeight,
           child: Text(
             widget.model.title,
+              textAlign: TextAlign.center,
             style: const TextStyle(
               color: Color(0xFFE4E8EE),
               fontSize: 22.0,
@@ -60,19 +62,21 @@ class _StatusWidgetState extends State<StatusWidget> {
             ),
           ),
         ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-          child: Text(
-            widget.model.description,
-            style: const TextStyle(
-              color: Color(0xFFA5ACB6),
-              fontSize: 16.0,
-              fontWeight: FontWeight.normal,
-              fontFamily: FontFamily.sfProDisplay,
+        if (widget.model.description != "") ...[
+          Container(
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+            child: Text(
+              widget.model.description,
+              style: const TextStyle(
+                color: Color(0xFFA5ACB6),
+                fontSize: 16.0,
+                fontWeight: FontWeight.normal,
+                fontFamily: FontFamily.sfProDisplay,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
-        ),
+        ],
       ],
     );
   }

@@ -1,13 +1,11 @@
 import 'dart:async';
-
 import 'package:bank_lite/components/addnew.dart';
 import 'package:bank_lite/components/appbar_main.dart';
 import 'package:bank_lite/components/banner.dart';
 import 'package:bank_lite/components/suggestions.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
-import 'package:bank_lite/screens/estimate_app.dart';
+import 'package:bank_lite/screens/in_progress.dart';
 import 'package:bank_lite/screens/settings_screen.dart';
-import 'package:bank_lite/screens/status_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -17,6 +15,7 @@ import '../components/cards_widget.dart';
 import '../components/expanded_cell.dart';
 import '../model/home_model.dart';
 import '../services/notification_service.dart';
+import 'multi_card.dart';
 
 class HomeScreen extends StatefulWidget {
   final Future<List<HomeScreenModel>> Function() request;
@@ -37,6 +36,11 @@ class _HomeScreenState extends State<HomeScreen> {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       _loading();
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Future<void> _loading() async {
@@ -72,31 +76,20 @@ class _HomeScreenState extends State<HomeScreen> {
             AppBarMain(
               count: 6,
               onPressedLeftButton: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const EstimateApp()),
-                );
+                  _pushScreen(const InProgress());
               },
               onPressedRightButton: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const StatusScreen()),
-                );
+                _pushScreen(const InProgress());
               },
               onPressedSettings: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SettingsScreen()),
-                );
+                _pushScreen(const SettingsScreen());
               },
             ),
             Expanded(
               child: ListView.separated(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
-                physics: const BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
+                shrinkWrap: false,
+                padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
+                physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
                 itemCount: _items.length,
                 itemBuilder: (ctx, index) {
                   return _buildView(ctx, index);
@@ -126,6 +119,9 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         },
         child: BannerWidget(
+          onTap: () {
+            _pushScreen(const MultiCardScreen());
+          },
           onClosePressed: () {
             setState(
               () {
@@ -136,15 +132,21 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
     } else if (item is AddNewModel) {
-      return AddNewWidget(onPressed: item.onPressed);
+      return AddNewWidget(onPressed: () {
+        _pushScreen(const InProgress());
+      });
     } else if (item is CardCellModel) {
       return CardCellWidget(
           title: item.title,
           balance: item.balance,
           cardNumber: item.cardNumber,
           icon: item.icon,
-          addPressed: item.addPressed,
-          sendPressed: item.sendPressed);
+          addPressed: () {
+            _pushScreen(const InProgress());
+          },
+          sendPressed: () {
+            _pushScreen(const InProgress());
+          });
     } else if (item is CardsWidgetModel) {
       return CardsWidget(
         collapsed: true,
@@ -156,19 +158,24 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
         onAddNewCardPressed: () {
-          print("onAddNewCardPressed pressed");
           Future.delayed(const Duration(seconds: 3), () {
-            NotificationService.showNotification(
-                title: 'Успешно!', body: 'Ваша карты выпущена');
+            NotificationService.showNotification(title: 'Успешно!', body: 'Ваша карты выпущена');
           });
         },
         onCardPressed: (cardModel) {
-          print("onCardPressed pressed ${cardModel.title}");
+          _pushScreen(const InProgress());
         },
       );
     } else if (item is SuggestionsCellModel) {
       return const SuggestionWidget();
     }
     return Container();
+  }
+
+  void _pushScreen(Widget widget) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => widget),
+    );
   }
 }

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class PrimaryButtonWidget extends StatefulWidget {
   final VoidCallback? onPressed;
-  const PrimaryButtonWidget({Key? key, this.onPressed}) : super(key: key);
+  final String title;
+  const PrimaryButtonWidget({Key? key, this.onPressed, required this.title}) : super(key: key);
 
   @override
   State<PrimaryButtonWidget> createState() => _PrimaryButtonWidgetState();
@@ -30,9 +31,9 @@ class _PrimaryButtonWidgetState extends State<PrimaryButtonWidget> {
             borderRadius: BorderRadius.circular(8.0),
           ),
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-          child: const Text(
-            "Понятно",
-            style: TextStyle(
+          child: Text(
+            widget.title,
+            style: const TextStyle(
                 color: Color(0xFFE4E8EE),
                 fontSize: 16.0,
                 fontWeight: FontWeight.w500,
