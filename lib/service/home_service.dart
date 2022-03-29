@@ -45,7 +45,7 @@ class HomeService {
           response.items.add(AddNewModel(onPressed: () {}));
           break;
       }
-    }
+    } 
     return response;
   }
 

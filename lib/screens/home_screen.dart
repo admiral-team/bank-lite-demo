@@ -88,9 +88,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: ListView.separated(
                 shrinkWrap: false,
-                padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                 physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                itemCount: _items.length,
+                itemCount: _items.length + 1,
                 itemBuilder: (ctx, index) {
                   return _buildView(ctx, index);
                 },
@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildView(BuildContext ctx, int index) {
-    final item = _items[index];
+    final item = index == _items.length ? null : _items[index];
     if (item is BannerScreenModel) {
       return ExpandedCell(
         expanded: _expanded,
@@ -168,6 +168,11 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     } else if (item is SuggestionsCellModel) {
       return const SuggestionWidget();
+    } else if (item == null) {
+      return const SizedBox(
+        width: double.infinity,
+        height: 75,
+      );
     }
     return Container();
   }
