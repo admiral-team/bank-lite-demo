@@ -1,4 +1,6 @@
+import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -31,6 +33,12 @@ Future<void> main() async {
       debugPrint('notification payload: ' + $payload);
     }
   });
+
+  FirebasePerformance performance = FirebasePerformance.instance;
+  bool isEnabled = await performance.isPerformanceCollectionEnabled();
+  if (kDebugMode) {
+    print("is performance enabled = $isEnabled");
+  }
 
   runApp(const Application());
 }
