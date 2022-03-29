@@ -1,3 +1,4 @@
+import 'package:bank_lite/components/map/map.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/screens/estimate_app.dart';
 import 'package:bank_lite/screens/status_screen.dart';
@@ -87,7 +88,7 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
         return LeadingCellWidget(
             title: _model.title,
             onPressed: () {
-              _pushScreen(const StatusScreen());
+              _pushScreen(MapWidget.instance);
             });
 
       case _MultiCardActionType.estimate:

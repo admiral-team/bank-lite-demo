@@ -17,6 +17,7 @@ class $LibAssetsGen {
   const $LibAssetsGen();
 
   $LibAssetsImagesGen get images => const $LibAssetsImagesGen();
+  $LibAssetsJsonGen get json => const $LibAssetsJsonGen();
 }
 
 class $LibAssetsImagesGen {
@@ -40,6 +41,8 @@ class $LibAssetsImagesGen {
       const SvgGenImage('lib/assets/images/arrow_up.svg');
   SvgGenImage get arrowUp24 =>
       const SvgGenImage('lib/assets/images/arrow_up_24.svg');
+  AssetGenImage get atm => const AssetGenImage('lib/assets/images/atm.png');
+  SvgGenImage get atmWeb => const SvgGenImage('lib/assets/images/atm_web.svg');
   SvgGenImage get card => const SvgGenImage('lib/assets/images/card.svg');
   SvgGenImage get cardAdd =>
       const SvgGenImage('lib/assets/images/card_add.svg');
@@ -57,6 +60,7 @@ class $LibAssetsImagesGen {
       const SvgGenImage('lib/assets/images/luck_status.svg');
   SvgGenImage get partnership =>
       const SvgGenImage('lib/assets/images/partnership.svg');
+  AssetGenImage get place => const AssetGenImage('lib/assets/images/place.png');
   SvgGenImage get plus => const SvgGenImage('lib/assets/images/plus.svg');
   SvgGenImage get profile => const SvgGenImage('lib/assets/images/profile.svg');
   SvgGenImage get send => const SvgGenImage('lib/assets/images/send.svg');
@@ -75,6 +79,17 @@ class $LibAssetsImagesGen {
   SvgGenImage get union => const SvgGenImage('lib/assets/images/union.svg');
   SvgGenImage get vtbTitle =>
       const SvgGenImage('lib/assets/images/vtb_title.svg');
+}
+
+class $LibAssetsJsonGen {
+  const $LibAssetsJsonGen();
+
+  String get items => 'lib/assets/json/items.json';
+  String get items100 => 'lib/assets/json/items100.json';
+  String get items1000 => 'lib/assets/json/items1000.json';
+  String get items10000 => 'lib/assets/json/items10000.json';
+  String get items100000 => 'lib/assets/json/items100000.json';
+  String get items500000 => 'lib/assets/json/items500000.json';
 }
 
 class Assets {
