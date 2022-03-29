@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bank_lite/components/addnew.dart';
 import 'package:bank_lite/components/appbar_main.dart';
 import 'package:bank_lite/components/banner.dart';
