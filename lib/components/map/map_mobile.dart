@@ -1,60 +1,56 @@
+import 'package:bank_lite/components/map/map.dart';
+import 'package:bank_lite/components/map/models/map_point.dart';
+import 'package:bank_lite/components/map/models/mock_points.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
-class MapScreen extends StatefulWidget {
-  final List<Point> points;
+MapWidget getMapWidget() => const MapScreenMobile();
 
-  const MapScreen({
-    Key? key,
-    required this.points,
+class MapScreenMobile extends MapWidget {
+  const MapScreenMobile({
+    Key? key
   }) : super(key: key);
 
   @override
-  State<MapScreen> createState() => _MapScreenState();
+  noSuchMethod(Invocation invocation) => _MapScreenMobileState(mockPoints);
 }
 
-class _MapScreenState extends State<MapScreen> {
+class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
   List<MapObject> _mapObjects = [];
   late YandexMapController _controller;
-
-  final _initialPosition = const Point(latitude: 55.7520, longitude: 37.3175);
 
   final _animation =
       const MapAnimation(type: MapAnimationType.smooth, duration: 0.2);
 
+  _MapScreenMobileState(List<MapPoint> points) : super(points);
+
   Future<bool> get locationPermissionNotGranted async =>
       !(await Permission.location.request().isGranted);
-
-  void _showMessage(String message) {
-    Fluttertoast.showToast(
-        msg: message,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: const Color(0xFF343C48),
-        textColor: Colors.white,
-        fontSize: 16.0);
-  }
 
   @override
   void initState() {
     super.initState();
     List<MapObject> placeMarks = [];
-    for (var i = 0; i < widget.points.length; i++) {
+    for (var i = 0; i < points.length; i++) {
       placeMarks.add(
         Placemark(
+          opacity: 1,
           mapId: MapObjectId('place_mark_$i'),
-          point: widget.points[i],
+          point: Point(
+            latitude: points[i].position.latitude,
+            longitude: points[i].position.longitude,
+          ),
           onTap: (Placemark self, Point point) {
-            _showMessage("Point clicked:\n$point");
+            if (points[i].info != null) {
+              widget.showMessage(points[i].info!);
+            }
           },
           icon: PlacemarkIcon.single(
             PlacemarkIconStyle(
               image: BitmapDescriptor.fromAssetImage(
-                Assets.lib.assets.images.place.path,
+                Assets.lib.assets.images.atm.path,
               ),
             ),
           ),
@@ -82,7 +78,10 @@ class _MapScreenState extends State<MapScreen> {
           await _controller.moveCamera(
             CameraUpdate.newCameraPosition(
               CameraPosition(
-                target: _initialPosition,
+                target: Point(
+                  latitude: initialPosition.latitude,
+                  longitude: initialPosition.longitude,
+                ),
               ),
             ),
           );
@@ -130,7 +129,7 @@ class _MapScreenState extends State<MapScreen> {
                 backgroundColor: Colors.white,
                 onPressed: () async {
                   if (await locationPermissionNotGranted) {
-                    _showMessage("Location permission was NOT granted");
+                    widget.showMessage("Location permission was NOT granted");
                     return;
                   }
 

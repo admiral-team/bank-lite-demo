@@ -1,9 +1,8 @@
 import 'package:bank_lite/screens/home_screen.dart';
-import 'package:bank_lite/screens/map_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:yandex_mapkit/yandex_mapkit.dart';
-import '../components/airbar.dart';
-import '../generated/assets.gen.dart';
+import 'package:bank_lite/components/airbar.dart';
+import 'package:bank_lite/components/map/map.dart';
+import 'package:bank_lite/generated/assets.gen.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({Key? key}) : super(key: key);
@@ -52,18 +51,7 @@ class _RootScreenState extends State<RootScreen> {
       case 1:
         return Container(color: Colors.blueGrey);
       case 2:
-        return const MapScreen(points: [
-          Point(latitude: 55.7520, longitude: 37.3175),
-          Point(latitude: 53.8520, longitude: 37.8175),
-          Point(latitude: 56.9520, longitude: 37.5175),
-          Point(latitude: 57.0520, longitude: 37.6175),
-          Point(latitude: 59.1520, longitude: 38.7175),
-          Point(latitude: 59.2520, longitude: 34.8175),
-          Point(latitude: 57.3520, longitude: 37.9175),
-          Point(latitude: 57.6520, longitude: 37.6175),
-          Point(latitude: 57.8520, longitude: 37.2175),
-          Point(latitude: 52.9520, longitude: 37.8175),
-        ],);
+        return MapWidget.instance;
       case 3:
         return Container(color: Colors.red);
       case 4:

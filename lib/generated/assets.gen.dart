@@ -38,6 +38,8 @@ class $LibAssetsImagesGen {
       const SvgGenImage('lib/assets/images/arrow_up.svg');
   SvgGenImage get arrowUp24 =>
       const SvgGenImage('lib/assets/images/arrow_up_24.svg');
+  AssetGenImage get atm => const AssetGenImage('lib/assets/images/atm.png');
+  SvgGenImage get atmWeb => const SvgGenImage('lib/assets/images/atm_web.svg');
   SvgGenImage get card => const SvgGenImage('lib/assets/images/card.svg');
   SvgGenImage get cardAdd =>
       const SvgGenImage('lib/assets/images/card_add.svg');
