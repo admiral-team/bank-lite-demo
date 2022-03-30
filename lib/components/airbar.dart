@@ -82,35 +82,33 @@ class _AirbarItemWidgetState extends State<AirbarItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final accentColor =
-        widget.selected ? const Color(0xFF3A83F1) : Colors.white;
+    final accentColor = widget.selected
+        ? Color.fromRGBO(58, 131, 241, _opacity)
+        : Color.fromRGBO(255, 255, 255, _opacity);
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: Container(
-          constraints:
-              const BoxConstraints(minHeight: 56, maxWidth: 56, minWidth: 56),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              widget.content.svg(color: accentColor, height: 40.0, width: 40.0),
-              Text(
-                widget.title,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 10.0,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: FontFamily.sfProText),
-              ),
-              const SizedBox(height: 4.0)
-            ],
-          ),
+      child: Container(
+        constraints:
+            const BoxConstraints(minHeight: 56, maxWidth: 56, minWidth: 56),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            widget.content.svg(color: accentColor, height: 40.0, width: 40.0),
+            Text(
+              widget.title,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Color.fromRGBO(255, 255, 255, _opacity),
+                  fontSize: 10.0,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: FontFamily.sfProText),
+            ),
+            const SizedBox(height: 4.0)
+          ],
         ),
       ),
     );
@@ -122,45 +120,3 @@ class _AirbarItemWidgetState extends State<AirbarItemWidget> {
     });
   }
 }
-
-// class AirbarItemWidget extends StatelessWidget {
-//   final String title;
-//   final SvgGenImage content;
-//   final bool selected;
-//   final VoidCallback? onPressed;
-
-//   const AirbarItemWidget({
-//     Key? key,
-//     required this.title,
-//     required this.content,
-//     this.selected = false,
-//     this.onPressed,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final accentColor = selected ? const Color(0xFF3A83F1) : Colors.white;
-//     return CupertinoButton(
-//         minSize: 0,
-//         padding: const EdgeInsets.all(0),
-//         child: SizedBox(
-//           width: 56.0,
-//           height: 56.0,
-//           child: Column(mainAxisSize: MainAxisSize.min, children: [
-//             content.svg(color: accentColor, height: 40.0, width: 40.0),
-//             Text(
-//               title,
-//               overflow: TextOverflow.ellipsis,
-//               textAlign: TextAlign.center,
-//               style: const TextStyle(
-//                   color: Colors.white,
-//                   fontSize: 10.0,
-//                   fontWeight: FontWeight.w500,
-//                   fontFamily: FontFamily.sfProText),
-//             ),
-//             const SizedBox(height: 4.0)
-//           ]),
-//         ),
-//         onPressed: () => onPressed?.call());
-//   }
-// }

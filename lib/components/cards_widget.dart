@@ -79,28 +79,25 @@ class _CardsWidgetState extends State<CardsWidget> {
             onTapUp: (_) => setHighlighted(false),
             onTapDown: (_) => setHighlighted(true),
             onTapCancel: () => setHighlighted(false),
-            child: Opacity(
-              opacity: _opacity,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(width: 16),
-                  Text(
-                    AppLocalizations.of(context).linkedCards,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: FontFamily.sfProText),
-                  ),
-                  const SizedBox(width: 6),
-                  (_collapsed ? arrowDown : arrowUp).svg(
-                    color: const Color(0xFF99A0AB),
-                    height: 24.0,
-                    width: 24.0,
-                  ),
-                ],
-              ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(width: 16),
+                Text(
+                  AppLocalizations.of(context).linkedCards,
+                  style: TextStyle(
+                      color: Color.fromRGBO(255, 255, 255, _opacity),
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: FontFamily.sfProText),
+                ),
+                const SizedBox(width: 6),
+                (_collapsed ? arrowDown : arrowUp).svg(
+                  color: Color.fromRGBO(153, 160, 171, _opacity),
+                  height: 24.0,
+                  width: 24.0,
+                ),
+              ],
             ),
           ),
           Collapsible(
@@ -111,45 +108,11 @@ class _CardsWidgetState extends State<CardsWidget> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: widgets,
-              // [
-              //   const SizedBox(height: 8),
-              //   ListView.builder(
-              //     itemCount: _cards.length,
-              //     itemBuilder: (context, index) {
-              //       return CardWidget(
-              //         model: _cards[index],
-              //       );
-              //     },
-              //   ),
-              //   CardWidget(
-              //     model: CardModel(
-              //       title: "Добавить карту другого банка",
-              //       image: Assets.lib.assets.images.cardAdd,
-              //     ),
-              //   ),
-              // ],
             ),
           ),
         ],
       ),
     );
-
-    // Column(
-    //   mainAxisSize: MainAxisSize.min,
-    //   crossAxisAlignment: CrossAxisAlignment.start,
-    //   children: [
-    //     const SizedBox(height: 8),
-    //     CardWidget(
-    //       title: "Сбербанк",
-    //       lastNumbers: "• 3267",
-    //       image: Assets.lib.assets.images.cardVisa,
-    //     ),
-    //     CardWidget(
-    //       title: "Добавить карту другого банка",
-    //       image: Assets.lib.assets.images.cardAdd,
-    //     ),
-    //   ],
-    // ),
   }
 
   setHighlighted(bool highlighted) {

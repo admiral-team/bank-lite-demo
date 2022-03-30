@@ -19,20 +19,18 @@ class ActionButtonWidget extends StatefulWidget {
 }
 
 class _ActionButtonWidgetWidgetState extends State<ActionButtonWidget> {
-
   double _opacity = 1.0;
 
   @override
   Widget build(BuildContext context) {
-    
     final Color textColor;
     switch (widget.style) {
-    case ActionButtonStyle.regular:
-      textColor = Color(0xFF5594F1);
-      break;
-    case ActionButtonStyle.textError:
-      textColor = Color(0xFFEC5851);
-      break;
+      case ActionButtonStyle.regular:
+        textColor = Color.fromRGBO(85, 148, 241, _opacity);
+        break;
+      case ActionButtonStyle.textError:
+        textColor = Color.fromRGBO(236, 88, 81, _opacity);
+        break;
     }
 
     return GestureDetector(
@@ -40,24 +38,21 @@ class _ActionButtonWidgetWidgetState extends State<ActionButtonWidget> {
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: Container(
-          width: 147,
-          height: 40,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: const Color(0xFF363E49),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Text(
-            "Понятно",
-            style: TextStyle(
-                color: textColor,
-                fontSize: 16.0,
-                fontWeight: FontWeight.normal,
-                fontFamily: FontFamily.sfProDisplay),
-          ),
+      child: Container(
+        width: 147,
+        height: 40,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(54, 62, 73, _opacity),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Text(
+          "Понятно",
+          style: TextStyle(
+              color: textColor,
+              fontSize: 16.0,
+              fontWeight: FontWeight.normal,
+              fontFamily: FontFamily.sfProDisplay),
         ),
       ),
     );

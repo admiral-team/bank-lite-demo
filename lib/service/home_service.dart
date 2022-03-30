@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import '../model/home_model.dart';
@@ -6,7 +7,7 @@ import 'package:bank_lite/generated/assets.gen.dart';
 
 class HomeItemsResponse {
   List<HomeScreenModel> items;
-  HomeItemsResponse({ required this.items });
+  HomeItemsResponse({required this.items});
 }
 
 class HomeService {
@@ -21,19 +22,17 @@ class HomeService {
           response.items.add(BannerScreenModel(onClosePressed: () {}));
           break;
         case "Card":
-          response.items.add(
-            CardCellModel(
-            title: "Цифровая Мультикарта",
-            balance: "2 000 ₽",
-            cardNumber: "• 2104",
-            icon: Assets.lib.assets.images.card,
-            addPressed: () {
-              print("TAP add Pressed");
-            },
-            sendPressed: () {
-              print("TAP send Pressed");
-            })
-          );
+          response.items.add(CardCellModel(
+              title: "Цифровая Мультикарта",
+              balance: "2 000 ₽",
+              cardNumber: "• 2104",
+              icon: Assets.lib.assets.images.card,
+              addPressed: () {
+                print("TAP add Pressed");
+              },
+              sendPressed: () {
+                print("TAP send Pressed");
+              }));
           break;
         case "Cards":
           response.items.add(CardsWidgetModel());
@@ -50,8 +49,13 @@ class HomeService {
   }
 
   Future<List<dynamic>> readJson() async {
-      final String response = await rootBundle.loadString('lib/assets/json/items500000.json');
-      final data = await json.decode(response);
-      return data["items"];
+    final String response =
+        await rootBundle.loadString('lib/assets/json/items500000.json');
+    return compute(parseItems, response);
+  }
+
+  List<dynamic> parseItems(String responseBody) {
+    final data = json.decode(responseBody);
+    return data["items"];
   }
 }

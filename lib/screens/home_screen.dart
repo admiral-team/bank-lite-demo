@@ -6,6 +6,7 @@ import 'package:bank_lite/components/suggestions.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/screens/in_progress.dart';
 import 'package:bank_lite/screens/settings_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -102,8 +103,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      onRefresh: () {
-        return _pullRefresh();
+      onRefresh: () async {
+        return await _pullRefresh();
       },
     );
   }

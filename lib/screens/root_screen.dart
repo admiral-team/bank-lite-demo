@@ -2,13 +2,12 @@ import 'package:bank_lite/screens/home_screen.dart';
 import 'package:bank_lite/service/home_service.dart';
 import 'package:bank_lite/storage/locale_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-
 import '../components/airbar.dart';
 import '../generated/assets.gen.dart';
 import 'in_progress.dart';
 import '../l10n/locale_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({Key? key}) : super(key: key);

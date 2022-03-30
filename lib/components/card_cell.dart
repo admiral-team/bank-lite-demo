@@ -156,31 +156,28 @@ class _CardButtonWidgetState extends State<CardButtonWidget> {
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: Container(
-          padding: const EdgeInsets.only(
-              left: 12.0, top: 10.0, right: 12.0, bottom: 10.0),
-          height: 36.0,
-          decoration: BoxDecoration(
-            color: const Color(0xFF343C48),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            widget.icon.svg(height: 16.0, width: 16.0),
-            const SizedBox(width: 8.0),
-            Text(
-              widget.title,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  color: Color(0xFF3A83F1),
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: FontFamily.sfProDisplay),
-            ),
-          ]),
+      child: Container(
+        padding: const EdgeInsets.only(
+            left: 12.0, top: 10.0, right: 12.0, bottom: 10.0),
+        height: 36.0,
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(52, 60, 72, _opacity),
+          borderRadius: BorderRadius.circular(8.0),
         ),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          widget.icon.svg(height: 16.0, width: 16.0),
+          const SizedBox(width: 8.0),
+          Text(
+            widget.title,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Color.fromRGBO(58, 131, 241, _opacity),
+                fontSize: 14.0,
+                fontWeight: FontWeight.w600,
+                fontFamily: FontFamily.sfProDisplay),
+          ),
+        ]),
       ),
     );
   }

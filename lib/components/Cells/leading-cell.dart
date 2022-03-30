@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 class LeadingCellWidget extends StatefulWidget {
   final VoidCallback? onPressed;
   final String title;
-  const LeadingCellWidget(
-      {Key? key, this.onPressed, required this.title})
+  const LeadingCellWidget({Key? key, this.onPressed, required this.title})
       : super(key: key);
 
   @override
@@ -22,25 +21,23 @@ class _LeadingCelltWidgetState extends State<LeadingCellWidget> {
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: Container(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
-          width: double.infinity,
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: const Color(0xFF292F38),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Text(
-            widget.title,
-            textAlign: TextAlign.left,
-            style: const TextStyle(
-                color: Color(0xFFE5E5E5),
-                fontSize: 16.0,
-                fontWeight: FontWeight.normal,
-                fontFamily: FontFamily.sfProDisplay),
-          ),
+      child: Container(
+        padding: const EdgeInsets.only(
+            left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
+        width: double.infinity,
+        alignment: Alignment.centerLeft,
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(41, 47, 56, _opacity),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Text(
+          widget.title,
+          textAlign: TextAlign.left,
+          style: TextStyle(
+              color: Color.fromRGBO(229, 229, 229, _opacity),
+              fontSize: 16.0,
+              fontWeight: FontWeight.normal,
+              fontFamily: FontFamily.sfProDisplay),
         ),
       ),
     );

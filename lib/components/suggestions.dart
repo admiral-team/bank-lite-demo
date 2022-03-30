@@ -164,15 +164,13 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
   @override
   Widget build(BuildContext context) {
     final accentColor =
-        widget.selected ? const Color(0xFF3A83F1) : const Color(0xFF1D2128);
+        widget.selected ?  Color.fromRGBO(58, 131, 241, _opacity) : Color.fromRGBO(29, 33, 49, _opacity);
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: SizedBox(
+      child: SizedBox(
           width: 104.0,
           height: 120.0,
           child: Container(
@@ -202,7 +200,6 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
             ),
           ),
         ),
-      ),
     );
   }
 

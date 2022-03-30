@@ -13,7 +13,6 @@ class AddNewWidget extends StatefulWidget {
 }
 
 class _AddNewWidgetState extends State<AddNewWidget> {
-  // TODO: - Add setHighlighted as airbar
   double _opacity = 1.0;
 
   @override
@@ -25,38 +24,35 @@ class _AddNewWidgetState extends State<AddNewWidget> {
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: Container(
-          width: double.infinity,
-          height: 74.0,
-          alignment: Alignment.center,
-          color: const Color(0xFF1D2128),
-          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-          child: Row(
-            children: [
-              Container(
-                width: 28.0,
-                height: 22.0,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF3A83F1),
-                  borderRadius: BorderRadius.circular(3.0),
-                ),
-                child: image.svg(color: Colors.white),
+      child: Container(
+        width: double.infinity,
+        height: 74.0,
+        alignment: Alignment.center,
+        color: Color.fromRGBO(29, 33, 40, _opacity),
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+        child: Row(
+          children: [
+            Container(
+              width: 28.0,
+              height: 22.0,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(58, 131, 231, _opacity),
+                borderRadius: BorderRadius.circular(3.0),
               ),
-              const SizedBox(width: 14.0),
-              Text(
-                AppLocalizations.of(context).addNewProductButton,
-                style: const TextStyle(
-                    color: Color(0xFFE4E8EE),
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: FontFamily.sfProText),
-              )
-            ],
-            mainAxisSize: MainAxisSize.min,
-          ),
+              child: image.svg(color: Colors.white),
+            ),
+            const SizedBox(width: 14.0),
+            Text(
+              AppLocalizations.of(context).addNewProductButton,
+              style: TextStyle(
+                  color: Color.fromRGBO(255, 255, 255, _opacity),
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: FontFamily.sfProText),
+            )
+          ],
+          mainAxisSize: MainAxisSize.min,
         ),
       ),
     );

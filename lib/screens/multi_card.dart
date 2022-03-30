@@ -1,3 +1,4 @@
+import 'package:bank_lite/components/map/map.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/screens/estimate_app.dart';
 import 'package:bank_lite/screens/status_screen.dart';
@@ -85,30 +86,32 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
     switch (_model.type) {
       case _MultiCardActionType.map:
         return LeadingCellWidget(
-            title: _model.title,
-            onPressed: () {
-              _pushScreen(const StatusScreen());
-            });
-
+          title: _model.title,
+          onPressed: () {
+            _pushScreen(MapWidget.instance);
+          },
+        );
       case _MultiCardActionType.estimate:
         return LeadingCellWidget(
-            title: _model.title,
-            onPressed: () {
-              _pushScreen(const EstimateApp());
-            });
-
+          title: _model.title,
+          onPressed: () {
+            _pushScreen(const EstimateApp());
+          },
+        );
       case _MultiCardActionType.addRequest:
         return LeadingCellWidget(
-            title: _model.title,
-            onPressed: () {
-              _pushScreen(const StatusScreen());
-            });
+          title: _model.title,
+          onPressed: () {
+            _pushScreen(const StatusScreen());
+          },
+        );
       case _MultiCardActionType.transactions:
         return LeadingCellWidget(
-            title: _model.title,
-            onPressed: () {
-              _pushScreen(const InProgress());
-            });
+          title: _model.title,
+          onPressed: () {
+            _pushScreen(const InProgress());
+          },
+        );
     }
   }
 
