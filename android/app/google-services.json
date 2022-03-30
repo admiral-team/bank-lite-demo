@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "387722497265",
+    "project_id": "bank-lite-demo-b67f6",
+    "storage_bucket": "bank-lite-demo-b67f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387722497265:android:d28573b1adfc9fc59b2d50",
+        "android_client_info": {
+          "package_name": "com.example.bank_lite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "387722497265-tek86sfjfehppnm14q2b5lbdbktunmji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAIE15YCxjBYqbK7wgnmr64z9T_x6JITg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "387722497265-tek86sfjfehppnm14q2b5lbdbktunmji.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "387722497265-ac64u4jku6cdvnenk014v07ovt0v6t4p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bankLite"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,12 +2,12 @@ import 'package:bank_lite/screens/home_screen.dart';
 import 'package:bank_lite/service/home_service.dart';
 import 'package:bank_lite/storage/locale_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-
 import '../components/airbar.dart';
 import '../generated/assets.gen.dart';
+import 'in_progress.dart';
 import '../l10n/locale_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({Key? key}) : super(key: key);
@@ -71,13 +71,13 @@ class _RootScreenState extends State<RootScreen> {
         return HomeScreen(
             request: () => _service.homeItems().then((value) => value.items));
       case 1:
-        return Container(color: Colors.blueGrey);
+        return const InProgress(appBarHidden: true);
       case 2:
-        return Container(color: Colors.green);
+        return const InProgress(appBarHidden: true);
       case 3:
-        return Container(color: Colors.red);
+        return const InProgress(appBarHidden: true);
       case 4:
-        return Container(color: Colors.blue);
+        return const InProgress(appBarHidden: true);
     }
 
     throw Exception('Screen not found');
