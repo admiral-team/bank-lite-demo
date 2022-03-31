@@ -44,13 +44,13 @@ class HomeService {
           response.items.add(AddNewModel(onPressed: () {}));
           break;
       }
-    } 
+    }
     return response;
   }
 
   Future<List<dynamic>> readJson() async {
     final String response =
-        await rootBundle.loadString('lib/assets/json/items500000.json');
+        await rootBundle.loadString('lib/assets/json/items10000.json');
     return compute(parseItems, response);
   }
 

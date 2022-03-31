@@ -6,7 +6,6 @@ import 'package:bank_lite/components/suggestions.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/screens/in_progress.dart';
 import 'package:bank_lite/screens/settings_screen.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -77,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
             AppBarMain(
               count: 6,
               onPressedLeftButton: () {
-                  _pushScreen(const InProgress());
+                _pushScreen(const InProgress());
               },
               onPressedRightButton: () {
                 _pushScreen(const InProgress());
@@ -88,9 +87,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               child: ListView.separated(
+                addAutomaticKeepAlives: false,
+                addRepaintBoundaries: false,
                 shrinkWrap: false,
-                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-                physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
                 itemCount: _items.length + 1,
                 itemBuilder: (ctx, index) {
                   return _buildView(ctx, index);
@@ -160,7 +163,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         onAddNewCardPressed: () {
           Future.delayed(const Duration(seconds: 3), () {
-            NotificationService.showNotification(title: 'Успешно!', body: 'Ваша карты выпущена');
+            NotificationService.showNotification(
+                title: 'Успешно!', body: 'Ваша карты выпущена');
           });
         },
         onCardPressed: (cardModel) {
