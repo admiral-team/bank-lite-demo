@@ -1,13 +1,21 @@
 import 'package:bank_lite/components/map/map.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
+import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/screens/estimate_app.dart';
 import 'package:bank_lite/screens/status_screen.dart';
+import 'package:bank_lite/screens/theme_settings_screen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
-
 import '../components/Cells/leading-cell.dart';
 import 'in_progress.dart';
 
-enum _MultiCardActionType { map, estimate, addRequest, transactions }
+enum _MultiCardActionType {
+  map,
+  estimate,
+  addRequest,
+  transactions,
+  themeSettings
+}
 
 class MultiCardScreen extends StatefulWidget {
   const MultiCardScreen({Key? key}) : super(key: key);
@@ -32,6 +40,9 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
         title: "Отправить заявку", type: _MultiCardActionType.addRequest),
     _ListCellModel(
         title: "Перевести деньги", type: _MultiCardActionType.transactions),
+    _ListCellModel(
+        title: "Настроить тему приложения",
+        type: _MultiCardActionType.themeSettings),
   ];
 
   SvgGenImage get _bell => Assets.lib.assets.images.alert;
@@ -41,17 +52,30 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Мультикарта"),
+        titleTextStyle: TextStyle(
+          color: AppThemeProvider.of(context).colors.textPrimary.color(),
+          fontSize: 17.0,
+          fontWeight: FontWeight.w600,
+          fontFamily: FontFamily.sfProText,
+        ),
+        centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF3A83F1)),
+          icon: Icon(
+            Icons.arrow_back,
+            color: AppThemeProvider.of(context).colors.elementsAccent.color(),
+          ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,
-        backgroundColor: const Color(0xFF1C2026),
+        backgroundColor:
+            AppThemeProvider.of(context).colors.backgroundBasic.color(),
         actions: <Widget>[
           IconButton(
             padding: EdgeInsets.zero,
-            icon: _bell.svg(color: const Color(0xFF5594F1)),
+            icon: _bell.svg(
+              color: AppThemeProvider.of(context).colors.elementsAccent.color(),
+            ),
             onPressed: null,
           )
         ],
@@ -59,7 +83,7 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: const Color(0xFF1C2026),
+        color: AppThemeProvider.of(context).colors.backgroundBasic.color(),
         padding: const EdgeInsets.only(top: 20.0),
         alignment: Alignment.center,
         child: Expanded(
@@ -109,6 +133,12 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
             title: _model.title,
             onPressed: () {
               _pushScreen(const InProgress());
+            });
+      case _MultiCardActionType.themeSettings:
+        return LeadingCellWidget(
+            title: _model.title,
+            onPressed: () {
+              _pushScreen(const ThemeSettingsScreen());
             });
     }
   }

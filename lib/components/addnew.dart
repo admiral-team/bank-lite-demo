@@ -1,5 +1,6 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -31,7 +32,6 @@ class _AddNewWidgetState extends State<AddNewWidget> {
           width: double.infinity,
           height: 74.0,
           alignment: Alignment.center,
-          color: const Color(0xFF1D2128),
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
           child: Row(
             children: [
@@ -40,16 +40,27 @@ class _AddNewWidgetState extends State<AddNewWidget> {
                 height: 22.0,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF3A83F1),
+                  color: AppThemeProvider.of(context)
+                      .colors
+                      .elementsAccent
+                      .color(),
                   borderRadius: BorderRadius.circular(3.0),
                 ),
-                child: image.svg(color: Colors.white),
+                child: image.svg(
+                  color: AppThemeProvider.of(context)
+                      .colors
+                      .elementsStaticWhite
+                      .color(),
+                ),
               ),
               const SizedBox(width: 14.0),
               Text(
                 AppLocalizations.of(context).addNewProductButton,
-                style: const TextStyle(
-                    color: Color(0xFFE4E8EE),
+                style: TextStyle(
+                    color: AppThemeProvider.of(context)
+                        .colors
+                        .textPrimary
+                        .color(),
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500,
                     fontFamily: FontFamily.sfProText),

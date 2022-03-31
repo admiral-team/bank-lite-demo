@@ -1,4 +1,5 @@
 import 'package:bank_lite/generated/fonts.gen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:collapsible/collapsible.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -66,7 +67,7 @@ class _CardsWidgetState extends State<CardsWidget> {
 
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF272C35),
+        color: AppThemeProvider.of(context).colors.backgroundAdditional.color(),
         borderRadius: BorderRadius.circular(8.0),
       ),
       padding: const EdgeInsets.symmetric(vertical: 14),
@@ -87,15 +88,15 @@ class _CardsWidgetState extends State<CardsWidget> {
                   const SizedBox(width: 16),
                   Text(
                     AppLocalizations.of(context).linkedCards,
-                    style: const TextStyle(
-                        color: Colors.white,
+                    style: TextStyle(
+                        color: AppThemeProvider.of(context).colors.textPrimary.color(),
                         fontSize: 18.0,
                         fontWeight: FontWeight.w700,
                         fontFamily: FontFamily.sfProText),
                   ),
                   const SizedBox(width: 6),
                   (_collapsed ? arrowDown : arrowUp).svg(
-                    color: const Color(0xFF99A0AB),
+                    color: AppThemeProvider.of(context).colors.elementsSecondary.color(),
                     height: 24.0,
                     width: 24.0,
                   ),
@@ -111,45 +112,11 @@ class _CardsWidgetState extends State<CardsWidget> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: widgets,
-              // [
-              //   const SizedBox(height: 8),
-              //   ListView.builder(
-              //     itemCount: _cards.length,
-              //     itemBuilder: (context, index) {
-              //       return CardWidget(
-              //         model: _cards[index],
-              //       );
-              //     },
-              //   ),
-              //   CardWidget(
-              //     model: CardModel(
-              //       title: "Добавить карту другого банка",
-              //       image: Assets.lib.assets.images.cardAdd,
-              //     ),
-              //   ),
-              // ],
             ),
           ),
         ],
       ),
     );
-
-    // Column(
-    //   mainAxisSize: MainAxisSize.min,
-    //   crossAxisAlignment: CrossAxisAlignment.start,
-    //   children: [
-    //     const SizedBox(height: 8),
-    //     CardWidget(
-    //       title: "Сбербанк",
-    //       lastNumbers: "• 3267",
-    //       image: Assets.lib.assets.images.cardVisa,
-    //     ),
-    //     CardWidget(
-    //       title: "Добавить карту другого банка",
-    //       image: Assets.lib.assets.images.cardAdd,
-    //     ),
-    //   ],
-    // ),
   }
 
   setHighlighted(bool highlighted) {

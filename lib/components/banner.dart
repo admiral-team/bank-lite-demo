@@ -1,5 +1,6 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -25,7 +26,7 @@ class _BannerWidgetState extends State<BannerWidget> {
         height: 97,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: const Color(0xFF272C35),
+          color: AppThemeProvider.of(context).colors.backgroundAdditional.color(),
           borderRadius: BorderRadius.circular(16.0),
         ),
         padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
@@ -35,8 +36,8 @@ class _BannerWidgetState extends State<BannerWidget> {
               margin: const EdgeInsets.only(left: 16.0),
               child: Text(
                 AppLocalizations.of(context).bannerTitle,
-                style: const TextStyle(
-                    color: Color(0xFFE4E8EE),
+                style: TextStyle(
+                    color: AppThemeProvider.of(context).colors.textPrimary.color(),
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500,
                     fontFamily: FontFamily.sfProText),
@@ -51,17 +52,17 @@ class _BannerWidgetState extends State<BannerWidget> {
                     radius: 65,
                     lineWidth: 3.0,
                     percent: 0.2,
-                    center: const Text(
+                    center: Text(
                       "20%",
                       style: TextStyle(
-                          color: Color(0xFF3A83F1),
+                          color: AppThemeProvider.of(context).colors.textAccent.color(),
                           fontSize: 22.0,
                           fontWeight: FontWeight.bold,
                           fontFamily: FontFamily.sfProText),
                     ),
                     circularStrokeCap: CircularStrokeCap.round,
-                    backgroundColor: const Color(0xFF343C48),
-                    progressColor: const Color(0xFF3A83F1),
+                    backgroundColor: AppThemeProvider.of(context).colors.backgroundSelected.color(),
+                    progressColor: AppThemeProvider.of(context).colors.elementsAccent.color(),
                   ),
                 ),
                 Column(
@@ -70,11 +71,11 @@ class _BannerWidgetState extends State<BannerWidget> {
                     Container(
                       margin: const EdgeInsets.only(left: 60.0, bottom: 20.0),
                       child: CircleAvatar(
-                        backgroundColor: const Color(0xFFE1D2128),
+                        backgroundColor: AppThemeProvider.of(context).colors.backgroundBasic.color(),
                         radius: 16,
                         child: IconButton(
                           padding: EdgeInsets.zero,
-                          icon: closeIcon.svg(color: const Color(0xFFEE4E8EE)),
+                          icon: closeIcon.svg(color: AppThemeProvider.of(context).colors.textPrimary.color()),
                           onPressed: widget.onClosePressed,
                         ),
                       ),
@@ -84,7 +85,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                         bottomRight: Radius.circular(16),
                       ),
                       child: backgroundImage.svg(
-                        color: const Color(0xFFE343C48),
+                        color: AppThemeProvider.of(context).colors.cloudIcon.color(),
                       ),
                     ),
                   ],

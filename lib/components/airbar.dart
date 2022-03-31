@@ -1,5 +1,6 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 
 class AirbarItem {
@@ -33,7 +34,7 @@ class _AirbarState extends State<Airbar> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
       decoration: BoxDecoration(
-          color: const Color(0xFF3A4A61),
+          color: AppThemeProvider.of(context).colors.airBarMain.color(),
           borderRadius: BorderRadius.circular(20.0)),
       child: Row(mainAxisSize: MainAxisSize.min, children: widgets),
     );
@@ -82,8 +83,9 @@ class _AirbarItemWidgetState extends State<AirbarItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final accentColor =
-        widget.selected ? const Color(0xFF3A83F1) : Colors.white;
+    final accentColor = widget.selected
+        ? AppThemeProvider.of(context).colors.elementsAccent.color()
+        : AppThemeProvider.of(context).colors.elementsStaticWhite.color();
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
       onTapUp: (_) => setHighlighted(false),
@@ -102,8 +104,11 @@ class _AirbarItemWidgetState extends State<AirbarItemWidget> {
                 widget.title,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                    color: Colors.white,
+                style: TextStyle(
+                    color: AppThemeProvider.of(context)
+                        .colors
+                        .textStaticWhite
+                        .color(),
                     fontSize: 10.0,
                     fontWeight: FontWeight.w500,
                     fontFamily: FontFamily.sfProText),

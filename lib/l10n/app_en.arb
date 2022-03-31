@@ -1,5 +1,5 @@
 {
-  "appTitle": "VTB",
+  "appTitle": "RNB",
   "addNewProductButton": "Add new product",
   "recommendationTitle": "Recommendations",
   "inviteFriend": "Invite a friend",
@@ -8,7 +8,7 @@
   "payHousingCommunalServices": "Pay for housing and communal services",
   "linkedCards": "Linked cards",
   "sberBankTitle": "Sberbank",
-  "addNewCard": "Add a card of another bank",
+  "addNewCard": "Recommend",
   "digitalMulticard": "Digital Multicard",
   "deposit": "Pop up",
   "pay": "To pay",

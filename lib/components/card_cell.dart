@@ -1,5 +1,6 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -39,7 +40,7 @@ class CardCellWidget extends StatelessWidget {
       padding:
           const EdgeInsets.only(left: 20, top: 12, right: 20, bottom: 24.0),
       decoration: BoxDecoration(
-        color: const Color(0xFF272C35),
+        color: AppThemeProvider.of(context).colors.backgroundAdditional.color(),
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(
@@ -72,8 +73,8 @@ class _CarInfoWidget extends StatelessWidget {
           title,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.left,
-          style: const TextStyle(
-              color: Colors.white,
+          style: TextStyle(
+              color: AppThemeProvider.of(context).colors.textPrimary.color(),
               fontSize: 16.0,
               fontWeight: FontWeight.w600,
               fontFamily: FontFamily.sfProDisplay),
@@ -83,8 +84,8 @@ class _CarInfoWidget extends StatelessWidget {
           balance,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-              color: Color(0xFF3A83F1),
+          style: TextStyle(
+              color: AppThemeProvider.of(context).colors.textAccent.color(),
               fontSize: 18.0,
               fontWeight: FontWeight.w600,
               fontFamily: FontFamily.sfProDisplay),
@@ -95,8 +96,8 @@ class _CarInfoWidget extends StatelessWidget {
         cardNumber,
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.right,
-        style: const TextStyle(
-            color: Color(0xFF99A0AB),
+        style: TextStyle(
+            color: AppThemeProvider.of(context).colors.textSecondary.color(),
             fontSize: 14.0,
             fontWeight: FontWeight.w600,
             fontFamily: FontFamily.sfProDisplay),
@@ -163,7 +164,7 @@ class _CardButtonWidgetState extends State<CardButtonWidget> {
               left: 12.0, top: 10.0, right: 12.0, bottom: 10.0),
           height: 36.0,
           decoration: BoxDecoration(
-            color: const Color(0xFF343C48),
+            color: AppThemeProvider.of(context).colors.backgroundSelected.color(),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -173,8 +174,8 @@ class _CardButtonWidgetState extends State<CardButtonWidget> {
               widget.title,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                  color: Color(0xFF3A83F1),
+              style: TextStyle(
+                  color: AppThemeProvider.of(context).colors.elementsAccent.color(),
                   fontSize: 14.0,
                   fontWeight: FontWeight.w600,
                   fontFamily: FontFamily.sfProDisplay),

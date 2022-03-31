@@ -1,3 +1,4 @@
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -40,19 +41,22 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<LocaleProvider>(
-      create: (context) => LocaleProvider(),
-      child: Builder(
-        builder: (context) => CupertinoApp(
-          locale: Provider.of<LocaleProvider>(context, listen: true).locale,
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          theme: const CupertinoThemeData(brightness: Brightness.light),
-          home: const Scaffold(
-              body: RootScreen(), resizeToAvoidBottomInset: false),
-        ),
-      ),
+    return AppThemeProviderWrapper(
+      child: ChangeNotifierProvider<LocaleProvider>(
+          create: (context) => LocaleProvider(),
+          child: Builder(
+            builder: (context) => CupertinoApp(
+              locale: Provider.of<LocaleProvider>(context, listen: true).locale,
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              theme: const CupertinoThemeData(brightness: Brightness.light),
+              home: const Scaffold(
+                body: RootScreen(),
+                resizeToAvoidBottomInset: false,
+              ),
+            ),
+          )),
     );
   }
 

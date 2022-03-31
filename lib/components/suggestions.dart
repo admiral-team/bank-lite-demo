@@ -1,6 +1,6 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -75,7 +75,7 @@ class _SuggestionsState extends State<Suggestions> {
 
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF272C35),
+        color: AppThemeProvider.of(context).colors.backgroundAdditional.color(),
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(
@@ -130,11 +130,12 @@ class TitleText extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
       child: Text(
         AppLocalizations.of(context).addNewCard,
-        style: const TextStyle(
-            fontFamily: FontFamily.sfProDisplay,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFFE4E8EE)),
+        style: TextStyle(
+          fontFamily: FontFamily.sfProDisplay,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: AppThemeProvider.of(context).colors.textPrimary.color(),
+        ),
       ),
     );
   }
@@ -163,8 +164,14 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final accentColor =
-        widget.selected ? const Color(0xFF3A83F1) : const Color(0xFF1D2128);
+    final accentColor = widget.selected
+        ? AppThemeProvider.of(context).colors.elementsAccent.color()
+        : AppThemeProvider.of(context).colors.backgroundBasic.color();
+
+    final textColor = widget.selected
+        ? AppThemeProvider.of(context).colors.textStaticWhite.color()
+        : AppThemeProvider.of(context).colors.textPrimary.color();
+
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
       onTapUp: (_) => setHighlighted(false),
@@ -192,8 +199,8 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
                   textAlign: TextAlign.left,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      color: Colors.white,
+                  style: TextStyle(
+                      color: textColor,
                       fontSize: 14.0,
                       fontWeight: FontWeight.w500,
                       fontFamily: FontFamily.sfProText),
