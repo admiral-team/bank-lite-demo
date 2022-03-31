@@ -25,6 +25,7 @@ dependencies:
   flutter_local_notifications: ^9.4.0
   http: any
   flutter_secure_storage: ^4.2.1
+  firebase_performance: ^0.3.2
 
 dev_dependencies:
   flutter_test:

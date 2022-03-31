@@ -52,6 +52,7 @@ class _RootScreenState extends State<RootScreen> {
       SafeArea(
           child: Container(
         alignment: Alignment.bottomCenter,
+        padding: const EdgeInsets.only(bottom: 8),
         child: Airbar(
           selectedIndex: _selectedIndex,
           items: items,

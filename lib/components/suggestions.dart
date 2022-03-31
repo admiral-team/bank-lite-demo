@@ -1,6 +1,6 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -75,7 +75,7 @@ class _SuggestionsState extends State<Suggestions> {
 
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF272C35),
+        color: AppThemeProvider.of(context).colors.backgroundAdditional.color(),
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(
@@ -130,11 +130,12 @@ class TitleText extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
       child: Text(
         AppLocalizations.of(context).addNewCard,
-        style: const TextStyle(
-            fontFamily: FontFamily.sfProDisplay,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFFE4E8EE)),
+        style: TextStyle(
+          fontFamily: FontFamily.sfProDisplay,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: AppThemeProvider.of(context).colors.textPrimary.color(),
+        ),
       ),
     );
   }
@@ -163,43 +164,61 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final accentColor =
-        widget.selected ?  Color.fromRGBO(58, 131, 241, _opacity) : Color.fromRGBO(29, 33, 49, _opacity);
+    final accentColor = widget.selected
+        ? AppThemeProvider.of(context)
+            .colors
+            .elementsAccent
+            .color(opacity: _opacity)
+        : AppThemeProvider.of(context)
+            .colors
+            .backgroundBasic
+            .color(opacity: _opacity);
+
+    final textColor = widget.selected
+        ? AppThemeProvider.of(context)
+            .colors
+            .textStaticWhite
+            .color(opacity: _opacity)
+        : AppThemeProvider.of(context)
+            .colors
+            .textPrimary
+            .color(opacity: _opacity);
+
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
       child: SizedBox(
-          width: 104.0,
-          height: 120.0,
-          child: Container(
-            decoration: BoxDecoration(
-              color: accentColor,
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                widget.content.svg(height: 40.0, width: 40.0),
-                const Spacer(),
-                Text(
-                  widget.title,
-                  textAlign: TextAlign.left,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: FontFamily.sfProText),
-                ),
-              ],
-            ),
+        width: 104.0,
+        height: 120.0,
+        child: Container(
+          decoration: BoxDecoration(
+            color: accentColor,
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              widget.content.svg(height: 40.0, width: 40.0),
+              const Spacer(),
+              Text(
+                widget.title,
+                textAlign: TextAlign.left,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: textColor,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: FontFamily.sfProText),
+              ),
+            ],
           ),
         ),
+      ),
     );
   }
 

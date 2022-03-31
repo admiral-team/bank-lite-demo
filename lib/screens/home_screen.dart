@@ -6,6 +6,7 @@ import 'package:bank_lite/components/suggestions.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/screens/in_progress.dart';
 import 'package:bank_lite/screens/settings_screen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -64,12 +65,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = AppThemeProvider.of(context);
+
     return RefreshIndicator(
       edgeOffset: 40.0,
       child: Container(
         height: double.infinity,
         width: double.infinity,
-        color: const Color(0xFF1D2128),
+        color: theme.colors.backgroundBasic.color(),
         alignment: Alignment.center,
         child: Column(
           children: [

@@ -1,4 +1,5 @@
 import 'package:bank_lite/generated/fonts.gen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 
 class LeadingCellWidget extends StatefulWidget {
@@ -8,10 +9,10 @@ class LeadingCellWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<LeadingCellWidget> createState() => _LeadingCelltWidgetState();
+  State<LeadingCellWidget> createState() => _LeadingCellWidgetState();
 }
 
-class _LeadingCelltWidgetState extends State<LeadingCellWidget> {
+class _LeadingCellWidgetState extends State<LeadingCellWidget> {
   double _opacity = 1.0;
 
   @override
@@ -27,14 +28,20 @@ class _LeadingCelltWidgetState extends State<LeadingCellWidget> {
         width: double.infinity,
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
-          color: Color.fromRGBO(41, 47, 56, _opacity),
+          color: AppThemeProvider.of(context)
+              .colors
+              .backgroundAdditional
+              .color(opacity: _opacity),
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Text(
           widget.title,
           textAlign: TextAlign.left,
           style: TextStyle(
-              color: Color.fromRGBO(229, 229, 229, _opacity),
+              color: AppThemeProvider.of(context)
+                  .colors
+                  .textPrimary
+                  .color(opacity: _opacity),
               fontSize: 16.0,
               fontWeight: FontWeight.normal,
               fontFamily: FontFamily.sfProDisplay),

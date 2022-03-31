@@ -1,3 +1,4 @@
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 
 import '../generated/assets.gen.dart';
@@ -40,8 +41,11 @@ class _CardWidgetState extends State<CardWidget> {
       Text(
         widget.model.title,
         overflow: TextOverflow.ellipsis,
-        style: const TextStyle(
-            color: Colors.white,
+        style: TextStyle(
+            color: AppThemeProvider.of(context)
+                .colors
+                .textPrimary
+                .color(opacity: _opacity),
             fontSize: 16.0,
             fontWeight: FontWeight.w600,
             fontFamily: FontFamily.sfProText),
@@ -53,8 +57,11 @@ class _CardWidgetState extends State<CardWidget> {
         const Spacer(),
         Text(
           widget.model.lastNumbers!,
-          style: const TextStyle(
-              color: Color(0xFF99A0AB),
+          style: TextStyle(
+              color: AppThemeProvider.of(context)
+                  .colors
+                  .textSecondary
+                  .color(opacity: _opacity),
               fontSize: 14.0,
               fontWeight: FontWeight.w600,
               fontFamily: FontFamily.sfProText),
@@ -69,7 +76,10 @@ class _CardWidgetState extends State<CardWidget> {
       onTapCancel: () => setHighlighted(false),
       child: Container(
         decoration: BoxDecoration(
-          color: Color.fromRGBO(39, 44, 53, _opacity),
+          color: AppThemeProvider.of(context)
+              .colors
+              .backgroundAdditional
+              .color(opacity: _opacity),
           borderRadius: BorderRadius.circular(8.0),
         ),
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),

@@ -1,4 +1,5 @@
 import 'package:bank_lite/generated/fonts.gen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryButtonWidget extends StatefulWidget {
@@ -26,14 +27,20 @@ class _PrimaryButtonWidgetState extends State<PrimaryButtonWidget> {
         height: 50,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Color.fromRGBO(85, 148, 241, _opacity),
+          color: AppThemeProvider.of(context)
+              .colors
+              .backgroundAccent
+              .color(opacity: _opacity),
           borderRadius: BorderRadius.circular(8.0),
         ),
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
         child: Text(
           widget.title,
           style: TextStyle(
-              color: Color.fromRGBO(228, 232, 238, _opacity),
+              color: AppThemeProvider.of(context)
+                  .colors
+                  .textStaticWhite
+                  .color(opacity: _opacity),
               fontSize: 16.0,
               fontWeight: FontWeight.w500,
               fontFamily: FontFamily.sfProText),

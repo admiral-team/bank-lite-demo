@@ -1,4 +1,7 @@
+import 'package:bank_lite/theme/app_theme_provider.dart';
+import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -32,6 +35,12 @@ Future<void> main() async {
     }
   });
 
+  FirebasePerformance performance = FirebasePerformance.instance;
+  bool isEnabled = await performance.isPerformanceCollectionEnabled();
+  if (kDebugMode) {
+    print("is performance enabled = $isEnabled");
+  }
+
   runApp(const Application());
 }
 
@@ -40,19 +49,22 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<LocaleProvider>(
-      create: (context) => LocaleProvider(),
-      child: Builder(
-        builder: (context) => CupertinoApp(
-          locale: Provider.of<LocaleProvider>(context, listen: true).locale,
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          theme: const CupertinoThemeData(brightness: Brightness.light),
-          home: const Scaffold(
-              body: RootScreen(), resizeToAvoidBottomInset: false),
-        ),
-      ),
+    return AppThemeProviderWrapper(
+      child: ChangeNotifierProvider<LocaleProvider>(
+          create: (context) => LocaleProvider(),
+          child: Builder(
+            builder: (context) => CupertinoApp(
+              locale: Provider.of<LocaleProvider>(context, listen: true).locale,
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              theme: const CupertinoThemeData(brightness: Brightness.light),
+              home: const Scaffold(
+                body: RootScreen(),
+                resizeToAvoidBottomInset: false,
+              ),
+            ),
+          )),
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/generated/fonts.gen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -54,8 +55,8 @@ class _StatusWidgetState extends State<StatusWidget> {
           child: Text(
             widget.model.title,
               textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Color(0xFFE4E8EE),
+            style: TextStyle(
+              color: AppThemeProvider.of(context).colors.textPrimary.color(),
               fontSize: 22.0,
               fontWeight: FontWeight.bold,
               fontFamily: FontFamily.sfProText,
@@ -67,8 +68,8 @@ class _StatusWidgetState extends State<StatusWidget> {
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: Text(
               widget.model.description,
-              style: const TextStyle(
-                color: Color(0xFFA5ACB6),
+              style: TextStyle(
+                color: AppThemeProvider.of(context).colors.textPrimary.color(),
                 fontSize: 16.0,
                 fontWeight: FontWeight.normal,
                 fontFamily: FontFamily.sfProDisplay,

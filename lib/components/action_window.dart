@@ -1,15 +1,17 @@
 import 'package:bank_lite/components/action_button.dart';
 import 'package:bank_lite/components/status_widget.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 
 class ActionWindowWidget extends StatefulWidget {
   final VoidCallback? onClosePressed;
-  final StatusWidgetModel statuswidgetModel;
+  final StatusWidgetModel statusWidgetModel;
+
   const ActionWindowWidget({
-    Key? key, 
-    this.onClosePressed, 
-    required this.statuswidgetModel,
+    Key? key,
+    this.onClosePressed,
+    required this.statusWidgetModel,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,7 @@ class _ActionWindowWidgetState extends State<ActionWindowWidget> {
       height: 352,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFF0F1116),
+        color: AppThemeProvider.of(context).colors.backgroundBasic.color(),
         borderRadius: BorderRadius.circular(16.0),
       ),
       padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
@@ -43,7 +45,12 @@ class _ActionWindowWidgetState extends State<ActionWindowWidget> {
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     padding: EdgeInsets.zero,
-                    icon: closeIcon.svg(color: const Color(0xFF5594F1)),
+                    icon: closeIcon.svg(
+                      color: AppThemeProvider.of(context)
+                          .colors
+                          .elementsAccent
+                          .color(),
+                    ),
                     onPressed: widget.onClosePressed,
                   ),
                 ),
@@ -52,12 +59,11 @@ class _ActionWindowWidgetState extends State<ActionWindowWidget> {
           ),
           StatusWidget(
             model: StatusWidgetModel(
-              description: widget.statuswidgetModel.description,
-              title: widget.statuswidgetModel.title,
-              image: widget.statuswidgetModel.image,
-              imageContainer: widget.statuswidgetModel.imageContainer,
-              titleContainerHeight: 28.0
-            ),
+                description: widget.statusWidgetModel.description,
+                title: widget.statusWidgetModel.title,
+                image: widget.statusWidgetModel.image,
+                imageContainer: widget.statusWidgetModel.imageContainer,
+                titleContainerHeight: 28.0),
           ),
           const SizedBox(height: 40),
           Row(

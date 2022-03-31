@@ -1,4 +1,5 @@
 import 'package:bank_lite/generated/fonts.gen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:collapsible/collapsible.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -66,7 +67,7 @@ class _CardsWidgetState extends State<CardsWidget> {
 
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF272C35),
+        color: AppThemeProvider.of(context).colors.backgroundAdditional.color(opacity: _opacity),
         borderRadius: BorderRadius.circular(8.0),
       ),
       padding: const EdgeInsets.symmetric(vertical: 14),
@@ -86,14 +87,20 @@ class _CardsWidgetState extends State<CardsWidget> {
                 Text(
                   AppLocalizations.of(context).linkedCards,
                   style: TextStyle(
-                      color: Color.fromRGBO(255, 255, 255, _opacity),
+                      color: AppThemeProvider.of(context)
+                          .colors
+                          .textPrimary
+                          .color(opacity: _opacity),
                       fontSize: 18.0,
                       fontWeight: FontWeight.w700,
                       fontFamily: FontFamily.sfProText),
                 ),
                 const SizedBox(width: 6),
                 (_collapsed ? arrowDown : arrowUp).svg(
-                  color: Color.fromRGBO(153, 160, 171, _opacity),
+                  color: AppThemeProvider.of(context)
+                      .colors
+                      .elementsSecondary
+                      .color(opacity: _opacity),
                   height: 24.0,
                   width: 24.0,
                 ),

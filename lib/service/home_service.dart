@@ -40,7 +40,7 @@ class HomeService {
         case "Suggestions":
           response.items.add(SuggestionsCellModel());
           break;
-        case "AddNewModel":
+        case "AddNew":
           response.items.add(AddNewModel(onPressed: () {}));
           break;
       }

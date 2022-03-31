@@ -1,4 +1,5 @@
 import 'package:bank_lite/generated/fonts.gen.dart';
+import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 
 enum ActionButtonStyle {
@@ -10,6 +11,7 @@ class ActionButtonWidget extends StatefulWidget {
   final VoidCallback? onPressed;
   final ActionButtonStyle style;
   final String title;
+
   const ActionButtonWidget(
       {Key? key, this.onPressed, required this.style, required this.title})
       : super(key: key);
@@ -26,10 +28,16 @@ class _ActionButtonWidgetWidgetState extends State<ActionButtonWidget> {
     final Color textColor;
     switch (widget.style) {
       case ActionButtonStyle.regular:
-        textColor = Color.fromRGBO(85, 148, 241, _opacity);
+        textColor = AppThemeProvider.of(context)
+            .colors
+            .textAccent
+            .color(opacity: _opacity);
         break;
       case ActionButtonStyle.textError:
-        textColor = Color.fromRGBO(236, 88, 81, _opacity);
+        textColor = AppThemeProvider.of(context)
+            .colors
+            .textError
+            .color(opacity: _opacity);
         break;
     }
 
@@ -43,7 +51,10 @@ class _ActionButtonWidgetWidgetState extends State<ActionButtonWidget> {
         height: 40,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Color.fromRGBO(54, 62, 73, _opacity),
+          color: AppThemeProvider.of(context)
+              .colors
+              .backgroundSelected
+              .color(opacity: _opacity),
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Text(

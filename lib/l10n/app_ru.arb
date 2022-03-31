@@ -1,5 +1,5 @@
 {
-  "appTitle": "ВТБ",
+  "appTitle": "RNB",
   "addNewProductButton": "Открыть новый продукт",
   "recommendationTitle": "Рекомендуем",
   "inviteFriend": "Пригласить друга",
@@ -8,7 +8,7 @@
   "payHousingCommunalServices": "Оплатить услуги ЖКХ",
   "linkedCards": "Привязанные карты",
   "sberBankTitle": "Сбербанк",
-  "addNewCard": "Добавить карту другого банка",
+  "addNewCard": "Рекомендуем",
   "digitalMulticard": "Цифровая Мультикарта",
   "deposit": "Пополнить",
   "pay": "Оплатить",
