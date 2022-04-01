@@ -19,14 +19,18 @@ abstract class MapWidget extends StatefulWidget {
   const MapWidget({Key? key}) : super(key: key);
 
   void showMessage(BuildContext context, String message) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+
     Fluttertoast.showToast(
-        msg: message,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: AppThemeProvider.of(context).colors.backgroundAdditional.color(),
-        textColor: AppThemeProvider.of(context).colors.textPrimary.color(),
-        fontSize: 16.0);
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: colors.backgroundAdditional.color(),
+      textColor: colors.textPrimary.color(),
+      fontSize: 16.0,
+    );
   }
 }
 

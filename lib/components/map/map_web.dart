@@ -2,12 +2,12 @@ import 'package:bank_lite/components/map/map.dart';
 import 'package:bank_lite/components/map/models/map_point.dart';
 import 'package:bank_lite/components/map/models/mock_points.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
-import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps/google_maps.dart' as gmaps;
 import 'package:universal_html/html.dart' as html;
 import 'dart:ui' as ui;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 MapWidget getMapWidget() => const MapScreenWeb();
 
@@ -26,6 +26,9 @@ class _MapScreenWebState extends MapWidgetState<MapScreenWeb> {
   @override
   Widget build(BuildContext context) {
     const String htmlId = "map";
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
 
     ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
       final mapOptions = gmaps.MapOptions()
@@ -57,28 +60,21 @@ class _MapScreenWebState extends MapWidgetState<MapScreenWeb> {
     });
 
     return Scaffold(
-      backgroundColor:
-          AppThemeProvider.of(context).colors.backgroundBasic.color(),
+      backgroundColor: colors.backgroundBasic.color(),
       appBar: AppBar(
-        title: const Text("Банкоматы"),
-        titleTextStyle: TextStyle(
-          color: AppThemeProvider.of(context).colors.textPrimary.color(),
-          fontSize: 17.0,
-          fontWeight: FontWeight.w600,
-          fontFamily: FontFamily.sfProText,
-        ),
+        title: Text(AppLocalizations.of(context).atms),
+        titleTextStyle: fonts.navbar.toTextStyle(colors.textPrimary.color()),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: AppThemeProvider.of(context).colors.elementsAccent.color(),
+            color: colors.elementsAccent.color(),
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,
-        backgroundColor:
-            AppThemeProvider.of(context).colors.backgroundBasic.color(),
+        backgroundColor: colors.backgroundBasic.color(),
       ),
       body: const HtmlElementView(viewType: htmlId),
     );

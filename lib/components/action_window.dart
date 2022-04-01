@@ -23,11 +23,14 @@ class _ActionWindowWidgetState extends State<ActionWindowWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+
     return Container(
       height: 352,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppThemeProvider.of(context).colors.backgroundBasic.color(),
+        color: colors.backgroundBasic.color(),
         borderRadius: BorderRadius.circular(16.0),
       ),
       padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),

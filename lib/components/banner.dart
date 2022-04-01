@@ -8,8 +8,10 @@ import 'package:percent_indicator/percent_indicator.dart';
 class BannerWidget extends StatefulWidget {
   final VoidCallback? onClosePressed;
   final VoidCallback? onTap;
+
   const BannerWidget({Key? key, this.onClosePressed, this.onTap})
       : super(key: key);
+
   @override
   State<BannerWidget> createState() => _BannerWidgetState();
 }
@@ -20,13 +22,17 @@ class _BannerWidgetState extends State<BannerWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     return GestureDetector(
       onTap: () => widget.onTap?.call(),
       child: Container(
         height: 97,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: AppThemeProvider.of(context).colors.backgroundAdditional.color(),
+          color: colors.backgroundAdditional.color(),
           borderRadius: BorderRadius.circular(16.0),
         ),
         padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
@@ -36,11 +42,7 @@ class _BannerWidgetState extends State<BannerWidget> {
               margin: const EdgeInsets.only(left: 16.0),
               child: Text(
                 AppLocalizations.of(context).bannerTitle,
-                style: TextStyle(
-                    color: AppThemeProvider.of(context).colors.textPrimary.color(),
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: FontFamily.sfProText),
+                style: fonts.body1.toTextStyle(colors.textPrimary.color()),
               ),
             ),
             const Spacer(),
@@ -54,15 +56,11 @@ class _BannerWidgetState extends State<BannerWidget> {
                     percent: 0.2,
                     center: Text(
                       "20%",
-                      style: TextStyle(
-                          color: AppThemeProvider.of(context).colors.textAccent.color(),
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: FontFamily.sfProText),
+                      style: fonts.title1.toTextStyle(colors.textAccent.color()),
                     ),
                     circularStrokeCap: CircularStrokeCap.round,
-                    backgroundColor: AppThemeProvider.of(context).colors.backgroundSelected.color(),
-                    progressColor: AppThemeProvider.of(context).colors.elementsAccent.color(),
+                    backgroundColor: colors.backgroundSelected.color(),
+                    progressColor: colors.elementsAccent.color(),
                   ),
                 ),
                 Column(
@@ -71,11 +69,12 @@ class _BannerWidgetState extends State<BannerWidget> {
                     Container(
                       margin: const EdgeInsets.only(left: 60.0, bottom: 20.0),
                       child: CircleAvatar(
-                        backgroundColor: AppThemeProvider.of(context).colors.backgroundBasic.color(),
+                        backgroundColor: colors.backgroundBasic.color(),
                         radius: 16,
                         child: IconButton(
                           padding: EdgeInsets.zero,
-                          icon: closeIcon.svg(color: AppThemeProvider.of(context).colors.textPrimary.color()),
+                          icon:
+                              closeIcon.svg(color: colors.textPrimary.color()),
                           onPressed: widget.onClosePressed,
                         ),
                       ),
@@ -85,7 +84,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                         bottomRight: Radius.circular(16),
                       ),
                       child: backgroundImage.svg(
-                        color: AppThemeProvider.of(context).colors.cloudIcon.color(),
+                        color: colors.cloudIcon.color(),
                       ),
                     ),
                   ],

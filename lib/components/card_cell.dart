@@ -26,11 +26,14 @@ class CardCellWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+
     List<Widget> widgets = [];
     widgets = [
       _CarInfoWidget(
           title: title, balance: balance, cardNumber: cardNumber, icon: icon),
-      const SizedBox(height: 8.0),
+      const SizedBox(height: 14.0),
       _CardButtons(
           addPressed: () => addPressed?.call(),
           sendPressed: () => sendPressed?.call())
@@ -40,7 +43,7 @@ class CardCellWidget extends StatelessWidget {
       padding:
           const EdgeInsets.only(left: 20, top: 12, right: 20, bottom: 24.0),
       decoration: BoxDecoration(
-        color: AppThemeProvider.of(context).colors.backgroundAdditional.color(),
+        color: colors.backgroundAdditional.color(),
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(
@@ -65,6 +68,10 @@ class _CarInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       icon.svg(height: 40.0, width: 40.0),
       const SizedBox(width: 16.0),
@@ -73,22 +80,14 @@ class _CarInfoWidget extends StatelessWidget {
           title,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.left,
-          style: TextStyle(
-              color: AppThemeProvider.of(context).colors.textPrimary.color(),
-              fontSize: 16.0,
-              fontWeight: FontWeight.w600,
-              fontFamily: FontFamily.sfProDisplay),
+          style: fonts.headline.toTextStyle(colors.textPrimary.color()),
         ),
         const SizedBox(height: 4.0),
         Text(
           balance,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          style: TextStyle(
-              color: AppThemeProvider.of(context).colors.textAccent.color(),
-              fontSize: 18.0,
-              fontWeight: FontWeight.w600,
-              fontFamily: FontFamily.sfProDisplay),
+          style: fonts.subtitle2.toTextStyle(colors.textAccent.color()),
         ),
       ]),
       const Spacer(),
@@ -96,11 +95,7 @@ class _CarInfoWidget extends StatelessWidget {
         cardNumber,
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.right,
-        style: TextStyle(
-            color: AppThemeProvider.of(context).colors.textSecondary.color(),
-            fontSize: 14.0,
-            fontWeight: FontWeight.w600,
-            fontFamily: FontFamily.sfProDisplay),
+        style: fonts.subhead3.toTextStyle(colors.textSecondary.color()),
       )
     ]);
   }
@@ -152,6 +147,10 @@ class _CardButtonWidgetState extends State<CardButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
       onTapUp: (_) => setHighlighted(false),
@@ -164,7 +163,7 @@ class _CardButtonWidgetState extends State<CardButtonWidget> {
               left: 12.0, top: 10.0, right: 12.0, bottom: 10.0),
           height: 36.0,
           decoration: BoxDecoration(
-            color: AppThemeProvider.of(context).colors.backgroundSelected.color(),
+            color: colors.backgroundSelected.color(),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -174,11 +173,7 @@ class _CardButtonWidgetState extends State<CardButtonWidget> {
               widget.title,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppThemeProvider.of(context).colors.elementsAccent.color(),
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: FontFamily.sfProDisplay),
+              style: fonts.subhead3.toTextStyle(colors.elementsAccent.color()),
             ),
           ]),
         ),

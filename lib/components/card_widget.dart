@@ -1,8 +1,6 @@
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
-
 import '../generated/assets.gen.dart';
-import '../generated/fonts.gen.dart';
 
 class CardModel {
   final String title;
@@ -35,17 +33,17 @@ class _CardWidgetState extends State<CardWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     List<Widget> widgets = [
       widget.model.image.svg(),
       const SizedBox(width: 16),
       Text(
         widget.model.title,
         overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-            color: AppThemeProvider.of(context).colors.textPrimary.color(),
-            fontSize: 16.0,
-            fontWeight: FontWeight.w600,
-            fontFamily: FontFamily.sfProText),
+        style: fonts.headline.toTextStyle(colors.textPrimary.color()),
       ),
     ];
 
@@ -54,12 +52,8 @@ class _CardWidgetState extends State<CardWidget> {
         const Spacer(),
         Text(
           widget.model.lastNumbers!,
-          style: TextStyle(
-              color: AppThemeProvider.of(context).colors.textSecondary.color(),
-              fontSize: 14.0,
-              fontWeight: FontWeight.w600,
-              fontFamily: FontFamily.sfProText),
-        ),
+          style: fonts.subhead3.toTextStyle(colors.textSecondary.color()),
+        )
       ]);
     }
 
@@ -72,7 +66,7 @@ class _CardWidgetState extends State<CardWidget> {
         opacity: _opacity,
         child: Container(
           decoration: BoxDecoration(
-            color: AppThemeProvider.of(context).colors.backgroundAdditional.color(),
+            color: colors.backgroundAdditional.color(),
             borderRadius: BorderRadius.circular(8.0),
           ),
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),

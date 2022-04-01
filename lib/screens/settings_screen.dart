@@ -11,26 +11,28 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).language),
-        titleTextStyle: TextStyle(
-          color: AppThemeProvider.of(context).colors.textPrimary.color(),
-          fontSize: 17.0,
-          fontWeight: FontWeight.w600,
-          fontFamily: FontFamily.sfProText,
-        ),
+        titleTextStyle: fonts.navbar.toTextStyle(colors.textPrimary.color()),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppThemeProvider.of(context).colors.elementsAccent.color(),),
+          icon: Icon(
+            Icons.arrow_back,
+            color: colors.elementsAccent.color(),
+          ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,
-        backgroundColor: AppThemeProvider.of(context).colors.backgroundBasic.color(),
+        backgroundColor: colors.backgroundBasic.color(),
       ),
       body: Container(
-        color: AppThemeProvider.of(context).colors.backgroundBasic.color(),
+        color: colors.backgroundBasic.color(),
         child: const LanguageChooseWidget(),
       ),
     );
@@ -50,6 +52,9 @@ class _LanguageChooseWidgetState extends State<LanguageChooseWidget> {
   @override
   Widget build(BuildContext context) {
     var futureLanguage = LanguageStorage().getLocaleFromStorage();
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
 
     futureLanguage.then(
       (value) => {
@@ -66,25 +71,20 @@ class _LanguageChooseWidgetState extends State<LanguageChooseWidget> {
 
     return Theme(
       data: Theme.of(context).copyWith(
-          unselectedWidgetColor: AppThemeProvider.of(context).colors.textPrimary.color(),
+        unselectedWidgetColor: colors.textPrimary.color(),
       ),
       child: Column(
         children: <Widget>[
           ListTile(
             title: Text(
               'Русский',
-              style: TextStyle(
-                color: AppThemeProvider.of(context).colors.textPrimary.color(),
-                fontSize: 18.0,
-                fontWeight: FontWeight.w500,
-                fontFamily: FontFamily.sfProText,
-              ),
+              style: fonts.body1.toTextStyle(colors.textPrimary.color()),
             ),
-            tileColor: AppThemeProvider.of(context).colors.textPrimary.color(),
+            tileColor: colors.textPrimary.color(),
             leading: Radio<String>(
               value: "ru",
               groupValue: _lang,
-              activeColor: AppThemeProvider.of(context).colors.textPrimary.color(),
+              activeColor: colors.textPrimary.color(),
               onChanged: (String? value) {
                 setState(() {
                   _lang = value;
@@ -96,18 +96,13 @@ class _LanguageChooseWidgetState extends State<LanguageChooseWidget> {
           ListTile(
             title: Text(
               'English',
-              style: TextStyle(
-                color: AppThemeProvider.of(context).colors.textPrimary.color(),
-                fontSize: 18.0,
-                fontWeight: FontWeight.w500,
-                fontFamily: FontFamily.sfProText,
-              ),
+              style: fonts.body1.toTextStyle(colors.textPrimary.color()),
             ),
-            tileColor: AppThemeProvider.of(context).colors.textPrimary.color(),
+            tileColor: colors.textPrimary.color(),
             leading: Radio<String>(
               value: "en",
               groupValue: _lang,
-              activeColor: AppThemeProvider.of(context).colors.textPrimary.color(),
+              activeColor: colors.textPrimary.color(),
               onChanged: (String? value) {
                 setState(() {
                   _lang = value;
@@ -119,18 +114,13 @@ class _LanguageChooseWidgetState extends State<LanguageChooseWidget> {
           ListTile(
             title: Text(
               '中国人',
-              style: TextStyle(
-                color: AppThemeProvider.of(context).colors.textPrimary.color(),
-                fontSize: 18.0,
-                fontWeight: FontWeight.w500,
-                fontFamily: FontFamily.sfProText,
-              ),
+              style: fonts.body1.toTextStyle(colors.textPrimary.color()),
             ),
-            tileColor: AppThemeProvider.of(context).colors.textPrimary.color(),
+            tileColor: colors.textPrimary.color(),
             leading: Radio<String>(
               value: "zh",
               groupValue: _lang,
-              activeColor: AppThemeProvider.of(context).colors.textPrimary.color(),
+              activeColor: colors.textPrimary.color(),
               onChanged: (String? value) {
                 setState(() {
                   _lang = value;

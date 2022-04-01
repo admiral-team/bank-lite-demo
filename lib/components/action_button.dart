@@ -1,6 +1,6 @@
-import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum ActionButtonStyle {
   regular,
@@ -25,13 +25,17 @@ class _ActionButtonWidgetWidgetState extends State<ActionButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     final Color textColor;
     switch (widget.style) {
       case ActionButtonStyle.regular:
-        textColor = AppThemeProvider.of(context).colors.textAccent.color();
+        textColor = colors.textAccent.color();
         break;
       case ActionButtonStyle.textError:
-        textColor = AppThemeProvider.of(context).colors.textError.color();
+        textColor = colors.textError.color();
         break;
     }
 
@@ -47,17 +51,12 @@ class _ActionButtonWidgetWidgetState extends State<ActionButtonWidget> {
           height: 40,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color:
-                AppThemeProvider.of(context).colors.backgroundSelected.color(),
+            color: colors.backgroundSelected.color(),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Text(
-            "Понятно",
-            style: TextStyle(
-                color: textColor,
-                fontSize: 16.0,
-                fontWeight: FontWeight.normal,
-                fontFamily: FontFamily.sfProDisplay),
+            AppLocalizations.of(context).actionButton,
+            style: fonts.headline.toTextStyle(textColor),
           ),
         ),
       ),

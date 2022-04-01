@@ -155,12 +155,12 @@ class _HomeScreenState extends State<HomeScreen> {
         collapsed: true,
         cards: [
           CardModel(
-            title: AppLocalizations.of(context).sberBankTitle,
+            title: AppLocalizations.of(context).bankTitle,
             lastNumbers: "• 3267",
             image: Assets.lib.assets.images.cardVisa,
           )
         ],
-        onAddNewCardPressed: () {
+        onRecommendPressed: () {
           Future.delayed(const Duration(seconds: 3), () {
             NotificationService.showNotification(title: 'Успешно!', body: 'Ваша карты выпущена');
           });

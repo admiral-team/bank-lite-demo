@@ -29,12 +29,15 @@ class Airbar extends StatefulWidget {
 class _AirbarState extends State<Airbar> {
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+
     List<Widget> widgets = [const SizedBox(height: 56.0)];
     widgets.addAll(_itemsWidgets());
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
       decoration: BoxDecoration(
-          color: AppThemeProvider.of(context).colors.airBarMain.color(),
+          color: colors.airBarMain.color(),
           borderRadius: BorderRadius.circular(20.0)),
       child: Row(mainAxisSize: MainAxisSize.min, children: widgets),
     );
@@ -83,9 +86,14 @@ class _AirbarItemWidgetState extends State<AirbarItemWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     final accentColor = widget.selected
-        ? AppThemeProvider.of(context).colors.elementsAccent.color()
-        : AppThemeProvider.of(context).colors.elementsStaticWhite.color();
+        ? colors.elementsAccent.color()
+        : colors.elementsStaticWhite.color();
+
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
       onTapUp: (_) => setHighlighted(false),
@@ -104,14 +112,9 @@ class _AirbarItemWidgetState extends State<AirbarItemWidget> {
                 widget.title,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: AppThemeProvider.of(context)
-                        .colors
-                        .textStaticWhite
-                        .color(),
-                    fontSize: 10.0,
-                    fontWeight: FontWeight.w500,
-                    fontFamily: FontFamily.sfProText),
+                style: fonts.caption2.toTextStyle(
+                  colors.textStaticWhite.color(),
+                ),
               ),
               const SizedBox(height: 4.0)
             ],

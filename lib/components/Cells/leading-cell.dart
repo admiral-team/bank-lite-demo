@@ -18,6 +18,10 @@ class _LeadingCellWidgetState extends State<LeadingCellWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
       onTapUp: (_) => setHighlighted(false),
@@ -30,17 +34,13 @@ class _LeadingCellWidgetState extends State<LeadingCellWidget> {
           width: double.infinity,
           alignment: Alignment.centerLeft,
           decoration: BoxDecoration(
-            color: AppThemeProvider.of(context).colors.backgroundAdditional.color(),
+            color: colors.backgroundAdditional.color(),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Text(
             widget.title,
             textAlign: TextAlign.left,
-            style: TextStyle(
-                color: AppThemeProvider.of(context).colors.textPrimary.color(),
-                fontSize: 16.0,
-                fontWeight: FontWeight.normal,
-                fontFamily: FontFamily.sfProDisplay),
+            style: fonts.headline.toTextStyle(colors.textPrimary.color()),
           ),
         ),
       ),

@@ -33,10 +33,14 @@ class _AppBarState extends State<AppBarMain> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     List<Widget> widgets = [
       _rightBarButton.svg(
         height: 40,
-        color: AppThemeProvider.of(context).colors.elementsAccent.color(),
+        color: colors.elementsAccent.color(),
       )
     ];
 
@@ -49,7 +53,7 @@ class _AppBarState extends State<AppBarMain> {
 
     return Container(
       padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      color: AppThemeProvider.of(context).colors.backgroundBasic.color(),
+      color: colors.backgroundBasic.color(),
       child: SizedBox(
         height: 48.0,
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -61,21 +65,17 @@ class _AppBarState extends State<AppBarMain> {
             pressedOpacity: 0.6,
             child: _leftBarButton.svg(
               height: 40,
-              color: AppThemeProvider.of(context).colors.elementsAccent.color(),
+              color: colors.elementsAccent.color(),
             ),
             onPressed: widget.onPressedLeftButton,
           ),
           const Spacer(),
           Text(
             AppLocalizations.of(context).appTitle,
-            style: TextStyle(
-              color: AppThemeProvider.of(context).colors.textPrimary.color(),
-              fontSize: 28,
-              fontFamily: FontFamily.sfProDisplay,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 0.2,
-              fontStyle: FontStyle.normal,
+            style: fonts.largeTitle2.toTextStyle(
+              colors.textPrimary.color(),
             ),
+            //  letterSpacing: 0.2,
           ),
           const Spacer(),
           CupertinoButton(
@@ -95,7 +95,7 @@ class _AppBarState extends State<AppBarMain> {
             pressedOpacity: 0.6,
             child: _settingsBarButton.svg(
               height: 30,
-              color: AppThemeProvider.of(context).colors.elementsAccent.color(),
+              color: colors.elementsAccent.color(),
             ),
             onPressed: widget.onPressedSettings,
           ),
@@ -113,25 +113,28 @@ class _NotificationBage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 3),
       height: 18.0,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: AppThemeProvider.of(context).colors.elementsError.color(),
+        color: colors.elementsError.color(),
         // shape: BoxShape.circle,
         borderRadius: BorderRadius.circular(100),
-        border: Border.all(
-            width: 2,
-            color: AppThemeProvider.of(context).colors.backgroundBasic.color()),
+        border: Border.all(width: 2, color: colors.backgroundBasic.color()),
       ),
       child: Text(
         '$count',
-        style: TextStyle(
-            color: AppThemeProvider.of(context).colors.textStaticWhite.color(),
-            fontSize: 12.0,
-            fontWeight: FontWeight.w500,
-            fontFamily: FontFamily.sfProText),
+        // style: fonts.largeTitle2.toTextStyle(
+        //   colors.textStaticWhite.color(),
+        // ),
+        style: fonts.caption3.toTextStyle(
+          colors.textStaticWhite.color(),
+        ),
       ),
     );
   }

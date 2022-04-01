@@ -2,11 +2,11 @@ import 'package:bank_lite/components/map/map.dart';
 import 'package:bank_lite/components/map/models/map_point.dart';
 import 'package:bank_lite/components/map/models/mock_points.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
-import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 MapWidget getMapWidget() => const MapScreenMobile();
 
@@ -65,29 +65,26 @@ class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     return Scaffold(
-        backgroundColor:
-            AppThemeProvider.of(context).colors.backgroundBasic.color(),
+        backgroundColor: colors.backgroundBasic.color(),
         appBar: AppBar(
-          title: const Text("Банкоматы"),
-          titleTextStyle: TextStyle(
-            color: AppThemeProvider.of(context).colors.textPrimary.color(),
-            fontSize: 17.0,
-            fontWeight: FontWeight.w600,
-            fontFamily: FontFamily.sfProText,
-          ),
+          title: Text(AppLocalizations.of(context).atms),
+          titleTextStyle: fonts.navbar.toTextStyle(colors.textPrimary.color()),
           centerTitle: true,
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
-              color: AppThemeProvider.of(context).colors.elementsAccent.color(),
+              color: colors.elementsAccent.color(),
             ),
             onPressed: () => Navigator.of(context).pop(),
           ),
           bottomOpacity: 0.0,
           elevation: 0.0,
-          backgroundColor:
-              AppThemeProvider.of(context).colors.backgroundBasic.color(),
+          backgroundColor: colors.backgroundBasic.color(),
         ),
         body: Stack(children: [
           YandexMap(
@@ -123,15 +120,9 @@ class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
                   FloatingActionButton.small(
                     child: Icon(
                       Icons.add,
-                      color: AppThemeProvider.of(context)
-                          .colors
-                          .elementsAccent
-                          .color(),
+                      color: colors.elementsAccent.color(),
                     ),
-                    backgroundColor: AppThemeProvider.of(context)
-                        .colors
-                        .elementsStaticWhite
-                        .color(),
+                    backgroundColor: colors.elementsStaticWhite.color(),
                     onPressed: () async {
                       await _controller.moveCamera(
                         CameraUpdate.zoomIn(),
@@ -142,15 +133,9 @@ class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
                   FloatingActionButton.small(
                     child: Icon(
                       Icons.remove,
-                      color: AppThemeProvider.of(context)
-                          .colors
-                          .elementsAccent
-                          .color(),
+                      color: colors.elementsAccent.color(),
                     ),
-                    backgroundColor: AppThemeProvider.of(context)
-                        .colors
-                        .elementsStaticWhite
-                        .color(),
+                    backgroundColor: colors.elementsStaticWhite.color(),
                     onPressed: () async {
                       await _controller.moveCamera(
                         CameraUpdate.zoomOut(),
@@ -162,15 +147,9 @@ class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
                   FloatingActionButton.small(
                     child: Icon(
                       Icons.gps_fixed,
-                      color: AppThemeProvider.of(context)
-                          .colors
-                          .elementsAccent
-                          .color(),
+                      color: colors.elementsAccent.color(),
                     ),
-                    backgroundColor: AppThemeProvider.of(context)
-                        .colors
-                        .elementsStaticWhite
-                        .color(),
+                    backgroundColor: colors.elementsStaticWhite.color(),
                     onPressed: () async {
                       await showCurrentLocation();
                     },

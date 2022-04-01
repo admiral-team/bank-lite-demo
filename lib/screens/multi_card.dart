@@ -1,6 +1,5 @@
 import 'package:bank_lite/components/map/map.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
-import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/screens/estimate_app.dart';
 import 'package:bank_lite/screens/status_screen.dart';
 import 'package:bank_lite/screens/theme_settings_screen.dart';
@@ -8,6 +7,7 @@ import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import '../components/Cells/leading-cell.dart';
 import 'in_progress.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum _MultiCardActionType {
   map,
@@ -32,49 +32,57 @@ class _ListCellModel {
 }
 
 class _MultiCardScreenState extends State<MultiCardScreen> {
-  final List<_ListCellModel> _items = [
-    _ListCellModel(title: "Банкоматы на карте", type: _MultiCardActionType.map),
-    _ListCellModel(
-        title: "Оценить приложение", type: _MultiCardActionType.estimate),
-    _ListCellModel(
-        title: "Отправить заявку", type: _MultiCardActionType.addRequest),
-    _ListCellModel(
-        title: "Перевести деньги", type: _MultiCardActionType.transactions),
-    _ListCellModel(
-        title: "Настроить тему приложения",
-        type: _MultiCardActionType.themeSettings),
-  ];
-
   SvgGenImage get _bell => Assets.lib.assets.images.alert;
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
+    List<_ListCellModel> items = [
+      _ListCellModel(
+        title: AppLocalizations.of(context).atmsOnTheMap,
+        type: _MultiCardActionType.map,
+      ),
+      _ListCellModel(
+        title: AppLocalizations.of(context).rateTheApp,
+        type: _MultiCardActionType.estimate,
+      ),
+      _ListCellModel(
+        title: AppLocalizations.of(context).submitRequest,
+        type: _MultiCardActionType.addRequest,
+      ),
+      _ListCellModel(
+        title: AppLocalizations.of(context).transferMoney,
+        type: _MultiCardActionType.transactions,
+      ),
+      _ListCellModel(
+        title: AppLocalizations.of(context).customizeAppTheme,
+        type: _MultiCardActionType.themeSettings,
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Мультикарта"),
-        titleTextStyle: TextStyle(
-          color: AppThemeProvider.of(context).colors.textPrimary.color(),
-          fontSize: 17.0,
-          fontWeight: FontWeight.w600,
-          fontFamily: FontFamily.sfProText,
-        ),
+        title: Text(AppLocalizations.of(context).multicard),
+        titleTextStyle: fonts.navbar.toTextStyle(colors.textPrimary.color()),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: AppThemeProvider.of(context).colors.elementsAccent.color(),
+            color: colors.elementsAccent.color(),
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,
-        backgroundColor:
-            AppThemeProvider.of(context).colors.backgroundBasic.color(),
+        backgroundColor: colors.backgroundBasic.color(),
         actions: <Widget>[
           IconButton(
             padding: EdgeInsets.zero,
             icon: _bell.svg(
-              color: AppThemeProvider.of(context).colors.elementsAccent.color(),
+              color: colors.elementsAccent.color(),
             ),
             onPressed: null,
           )
@@ -83,7 +91,7 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: AppThemeProvider.of(context).colors.backgroundBasic.color(),
+        color: colors.backgroundBasic.color(),
         padding: const EdgeInsets.only(top: 20.0),
         alignment: Alignment.center,
         child: Expanded(
@@ -92,9 +100,9 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
             padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
             physics: const BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics()),
-            itemCount: _items.length,
+            itemCount: items.length,
             itemBuilder: (ctx, index) {
-              return _buildView(ctx, index);
+              return _buildView(ctx, index, items);
             },
             separatorBuilder: (ctx, index) {
               return const SizedBox(height: 8);
@@ -105,8 +113,8 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
     );
   }
 
-  Widget _buildView(BuildContext ctx, int index) {
-    _ListCellModel _model = _items[index];
+  Widget _buildView(BuildContext ctx, int index, List<_ListCellModel> items) {
+    _ListCellModel _model = items[index];
     switch (_model.type) {
       case _MultiCardActionType.map:
         return LeadingCellWidget(

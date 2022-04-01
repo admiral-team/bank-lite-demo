@@ -1,13 +1,12 @@
-import 'package:bank_lite/generated/assets.gen.dart';
-import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class BoundingBox {
-   double width;
-   double height;
-   BoundingBox({required this.width, required this.height});
+  double width;
+  double height;
+
+  BoundingBox({required this.width, required this.height});
 }
 
 class StatusWidgetModel {
@@ -17,20 +16,20 @@ class StatusWidgetModel {
   final BoundingBox imageContainer;
   final double titleContainerHeight;
 
-  StatusWidgetModel({
-    required this.title,
-    required this.description,
-    required this.image,
-    required this.imageContainer,
-    required this.titleContainerHeight
-  });
+  StatusWidgetModel(
+      {required this.title,
+      required this.description,
+      required this.image,
+      required this.imageContainer,
+      required this.titleContainerHeight});
 }
 
 class StatusWidget extends StatefulWidget {
   final StatusWidgetModel model;
+
   const StatusWidget({
-    Key? key, 
-    required this.model, 
+    Key? key,
+    required this.model,
   }) : super(key: key);
 
   @override
@@ -38,9 +37,12 @@ class StatusWidget extends StatefulWidget {
 }
 
 class _StatusWidgetState extends State<StatusWidget> {
-
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -54,13 +56,8 @@ class _StatusWidgetState extends State<StatusWidget> {
           height: widget.model.titleContainerHeight,
           child: Text(
             widget.model.title,
-              textAlign: TextAlign.center,
-            style: TextStyle(
-              color: AppThemeProvider.of(context).colors.textPrimary.color(),
-              fontSize: 22.0,
-              fontWeight: FontWeight.bold,
-              fontFamily: FontFamily.sfProText,
-            ),
+            textAlign: TextAlign.center,
+            style: fonts.title1.toTextStyle(colors.textPrimary.color()),
           ),
         ),
         if (widget.model.description != "") ...[
@@ -68,12 +65,7 @@ class _StatusWidgetState extends State<StatusWidget> {
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: Text(
               widget.model.description,
-              style: TextStyle(
-                color: AppThemeProvider.of(context).colors.textPrimary.color(),
-                fontSize: 16.0,
-                fontWeight: FontWeight.normal,
-                fontFamily: FontFamily.sfProDisplay,
-              ),
+              style: fonts.body2.toTextStyle(colors.textPrimary.color()),
               textAlign: TextAlign.center,
             ),
           ),

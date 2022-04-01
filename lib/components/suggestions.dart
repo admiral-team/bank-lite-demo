@@ -71,11 +71,13 @@ class Suggestions extends StatefulWidget {
 class _SuggestionsState extends State<Suggestions> {
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
     var _items = _itemsWidgets();
 
     return Container(
       decoration: BoxDecoration(
-        color: AppThemeProvider.of(context).colors.backgroundAdditional.color(),
+        color: colors.backgroundAdditional.color(),
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(
@@ -126,16 +128,15 @@ class TitleText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(16.0, 16.0, 0, 0),
       child: Text(
-        AppLocalizations.of(context).addNewCard,
-        style: TextStyle(
-          fontFamily: FontFamily.sfProDisplay,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: AppThemeProvider.of(context).colors.textPrimary.color(),
-        ),
+        AppLocalizations.of(context).recommend,
+        style: fonts.subtitle1.toTextStyle(colors.textPrimary.color()),
       ),
     );
   }
@@ -164,13 +165,17 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     final accentColor = widget.selected
-        ? AppThemeProvider.of(context).colors.elementsAccent.color()
-        : AppThemeProvider.of(context).colors.backgroundBasic.color();
+        ? colors.elementsAccent.color()
+        : colors.backgroundBasic.color();
 
     final textColor = widget.selected
-        ? AppThemeProvider.of(context).colors.textStaticWhite.color()
-        : AppThemeProvider.of(context).colors.textPrimary.color();
+        ? colors.textStaticWhite.color()
+        : colors.textPrimary.color();
 
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
@@ -199,11 +204,7 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
                   textAlign: TextAlign.left,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      color: textColor,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: FontFamily.sfProText),
+                  style: fonts.subhead3.toTextStyle(textColor),
                 ),
               ],
             ),

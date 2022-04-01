@@ -48,7 +48,7 @@ class _RootScreenState extends State<RootScreen> {
     ];
 
     return Stack(children: [
-      _currentScreen(),
+      _currentScreen(context),
       SafeArea(
           child: Container(
         alignment: Alignment.bottomCenter,
@@ -66,11 +66,12 @@ class _RootScreenState extends State<RootScreen> {
     ]);
   }
 
-  Widget _currentScreen() {
+  Widget _currentScreen(BuildContext context) {
     switch (_selectedIndex) {
       case 0:
         return HomeScreen(
-            request: () => _service.homeItems().then((value) => value.items));
+            request: () =>
+                _service.homeItems(context).then((value) => value.items));
       case 1:
         return const InProgress(appBarHidden: true);
       case 2:

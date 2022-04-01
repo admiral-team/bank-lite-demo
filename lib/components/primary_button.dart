@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 class PrimaryButtonWidget extends StatefulWidget {
   final VoidCallback? onPressed;
   final String title;
-  const PrimaryButtonWidget({Key? key, this.onPressed, required this.title}) : super(key: key);
+
+  const PrimaryButtonWidget({Key? key, this.onPressed, required this.title})
+      : super(key: key);
 
   @override
   State<PrimaryButtonWidget> createState() => _PrimaryButtonWidgetState();
@@ -16,6 +18,10 @@ class _PrimaryButtonWidgetState extends State<PrimaryButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
       onTapUp: (_) => setHighlighted(false),
@@ -28,17 +34,13 @@ class _PrimaryButtonWidgetState extends State<PrimaryButtonWidget> {
           height: 50,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: AppThemeProvider.of(context).colors.backgroundAccent.color(),
+            color: colors.backgroundAccent.color(),
             borderRadius: BorderRadius.circular(8.0),
           ),
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
           child: Text(
             widget.title,
-            style: TextStyle(
-                color: AppThemeProvider.of(context).colors.textStaticWhite.color(),
-                fontSize: 16.0,
-                fontWeight: FontWeight.w500,
-                fontFamily: FontFamily.sfProText),
+            style: fonts.headline.toTextStyle(colors.textStaticWhite.color()),
           ),
         ),
       ),

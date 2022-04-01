@@ -1,4 +1,3 @@
-import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:collapsible/collapsible.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +9,14 @@ import 'card_widget.dart';
 class CardsWidget extends StatefulWidget {
   final bool collapsed;
   final List<CardModel> cards;
-  final VoidCallback onAddNewCardPressed;
+  final VoidCallback onRecommendPressed;
   final void Function(CardModel) onCardPressed;
 
   const CardsWidget({
     Key? key,
     required this.collapsed,
     required this.cards,
-    required this.onAddNewCardPressed,
+    required this.onRecommendPressed,
     required this.onCardPressed,
   }) : super(key: key);
 
@@ -44,6 +43,10 @@ class _CardsWidgetState extends State<CardsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     List<Widget> widgets = [const SizedBox(height: 8)];
     for (var i = 0; i < _cards.length; i++) {
       widgets.add(
@@ -58,16 +61,16 @@ class _CardsWidgetState extends State<CardsWidget> {
     widgets.add(
       CardWidget(
         model: CardModel(
-          title: AppLocalizations.of(context).addNewCard,
+          title: AppLocalizations.of(context).recommend,
           image: Assets.lib.assets.images.cardAdd,
         ),
-        onPressed: widget.onAddNewCardPressed,
+        onPressed: widget.onRecommendPressed,
       ),
     );
 
     return Container(
       decoration: BoxDecoration(
-        color: AppThemeProvider.of(context).colors.backgroundAdditional.color(),
+        color: colors.backgroundAdditional.color(),
         borderRadius: BorderRadius.circular(8.0),
       ),
       padding: const EdgeInsets.symmetric(vertical: 14),
@@ -88,15 +91,13 @@ class _CardsWidgetState extends State<CardsWidget> {
                   const SizedBox(width: 16),
                   Text(
                     AppLocalizations.of(context).linkedCards,
-                    style: TextStyle(
-                        color: AppThemeProvider.of(context).colors.textPrimary.color(),
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: FontFamily.sfProText),
+                    style: fonts.subtitle1.toTextStyle(
+                      colors.textPrimary.color(),
+                    ),
                   ),
                   const SizedBox(width: 6),
                   (_collapsed ? arrowDown : arrowUp).svg(
-                    color: AppThemeProvider.of(context).colors.elementsSecondary.color(),
+                    color: colors.elementsSecondary.color(),
                     height: 24.0,
                     width: 24.0,
                   ),

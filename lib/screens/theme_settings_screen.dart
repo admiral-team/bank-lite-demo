@@ -1,7 +1,7 @@
-import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/theme/app_theme.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ThemeSettingsScreen extends StatefulWidget {
   const ThemeSettingsScreen({
@@ -15,39 +15,34 @@ class ThemeSettingsScreen extends StatefulWidget {
 class _ThemeSettingsScreenState extends State<ThemeSettingsScreen> {
   @override
   Widget build(BuildContext context) {
+    var theme = AppThemeProvider.of(context);
+    var colors = theme.colors;
+    var fonts = theme.fonts;
+
     return Scaffold(
-      backgroundColor: AppThemeProvider.of(context).colors.backgroundBasic.color(),
+      backgroundColor: colors.backgroundBasic.color(),
       appBar: AppBar(
-        title: const Text("Тема приложения"),
-        titleTextStyle: TextStyle(
-          color: AppThemeProvider.of(context).colors.textPrimary.color(),
-          fontSize: 17.0,
-          fontWeight: FontWeight.w600,
-          fontFamily: FontFamily.sfProText,
-        ),
+        title: Text(AppLocalizations.of(context).appTheme),
+        titleTextStyle: fonts.navbar.toTextStyle(colors.textPrimary.color()),
         centerTitle: true,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: AppThemeProvider.of(context).colors.elementsAccent.color(),
+            color: colors.elementsAccent.color(),
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,
-        backgroundColor: AppThemeProvider.of(context).colors.backgroundBasic.color(),
+        backgroundColor: colors.backgroundBasic.color(),
       ),
       body: Row(
         children: [
           const SizedBox(width: 24),
           Text(
-            "Тёмная тема",
+            AppLocalizations.of(context).darkTheme,
             textAlign: TextAlign.left,
-            style: TextStyle(
-                color: AppThemeProvider.of(context).colors.textPrimary.color(),
-                fontSize: 16.0,
-                fontWeight: FontWeight.normal,
-                fontFamily: FontFamily.sfProDisplay),
+            style: fonts.body1.toTextStyle(colors.textPrimary.color()),
           ),
           const SizedBox(width: 8),
           Switch(
@@ -59,8 +54,8 @@ class _ThemeSettingsScreenState extends State<ThemeSettingsScreen> {
                 wrapper.updateTheme(lightTheme);
               });
             },
-            activeTrackColor: AppThemeProvider.of(context).colors.elementsSpecial.color(),
-            activeColor: AppThemeProvider.of(context).colors.elementsAccent.color(),
+            activeTrackColor: colors.elementsSpecial.color(),
+            activeColor: colors.elementsAccent.color(),
           ),
         ],
       ),

@@ -74,8 +74,6 @@ class ColorPalette {
     required this.widgetIcon,
     required this.cloudIcon,
   });
-
-  static const defaultPalette = darkPalette;
 }
 
 const lightPalette = ColorPalette(
