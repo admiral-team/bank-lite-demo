@@ -43,7 +43,7 @@ class _CardWidgetState extends State<CardWidget> {
       Text(
         widget.model.title,
         overflow: TextOverflow.ellipsis,
-        style: fonts.headline.toTextStyle(colors.textPrimary.color()),
+        style: fonts.headline.toTextStyle(colors.textPrimary.color(opacity: _opacity)),
       ),
     ];
 
@@ -52,7 +52,7 @@ class _CardWidgetState extends State<CardWidget> {
         const Spacer(),
         Text(
           widget.model.lastNumbers!,
-          style: fonts.subhead3.toTextStyle(colors.textSecondary.color()),
+          style: fonts.subhead3.toTextStyle(colors.textSecondary.color(opacity: _opacity)),
         )
       ]);
     }
@@ -62,19 +62,18 @@ class _CardWidgetState extends State<CardWidget> {
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: Container(
-          decoration: BoxDecoration(
-            color: colors.backgroundAdditional.color(),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-          height: 64,
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: widgets,
-          ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: colors
+              .backgroundAdditional
+              .color(opacity: _opacity),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        height: 64,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: widgets,
         ),
       ),
     );

@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 class LeadingCellWidget extends StatefulWidget {
   final VoidCallback? onPressed;
   final String title;
-  const LeadingCellWidget(
-      {Key? key, this.onPressed, required this.title})
+  const LeadingCellWidget({Key? key, this.onPressed, required this.title})
       : super(key: key);
 
   @override
@@ -27,21 +26,21 @@ class _LeadingCellWidgetState extends State<LeadingCellWidget> {
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: Container(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
-          width: double.infinity,
-          alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            color: colors.backgroundAdditional.color(),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Text(
-            widget.title,
-            textAlign: TextAlign.left,
-            style: fonts.headline.toTextStyle(colors.textPrimary.color()),
-          ),
+      child: Container(
+        padding: const EdgeInsets.only(
+            left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
+        width: double.infinity,
+        alignment: Alignment.centerLeft,
+        decoration: BoxDecoration(
+          color: colors
+              .backgroundAdditional
+              .color(opacity: _opacity),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Text(
+          widget.title,
+          textAlign: TextAlign.left,
+          style: fonts.headline.toTextStyle(colors.textPrimary.color(opacity: _opacity)),
         ),
       ),
     );

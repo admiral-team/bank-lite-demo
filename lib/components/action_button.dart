@@ -1,3 +1,4 @@
+import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -32,10 +33,10 @@ class _ActionButtonWidgetWidgetState extends State<ActionButtonWidget> {
     final Color textColor;
     switch (widget.style) {
       case ActionButtonStyle.regular:
-        textColor = colors.textAccent.color();
+        textColor = colors.textAccent.color(opacity: _opacity);
         break;
       case ActionButtonStyle.textError:
-        textColor = colors.textError.color();
+        textColor = colors.textError.color(opacity: _opacity);
         break;
     }
 
@@ -44,20 +45,17 @@ class _ActionButtonWidgetWidgetState extends State<ActionButtonWidget> {
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: Container(
-          width: 147,
-          height: 40,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: colors.backgroundSelected.color(),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Text(
-            AppLocalizations.of(context).actionButton,
-            style: fonts.headline.toTextStyle(textColor),
-          ),
+      child: Container(
+        width: 147,
+        height: 40,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: colors.backgroundSelected.color(opacity: _opacity),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Text(
+          AppLocalizations.of(context).actionButton,
+          style: fonts.headline.toTextStyle(textColor),
         ),
       ),
     );

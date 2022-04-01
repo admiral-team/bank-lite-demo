@@ -1,3 +1,4 @@
+import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:collapsible/collapsible.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,7 @@ class _CardsWidgetState extends State<CardsWidget> {
 
     return Container(
       decoration: BoxDecoration(
-        color: colors.backgroundAdditional.color(),
+        color: colors.backgroundAdditional.color(opacity: _opacity),
         borderRadius: BorderRadius.circular(8.0),
       ),
       padding: const EdgeInsets.symmetric(vertical: 14),
@@ -83,26 +84,25 @@ class _CardsWidgetState extends State<CardsWidget> {
             onTapUp: (_) => setHighlighted(false),
             onTapDown: (_) => setHighlighted(true),
             onTapCancel: () => setHighlighted(false),
-            child: Opacity(
-              opacity: _opacity,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(width: 16),
-                  Text(
-                    AppLocalizations.of(context).linkedCards,
-                    style: fonts.subtitle1.toTextStyle(
-                      colors.textPrimary.color(),
-                    ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(width: 16),
+                Text(
+                  AppLocalizations.of(context).linkedCards,
+                  style: fonts.subtitle1.toTextStyle(
+                    colors.textPrimary.color(opacity: _opacity),
                   ),
-                  const SizedBox(width: 6),
-                  (_collapsed ? arrowDown : arrowUp).svg(
-                    color: colors.elementsSecondary.color(),
-                    height: 24.0,
-                    width: 24.0,
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(width: 6),
+                (_collapsed ? arrowDown : arrowUp).svg(
+                  color: colors
+                      .elementsSecondary
+                      .color(opacity: _opacity),
+                  height: 24.0,
+                  width: 24.0,
+                ),
+              ],
             ),
           ),
           Collapsible(

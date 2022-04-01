@@ -156,27 +156,26 @@ class _CardButtonWidgetState extends State<CardButtonWidget> {
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: Container(
-          padding: const EdgeInsets.only(
-              left: 12.0, top: 10.0, right: 12.0, bottom: 10.0),
-          height: 36.0,
-          decoration: BoxDecoration(
-            color: colors.backgroundSelected.color(),
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            widget.icon.svg(height: 16.0, width: 16.0),
-            const SizedBox(width: 8.0),
-            Text(
-              widget.title,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              style: fonts.subhead3.toTextStyle(colors.elementsAccent.color()),
-            ),
-          ]),
+      child: Container(
+        padding: const EdgeInsets.only(
+            left: 12.0, top: 10.0, right: 12.0, bottom: 10.0),
+        height: 36.0,
+        decoration: BoxDecoration(
+          color: colors
+              .backgroundSelected
+              .color(opacity: _opacity),
+          borderRadius: BorderRadius.circular(8.0),
         ),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          widget.icon.svg(height: 16.0, width: 16.0),
+          const SizedBox(width: 8.0),
+          Text(
+            widget.title,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: fonts.subhead3.toTextStyle(colors.elementsAccent.color(opacity: _opacity)),
+          ),
+        ]),
       ),
     );
   }

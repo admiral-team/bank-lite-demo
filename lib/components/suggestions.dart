@@ -170,44 +170,41 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
     var fonts = theme.fonts;
 
     final accentColor = widget.selected
-        ? colors.elementsAccent.color()
-        : colors.backgroundBasic.color();
+        ? colors.elementsAccent.color(opacity: _opacity)
+        : colors.backgroundBasic.color(opacity: _opacity);
 
     final textColor = widget.selected
-        ? colors.textStaticWhite.color()
-        : colors.textPrimary.color();
+        ? colors.textStaticWhite.color(opacity: _opacity)
+        : colors.textPrimary.color(opacity: _opacity);
 
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: SizedBox(
-          width: 104.0,
-          height: 120.0,
-          child: Container(
-            decoration: BoxDecoration(
-              color: accentColor,
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                widget.content.svg(height: 40.0, width: 40.0),
-                const Spacer(),
-                Text(
-                  widget.title,
-                  textAlign: TextAlign.left,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: fonts.subhead3.toTextStyle(textColor),
-                ),
-              ],
-            ),
+      child: SizedBox(
+        width: 104.0,
+        height: 120.0,
+        child: Container(
+          decoration: BoxDecoration(
+            color: accentColor,
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              widget.content.svg(height: 40.0, width: 40.0),
+              const Spacer(),
+              Text(
+                widget.title,
+                textAlign: TextAlign.left,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: fonts.subhead3.toTextStyle(textColor),
+              ),
+            ],
           ),
         ),
       ),

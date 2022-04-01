@@ -1,4 +1,5 @@
 import 'package:bank_lite/generated/assets.gen.dart';
+import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -28,35 +29,36 @@ class _AddNewWidgetState extends State<AddNewWidget> {
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: Container(
-          width: double.infinity,
-          height: 74.0,
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-          child: Row(
-            children: [
-              Container(
-                width: 28.0,
-                height: 22.0,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: colors.elementsAccent.color(),
-                  borderRadius: BorderRadius.circular(3.0),
-                ),
-                child: image.svg(
-                  color: colors.elementsStaticWhite.color(),
-                ),
+      child: Container(
+        width: double.infinity,
+        height: 74.0,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+        child: Row(
+          children: [
+            Container(
+              width: 28.0,
+              height: 22.0,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: colors
+                    .elementsAccent
+                    .color(opacity: _opacity),
+                borderRadius: BorderRadius.circular(3.0),
               ),
-              const SizedBox(width: 14.0),
-              Text(
-                AppLocalizations.of(context).addNewProductButton,
-                style: fonts.headline.toTextStyle(colors.textPrimary.color()),
-              )
-            ],
-            mainAxisSize: MainAxisSize.min,
-          ),
+              child: image.svg(
+                color: colors
+                    .elementsStaticWhite
+                    .color(opacity: _opacity),
+              ),
+            ),
+            const SizedBox(width: 14.0),
+            Text(
+              AppLocalizations.of(context).addNewProductButton,
+              style: fonts.headline.toTextStyle(colors.textPrimary.color(opacity: _opacity)),
+            )
+          ],
+          mainAxisSize: MainAxisSize.min,
         ),
       ),
     );

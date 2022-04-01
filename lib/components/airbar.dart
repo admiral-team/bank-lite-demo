@@ -91,34 +91,30 @@ class _AirbarItemWidgetState extends State<AirbarItemWidget> {
     var fonts = theme.fonts;
 
     final accentColor = widget.selected
-        ? colors.elementsAccent.color()
-        : colors.elementsStaticWhite.color();
-
+        ? colors.elementsAccent.color(opacity: _opacity)
+        : colors.elementsStaticWhite.color(opacity: _opacity);
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),
       onTapUp: (_) => setHighlighted(false),
       onTapDown: (_) => setHighlighted(true),
       onTapCancel: () => setHighlighted(false),
-      child: Opacity(
-        opacity: _opacity,
-        child: Container(
-          constraints:
-              const BoxConstraints(minHeight: 56, maxWidth: 56, minWidth: 56),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              widget.content.svg(color: accentColor, height: 40.0, width: 40.0),
-              Text(
-                widget.title,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: fonts.caption2.toTextStyle(
-                  colors.textStaticWhite.color(),
-                ),
+      child: Container(
+        constraints:
+            const BoxConstraints(minHeight: 56, maxWidth: 56, minWidth: 56),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            widget.content.svg(color: accentColor, height: 40.0, width: 40.0),
+            Text(
+              widget.title,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: fonts.caption2.toTextStyle(
+                colors.textStaticWhite.color(opacity: _opacity),
               ),
-              const SizedBox(height: 4.0)
-            ],
-          ),
+            ),
+            const SizedBox(height: 4.0)
+          ],
         ),
       ),
     );

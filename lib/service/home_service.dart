@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import '../model/home_model.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
@@ -51,8 +52,12 @@ class HomeService {
 
   Future<List<dynamic>> readJson() async {
     final String response =
-        await rootBundle.loadString('lib/assets/json/items500000.json');
-    final data = await json.decode(response);
+        await rootBundle.loadString('lib/assets/json/items10000.json');
+    return compute(parseItems, response);
+  }
+
+  List<dynamic> parseItems(String responseBody) {
+    final data = json.decode(responseBody);
     return data["items"];
   }
 }

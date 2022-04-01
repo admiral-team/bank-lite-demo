@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
             AppBarMain(
               count: 6,
               onPressedLeftButton: () {
-                  _pushScreen(const InProgress());
+                _pushScreen(const InProgress());
               },
               onPressedRightButton: () {
                 _pushScreen(const InProgress());
@@ -90,10 +90,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               child: ListView.separated(
+                addAutomaticKeepAlives: false,
+                addRepaintBoundaries: false,
                 shrinkWrap: false,
-                padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 8.0),
-                physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                itemCount: _items.length,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
+                itemCount: _items.length + 1,
                 itemBuilder: (ctx, index) {
                   return _buildView(ctx, index);
                 },
@@ -105,14 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      onRefresh: () {
-        return _pullRefresh();
+      onRefresh: () async {
+        return await _pullRefresh();
       },
     );
   }
 
   Widget _buildView(BuildContext ctx, int index) {
-    final item = _items[index];
+    final item = index == _items.length ? null : _items[index];
     if (item is BannerScreenModel) {
       return ExpandedCell(
         expanded: _expanded,
@@ -162,7 +166,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         onRecommendPressed: () {
           Future.delayed(const Duration(seconds: 3), () {
-            NotificationService.showNotification(title: 'Успешно!', body: 'Ваша карты выпущена');
+            NotificationService.showNotification(
+                title: 'Успешно!', body: 'Ваша карты выпущена');
           });
         },
         onCardPressed: (cardModel) {
@@ -171,6 +176,11 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     } else if (item is SuggestionsCellModel) {
       return const SuggestionWidget();
+    } else if (item == null) {
+      return const SizedBox(
+        width: double.infinity,
+        height: 75,
+      );
     }
     return Container();
   }
