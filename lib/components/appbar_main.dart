@@ -1,10 +1,7 @@
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../generated/fonts.gen.dart';
 
 class AppBarMain extends StatefulWidget {
   final int? count;
@@ -33,6 +30,7 @@ class _AppBarState extends State<AppBarMain> {
 
   @override
   Widget build(BuildContext context) {
+    const isRelease = true;
     var theme = AppThemeProvider.of(context);
     var colors = theme.colors;
     var fonts = theme.fonts;
@@ -46,61 +44,71 @@ class _AppBarState extends State<AppBarMain> {
 
     if (widget.count != null) {
       widgets.add(Padding(
-        padding: const EdgeInsets.only(left: 20),
+        padding: const EdgeInsets.only(left: 18),
         child: _NotificationBage(count: widget.count!),
       ));
     }
+
+    var appBarItems = [
+      const SizedBox(width: 8),
+      CupertinoButton(
+        minSize: 0,
+        padding: const EdgeInsets.all(0),
+        alignment: Alignment.bottomRight,
+        pressedOpacity: 0.6,
+        child: _leftBarButton.svg(
+          height: 40,
+          color: colors.elementsAccent.color(),
+        ),
+        onPressed: widget.onPressedLeftButton,
+      ),
+      const Spacer(),
+      Text(
+        AppLocalizations.of(context).appTitle,
+        style: fonts.largeTitle2.toTextStyle(
+          colors.textPrimary.color(),
+        ),
+        //  letterSpacing: 0.2,
+      ),
+      const Spacer(),
+      CupertinoButton(
+        minSize: 0,
+        padding: const EdgeInsets.all(0),
+        alignment: Alignment.bottomRight,
+        pressedOpacity: 0.6,
+        child: Stack(
+          children: widgets,
+        ),
+        onPressed: widget.onPressedRightButton,
+      ),
+    ];
+    if (!isRelease) {
+      appBarItems.add(
+        CupertinoButton(
+          minSize: 0,
+          padding: const EdgeInsets.all(0),
+          alignment: Alignment.bottomRight,
+          pressedOpacity: 0.6,
+          child: _settingsBarButton.svg(
+            height: 30,
+            color: colors.elementsAccent.color(),
+          ),
+          onPressed: widget.onPressedSettings,
+        ),
+      );
+    }
+
+    appBarItems.add(const SizedBox(width: 8));
 
     return Container(
       padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       color: colors.backgroundBasic.color(),
       child: SizedBox(
-        height: 48.0,
-        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const SizedBox(width: 8),
-          CupertinoButton(
-            minSize: 0,
-            padding: const EdgeInsets.all(0),
-            alignment: Alignment.bottomRight,
-            pressedOpacity: 0.6,
-            child: _leftBarButton.svg(
-              height: 40,
-              color: colors.elementsAccent.color(),
-            ),
-            onPressed: widget.onPressedLeftButton,
-          ),
-          const Spacer(),
-          Text(
-            AppLocalizations.of(context).appTitle,
-            style: fonts.largeTitle2.toTextStyle(
-              colors.textPrimary.color(),
-            ),
-            //  letterSpacing: 0.2,
-          ),
-          const Spacer(),
-          CupertinoButton(
-            minSize: 0,
-            padding: const EdgeInsets.all(0),
-            alignment: Alignment.bottomRight,
-            pressedOpacity: 0.6,
-            child: Stack(
-              children: widgets,
-            ),
-            onPressed: widget.onPressedRightButton,
-          ),
-          CupertinoButton(
-            minSize: 0,
-            padding: const EdgeInsets.all(0),
-            alignment: Alignment.bottomRight,
-            pressedOpacity: 0.6,
-            child: _settingsBarButton.svg(
-              height: 30,
-              color: colors.elementsAccent.color(),
-            ),
-            onPressed: widget.onPressedSettings,
-          ),
-          const SizedBox(width: 8)
-        ]),
+        height: 40.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: appBarItems,
+        ),
       ),
     );
   }
@@ -118,8 +126,8 @@ class _NotificationBage extends StatelessWidget {
     var fonts = theme.fonts;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 3),
-      height: 18.0,
+      height: 20.0,
+      width: 20.0,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: colors.elementsError.color(),

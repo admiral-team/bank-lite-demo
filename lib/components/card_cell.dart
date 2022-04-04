@@ -1,5 +1,4 @@
 import 'package:bank_lite/generated/assets.gen.dart';
-import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,15 +13,15 @@ class CardCellWidget extends StatelessWidget {
   final VoidCallback? addPressed;
   final VoidCallback? sendPressed;
 
-  const CardCellWidget(
-      {Key? key,
-      required this.title,
-      required this.balance,
-      required this.cardNumber,
-      required this.icon,
-      this.addPressed,
-      this.sendPressed})
-      : super(key: key);
+  const CardCellWidget({
+    Key? key,
+    required this.title,
+    required this.balance,
+    required this.cardNumber,
+    required this.icon,
+    this.addPressed,
+    this.sendPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +31,18 @@ class CardCellWidget extends StatelessWidget {
     List<Widget> widgets = [];
     widgets = [
       _CarInfoWidget(
-          title: title, balance: balance, cardNumber: cardNumber, icon: icon),
-      const SizedBox(height: 14.0),
-      _CardButtons(
-          addPressed: () => addPressed?.call(),
-          sendPressed: () => sendPressed?.call())
+          title: title,
+          balance: balance,
+          cardNumber: cardNumber,
+          icon: icon,
+          addPressed: addPressed,
+          sendPressed: sendPressed),
+      // const SizedBox(height: 16.0),
     ];
 
     return Container(
-      padding:
-          const EdgeInsets.only(left: 20, top: 12, right: 20, bottom: 24.0),
+      width: double.infinity,
+      padding: const EdgeInsets.only(left: 16, top: 12, bottom: 16),
       decoration: BoxDecoration(
         color: colors.backgroundAdditional.color(),
         borderRadius: BorderRadius.circular(8.0),
@@ -57,14 +58,18 @@ class _CarInfoWidget extends StatelessWidget {
   final String balance;
   final String cardNumber;
   final SvgGenImage icon;
+  final VoidCallback? addPressed;
+  final VoidCallback? sendPressed;
 
-  const _CarInfoWidget(
-      {Key? key,
-      required this.title,
-      required this.balance,
-      required this.cardNumber,
-      required this.icon})
-      : super(key: key);
+  const _CarInfoWidget({
+    Key? key,
+    required this.title,
+    required this.balance,
+    required this.cardNumber,
+    required this.icon,
+    required this.addPressed,
+    required this.sendPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,32 +77,53 @@ class _CarInfoWidget extends StatelessWidget {
     var colors = theme.colors;
     var fonts = theme.fonts;
 
-    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      icon.svg(height: 40.0, width: 40.0),
-      const SizedBox(width: 16.0),
-      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(
-          title,
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.left,
-          style: fonts.headline.toTextStyle(colors.textPrimary.color()),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.only(top: 6),
+          child: icon.svg(height: 28.0, width: 38.0),
         ),
-        const SizedBox(height: 4.0),
-        Text(
-          balance,
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.center,
-          style: fonts.subtitle2.toTextStyle(colors.textAccent.color()),
+        const SizedBox(width: 16.0),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(
+                  title,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  style: fonts.headline.toTextStyle(colors.textPrimary.color()),
+                ),
+                const SizedBox(
+                  width: 60,
+                ),
+                Text(
+                  cardNumber,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.right,
+                  style:
+                      fonts.subhead3.toTextStyle(colors.textSecondary.color()),
+                ),
+              ],
+            ),
+            const SizedBox(height: 4.0),
+            Text(
+              balance,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: fonts.subtitle2.toTextStyle(colors.textAccent.color()),
+            ),
+            const SizedBox(height: 12.0),
+            _CardButtons(
+              addPressed: () => addPressed?.call(),
+              sendPressed: () => sendPressed?.call(),
+            ),
+          ],
         ),
-      ]),
-      const Spacer(),
-      Text(
-        cardNumber,
-        overflow: TextOverflow.ellipsis,
-        textAlign: TextAlign.right,
-        style: fonts.subhead3.toTextStyle(colors.textSecondary.color()),
-      )
-    ]);
+      ],
+    );
   }
 }
 
@@ -112,7 +138,7 @@ class _CardButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const SizedBox(width: 72.0),
+      // const SizedBox(width: 72.0),
       CardButtonWidget(
           title: AppLocalizations.of(context).deposit,
           icon: Assets.lib.assets.images.add,
@@ -161,19 +187,21 @@ class _CardButtonWidgetState extends State<CardButtonWidget> {
             left: 12.0, top: 10.0, right: 12.0, bottom: 10.0),
         height: 36.0,
         decoration: BoxDecoration(
-          color: colors
-              .backgroundSelected
-              .color(opacity: _opacity),
+          color: colors.backgroundSelected.color(),
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          widget.icon.svg(height: 16.0, width: 16.0),
+          Opacity(
+            opacity: _opacity,
+            child: widget.icon.svg(height: 16.0, width: 16.0),
+          ),
           const SizedBox(width: 8.0),
           Text(
             widget.title,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
-            style: fonts.subhead3.toTextStyle(colors.elementsAccent.color(opacity: _opacity)),
+            style: fonts.subhead3
+                .toTextStyle(colors.elementsAccent.color(opacity: _opacity)),
           ),
         ]),
       ),
@@ -182,7 +210,7 @@ class _CardButtonWidgetState extends State<CardButtonWidget> {
 
   setHighlighted(bool highlighted) {
     setState(() {
-      _opacity = highlighted ? 0.7 : 1.0;
+      _opacity = highlighted ? 0.6 : 1.0;
     });
   }
 }

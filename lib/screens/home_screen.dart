@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:bank_lite/components/addnew.dart';
 import 'package:bank_lite/components/appbar_main.dart';
 import 'package:bank_lite/components/banner.dart';
@@ -140,7 +141,10 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     } else if (item is AddNewModel) {
       return AddNewWidget(onPressed: () {
-        _pushScreen(const InProgress());
+        Future.delayed(const Duration(seconds: 3), () {
+          NotificationService.showNotification(
+              title: 'Успешно!', body: 'Ваша карта выпущена');
+        });
       });
     } else if (item is CardCellModel) {
       return CardCellWidget(
@@ -165,10 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
         onRecommendPressed: () {
-          Future.delayed(const Duration(seconds: 3), () {
-            NotificationService.showNotification(
-                title: 'Успешно!', body: 'Ваша карты выпущена');
-          });
+          _pushScreen(const InProgress());
         },
         onCardPressed: (cardModel) {
           _pushScreen(const InProgress());

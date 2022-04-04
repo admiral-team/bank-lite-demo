@@ -62,7 +62,7 @@ class _CardsWidgetState extends State<CardsWidget> {
     widgets.add(
       CardWidget(
         model: CardModel(
-          title: AppLocalizations.of(context).recommend,
+          title: AppLocalizations.of(context).addCard,
           image: Assets.lib.assets.images.cardAdd,
         ),
         onPressed: widget.onRecommendPressed,

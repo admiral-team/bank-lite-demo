@@ -1,5 +1,4 @@
 import 'package:bank_lite/generated/assets.gen.dart';
-import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -49,18 +48,35 @@ class _BannerWidgetState extends State<BannerWidget> {
             Stack(
               children: <Widget>[
                 Transform.translate(
-                  offset: const Offset(0, 10),
-                  child: CircularPercentIndicator(
-                    radius: 65,
-                    lineWidth: 3.0,
-                    percent: 0.2,
-                    center: Text(
-                      "20%",
-                      style: fonts.title1.toTextStyle(colors.textAccent.color()),
-                    ),
-                    circularStrokeCap: CircularStrokeCap.round,
-                    backgroundColor: colors.backgroundSelected.color(),
-                    progressColor: colors.elementsAccent.color(),
+                  offset: const Offset(-8, 10),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CircularPercentIndicator(
+                        radius: 65,
+                        lineWidth: 3.0,
+                        percent: 0.18,
+                        circularStrokeCap: CircularStrokeCap.round,
+                        backgroundColor: colors.backgroundSelected.color(),
+                        progressColor: colors.elementsAccent.color(),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        verticalDirection: VerticalDirection.up,
+                        children: [
+                          Text(
+                            "20",
+                            style: fonts.title1
+                                .toTextStyle(colors.textAccent.color()),
+                          ),
+                          Text(
+                            "%",
+                            style: fonts.subhead4
+                                .toTextStyle(colors.textAccent.color()),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
                 Column(
