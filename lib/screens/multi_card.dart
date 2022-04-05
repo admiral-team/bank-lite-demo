@@ -5,7 +5,7 @@ import 'package:bank_lite/screens/status_screen.dart';
 import 'package:bank_lite/screens/theme_settings_screen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
-import '../components/Cells/leading-cell.dart';
+import '../components/Cells/leading_cell.dart';
 import 'in_progress.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

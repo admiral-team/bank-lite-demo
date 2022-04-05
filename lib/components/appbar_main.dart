@@ -23,14 +23,12 @@ class AppBarMain extends StatefulWidget {
 
 class _AppBarState extends State<AppBarMain> {
   SvgGenImage get _leftBarButton => Assets.lib.assets.images.profile;
-
   SvgGenImage get _settingsBarButton => Assets.lib.assets.images.appbarSettings;
-
   SvgGenImage get _rightBarButton => Assets.lib.assets.images.alert;
+  var isReleased = true;
 
   @override
   Widget build(BuildContext context) {
-    const isRelease = true;
     var theme = AppThemeProvider.of(context);
     var colors = theme.colors;
     var fonts = theme.fonts;
@@ -82,7 +80,7 @@ class _AppBarState extends State<AppBarMain> {
         onPressed: widget.onPressedRightButton,
       ),
     ];
-    if (!isRelease) {
+    if (!isReleased) {
       appBarItems.add(
         CupertinoButton(
           minSize: 0,

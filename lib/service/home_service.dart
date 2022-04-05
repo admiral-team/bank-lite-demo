@@ -30,9 +30,11 @@ class HomeService {
               cardNumber: "• 2104",
               icon: Assets.lib.assets.images.card,
               addPressed: () {
+                // ignore: avoid_print
                 print("TAP add Pressed");
               },
               sendPressed: () {
+                // ignore: avoid_print
                 print("TAP send Pressed");
               }));
           break;
@@ -52,7 +54,7 @@ class HomeService {
 
   Future<List<dynamic>> readJson() async {
     final String response =
-        await rootBundle.loadString('lib/assets/json/items10000.json');
+        await rootBundle.loadString('lib/assets/json/items.json');
     return compute(parseItems, response);
   }
 

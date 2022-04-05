@@ -1,5 +1,4 @@
 import 'package:bank_lite/storage/locale_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'locale.dart';

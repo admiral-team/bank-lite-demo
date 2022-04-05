@@ -1,4 +1,3 @@
-import 'package:bank_lite/generated/fonts.gen.dart';
 import 'package:bank_lite/l10n/locale_provider.dart';
 import 'package:bank_lite/storage/locale_storage.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';

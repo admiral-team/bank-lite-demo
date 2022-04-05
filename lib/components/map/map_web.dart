@@ -30,6 +30,7 @@ class _MapScreenWebState extends MapWidgetState<MapScreenWeb> {
     var colors = theme.colors;
     var fonts = theme.fonts;
 
+    // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
       final mapOptions = gmaps.MapOptions()
         ..zoom = 15.0

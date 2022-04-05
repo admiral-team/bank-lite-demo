@@ -6,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:bank_lite/components/map/map_stub.dart'
     if (dart.library.html) 'package:bank_lite/components/map/map_web.dart'
     if (dart.library.io) 'package:bank_lite/components/map/map_mobile.dart';
-import 'package:universal_html/js.dart';
 
 abstract class MapWidget extends StatefulWidget {
   static MapWidget? _instance;
