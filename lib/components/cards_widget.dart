@@ -96,9 +96,7 @@ class _CardsWidgetState extends State<CardsWidget> {
                 ),
                 const SizedBox(width: 6),
                 (_collapsed ? arrowDown : arrowUp).svg(
-                  color: colors
-                      .elementsSecondary
-                      .color(opacity: _opacity),
+                  color: colors.elementsSecondary.color(opacity: _opacity),
                   height: 24.0,
                   width: 24.0,
                 ),
@@ -109,6 +107,7 @@ class _CardsWidgetState extends State<CardsWidget> {
             collapsed: _collapsed,
             axis: CollapsibleAxis.vertical,
             clipBehavior: Clip.antiAlias,
+            maintainState: true,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
