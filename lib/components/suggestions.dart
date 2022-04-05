@@ -167,14 +167,18 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
     var theme = AppThemeProvider.of(context);
     var colors = theme.colors;
     var fonts = theme.fonts;
+    //
+    // final accentColor = widget.selected
+    //     ? colors.elementsAccent.color(opacity: _opacity)
+    //     : colors.backgroundBasic.color(opacity: _opacity);
+    //
+    final accentColor = colors.backgroundBasic.color(opacity: _opacity);
 
-    final accentColor = widget.selected
-        ? colors.elementsAccent.color(opacity: _opacity)
-        : colors.backgroundBasic.color(opacity: _opacity);
+    // final textColor = widget.selected
+    //     ? colors.textStaticWhite.color(opacity: _opacity)
+    //     : colors.textPrimary.color(opacity: _opacity);
 
-    final textColor = widget.selected
-        ? colors.textStaticWhite.color(opacity: _opacity)
-        : colors.textPrimary.color(opacity: _opacity);
+    final textColor = colors.textPrimary.color(opacity: _opacity);
 
     return GestureDetector(
       onTap: () => widget.onPressed?.call(),

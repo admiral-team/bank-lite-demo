@@ -7,6 +7,7 @@ import 'package:bank_lite/components/suggestions.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/screens/in_progress.dart';
 import 'package:bank_lite/screens/settings_screen.dart';
+import 'package:bank_lite/screens/theme_settings_screen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -17,7 +18,6 @@ import '../components/cards_widget.dart';
 import '../components/expanded_cell.dart';
 import '../model/home_model.dart';
 import '../services/notification_service.dart';
-import 'multi_card.dart';
 
 class HomeScreen extends StatefulWidget {
   final Future<List<HomeScreenModel>> Function() request;
@@ -31,6 +31,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<HomeScreenModel> _items = [];
   bool _expanded = true;
+  var isReleased = true;
 
   @override
   void initState() {
@@ -40,10 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  // }
 
   Future<void> _loading() async {
     final items = await widget.request();
@@ -70,6 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return RefreshIndicator(
       edgeOffset: 40.0,
+      notificationPredicate: isReleased ? (_) => false : (_) => true,
       child: Container(
         height: double.infinity,
         width: double.infinity,
@@ -80,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
             AppBarMain(
               count: 6,
               onPressedLeftButton: () {
-                _pushScreen(const InProgress());
+                _pushScreen(const ThemeSettingsScreen());
               },
               onPressedRightButton: () {
                 _pushScreen(const InProgress());
@@ -128,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: BannerWidget(
           onTap: () {
-            _pushScreen(const MultiCardScreen());
+            _pushScreen(const InProgress());
           },
           onClosePressed: () {
             setState(

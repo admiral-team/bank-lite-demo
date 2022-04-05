@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
+import '../generated/assets.gen.dart';
+
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
@@ -20,11 +22,11 @@ class SettingsScreen extends StatelessWidget {
         titleTextStyle: fonts.navbar.toTextStyle(colors.textPrimary.color()),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: colors.elementsAccent.color(),
-          ),
+          icon: Assets.lib.assets.images.icBack.svg(
+              height: 30.0, width: 30.0, color: colors.elementsAccent.color()),
           onPressed: () => Navigator.of(context).pop(),
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,

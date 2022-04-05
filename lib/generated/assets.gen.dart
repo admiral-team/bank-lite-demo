@@ -79,6 +79,8 @@ class $LibAssetsImagesGen {
   SvgGenImage get union => const SvgGenImage('lib/assets/images/union.svg');
   SvgGenImage get vtbTitle =>
       const SvgGenImage('lib/assets/images/vtb_title.svg');
+  SvgGenImage get icBack =>
+      const SvgGenImage('lib/assets/images/ic_back.svg');
 }
 
 class $LibAssetsJsonGen {

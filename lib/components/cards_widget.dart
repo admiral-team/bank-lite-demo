@@ -70,7 +70,7 @@ class _CardsWidgetState extends State<CardsWidget> {
 
     return Container(
       decoration: BoxDecoration(
-        color: colors.backgroundAdditional.color(opacity: _opacity),
+        color: colors.backgroundAdditional.color(),
         borderRadius: BorderRadius.circular(8.0),
       ),
       padding: const EdgeInsets.symmetric(vertical: 14),
