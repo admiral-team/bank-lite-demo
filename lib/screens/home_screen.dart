@@ -179,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
     } else if (item == null) {
       return const SizedBox(
         width: double.infinity,
-        height: 75,
+        height: 115,
       );
     }
     return Container();
