@@ -1,3 +1,3 @@
 class Settings {
-  static const bool release = false;
+  static const bool release = true;
 }

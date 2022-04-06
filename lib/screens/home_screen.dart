@@ -10,6 +10,7 @@ import 'package:bank_lite/screens/multi_card.dart';
 import 'package:bank_lite/screens/theme_settings_screen.dart';
 import 'package:bank_lite/service/settings.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -187,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _pushScreen(Widget widget) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => widget),
+      CupertinoPageRoute(builder: (context) => widget),
     );
   }
 }

@@ -157,7 +157,7 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
   void _pushScreen(Widget widget) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => widget),
+      CupertinoPageRoute(builder: (context) => widget),
     );
   }
 }
