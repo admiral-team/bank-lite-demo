@@ -33,5 +33,6 @@
   "actionButton": "行动",
   "understandablyButton": "可以理解",
   "appTheme": "应用主题",
-  "darkTheme": "深色主题"
+  "darkTheme": "深色主题",
+  "changeLanguage": "改變語言"
 }

@@ -33,5 +33,6 @@
   "actionButton": "Действие",
   "understandablyButton": "Понятно",
   "appTheme": "Тема приложения",
-  "darkTheme": "Тёмная тема"
+  "darkTheme": "Тёмная тема",
+  "changeLanguage": "Поменять язык"
 }

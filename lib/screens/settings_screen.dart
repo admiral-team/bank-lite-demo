@@ -8,8 +8,8 @@ import 'package:provider/provider.dart';
 
 import '../generated/assets.gen.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+class LanguageSettingsScreen extends StatelessWidget {
+  const LanguageSettingsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -6,8 +6,9 @@ import 'package:bank_lite/components/banner.dart';
 import 'package:bank_lite/components/suggestions.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/screens/in_progress.dart';
-import 'package:bank_lite/screens/settings_screen.dart';
+import 'package:bank_lite/screens/multi_card.dart';
 import 'package:bank_lite/screens/theme_settings_screen.dart';
+import 'package:bank_lite/service/settings.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -31,7 +32,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<HomeScreenModel> _items = [];
   bool _expanded = true;
-  var isReleased = true;
+  bool get _isReleased => Settings.release;
 
   @override
   void initState() {
@@ -40,11 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
       _loading();
     });
   }
-
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  // }
 
   Future<void> _loading() async {
     final items = await widget.request();
@@ -71,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return RefreshIndicator(
       edgeOffset: 40.0,
-      notificationPredicate: isReleased ? (_) => false : (_) => true,
+      notificationPredicate: _isReleased ? (_) => false : (_) => true,
       child: Container(
         height: double.infinity,
         width: double.infinity,
@@ -88,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 _pushScreen(const InProgress());
               },
               onPressedSettings: () {
-                _pushScreen(const SettingsScreen());
+                _pushScreen(const MultiCardScreen());
               },
             ),
             Expanded(

@@ -1,6 +1,7 @@
 import 'package:bank_lite/components/map/map.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/screens/estimate_app.dart';
+import 'package:bank_lite/screens/settings_screen.dart';
 import 'package:bank_lite/screens/status_screen.dart';
 import 'package:bank_lite/screens/theme_settings_screen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
@@ -16,7 +17,8 @@ enum _MultiCardActionType {
   estimate,
   addRequest,
   transactions,
-  themeSettings
+  themeSettings,
+  changeLanguage
 }
 
 class MultiCardScreen extends StatefulWidget {
@@ -34,8 +36,6 @@ class _ListCellModel {
 }
 
 class _MultiCardScreenState extends State<MultiCardScreen> {
-  SvgGenImage get _bell => Assets.lib.assets.images.alert;
-
   @override
   Widget build(BuildContext context) {
     var theme = AppThemeProvider.of(context);
@@ -63,6 +63,10 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
         title: AppLocalizations.of(context).customizeAppTheme,
         type: _MultiCardActionType.themeSettings,
       ),
+      _ListCellModel(
+        title: AppLocalizations.of(context).changeLanguage,
+        type: _MultiCardActionType.changeLanguage,
+      ),
     ];
 
     return Scaffold(
@@ -80,15 +84,6 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
         bottomOpacity: 0.0,
         elevation: 0.0,
         backgroundColor: colors.backgroundBasic.color(),
-        actions: <Widget>[
-          IconButton(
-            padding: EdgeInsets.zero,
-            icon: _bell.svg(
-              color: colors.elementsAccent.color(),
-            ),
-            onPressed: null,
-          )
-        ],
       ),
       body: Container(
         width: double.infinity,
@@ -149,6 +144,12 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
             title: _model.title,
             onPressed: () {
               _pushScreen(const ThemeSettingsScreen());
+            });
+      case _MultiCardActionType.changeLanguage:
+        return LeadingCellWidget(
+            title: _model.title,
+            onPressed: () {
+              _pushScreen(const LanguageSettingsScreen());
             });
     }
   }

@@ -164,20 +164,11 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = AppThemeProvider.of(context);
-    var colors = theme.colors;
-    var fonts = theme.fonts;
-    //
-    // final accentColor = widget.selected
-    //     ? colors.elementsAccent.color(opacity: _opacity)
-    //     : colors.backgroundBasic.color(opacity: _opacity);
-    //
+    final theme = AppThemeProvider.of(context);
+    final colors = theme.colors;
+    final fonts = theme.fonts;
+ 
     final accentColor = colors.backgroundBasic.color(opacity: _opacity);
-
-    // final textColor = widget.selected
-    //     ? colors.textStaticWhite.color(opacity: _opacity)
-    //     : colors.textPrimary.color(opacity: _opacity);
-
     final textColor = colors.textPrimary.color(opacity: _opacity);
 
     return SizedBox(
@@ -188,6 +179,7 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
           onTap: () {
+            // ignore: avoid_print
             print("tapped");
           },
           child: Container(
@@ -208,6 +200,7 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
               ],
             ),
           ),
+          hoverColor: colors.elementsAccent.color(),
           highlightColor: colors.elementsAccent.color(),
         ),
         color: accentColor,

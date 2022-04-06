@@ -1,4 +1,5 @@
 import 'package:bank_lite/generated/assets.gen.dart';
+import 'package:bank_lite/service/settings.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -25,7 +26,6 @@ class _AppBarState extends State<AppBarMain> {
   SvgGenImage get _leftBarButton => Assets.lib.assets.images.profile;
   SvgGenImage get _settingsBarButton => Assets.lib.assets.images.appbarSettings;
   SvgGenImage get _rightBarButton => Assets.lib.assets.images.alert;
-  var isReleased = true;
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +80,7 @@ class _AppBarState extends State<AppBarMain> {
         onPressed: widget.onPressedRightButton,
       ),
     ];
-    if (!isReleased) {
+    if (!Settings.release) {
       appBarItems.add(
         CupertinoButton(
           minSize: 0,

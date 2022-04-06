@@ -33,5 +33,6 @@
   "actionButton": "Action",
   "understandablyButton": "Understandably",
   "appTheme": "App theme",
-  "darkTheme": "Dark theme"
+  "darkTheme": "Dark theme",
+  "changeLanguage": "Change language"
 }
