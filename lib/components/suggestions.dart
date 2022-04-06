@@ -200,7 +200,7 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
               ],
             ),
           ),
-          hoverColor: colors.elementsAccent.color(),
+          splashColor: Colors.transparent,
           highlightColor: colors.elementsAccent.color(),
         ),
         color: accentColor,
