@@ -3,6 +3,7 @@ import 'package:bank_lite/components/map/models/map_point.dart';
 import 'package:bank_lite/components/map/models/mock_points.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -75,12 +76,12 @@ class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
           title: Text(AppLocalizations.of(context).atms),
           titleTextStyle: fonts.navbar.toTextStyle(colors.textPrimary.color()),
           centerTitle: true,
-          leading: IconButton(
-            icon: Assets.lib.assets.images.icBack.svg(
-                height: 30.0, width: 30.0, color: colors.elementsAccent.color()),
+          leading: CupertinoButton(
+            child: Assets.lib.assets.images.icBack.svg(
+              height: 40,
+              color: colors.elementsAccent.color(),
+            ),
             onPressed: () => Navigator.of(context).pop(),
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
           ),
           bottomOpacity: 0.0,
           elevation: 0.0,

@@ -180,36 +180,37 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
 
     final textColor = colors.textPrimary.color(opacity: _opacity);
 
-    return GestureDetector(
-      onTap: () => widget.onPressed?.call(),
-      onTapUp: (_) => setHighlighted(false),
-      onTapDown: (_) => setHighlighted(true),
-      onTapCancel: () => setHighlighted(false),
-      child: SizedBox(
-        width: 104.0,
-        height: 120.0,
-        child: Container(
-          decoration: BoxDecoration(
-            color: accentColor,
-            borderRadius: BorderRadius.circular(8.0),
+    return SizedBox(
+      width: 104.0,
+      height: 120.0,
+      child: Material(
+        borderRadius: BorderRadius.circular(8.0),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(8),
+          onTap: () {
+            print("tapped");
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                widget.content.svg(height: 40.0, width: 40.0),
+                const Spacer(),
+                Text(
+                  widget.title,
+                  textAlign: TextAlign.left,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: fonts.subhead3.toTextStyle(textColor),
+                ),
+              ],
+            ),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              widget.content.svg(height: 40.0, width: 40.0),
-              const Spacer(),
-              Text(
-                widget.title,
-                textAlign: TextAlign.left,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: fonts.subhead3.toTextStyle(textColor),
-              ),
-            ],
-          ),
+          highlightColor: colors.elementsAccent.color(),
         ),
+        color: accentColor,
       ),
     );
   }
