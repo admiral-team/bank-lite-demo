@@ -160,19 +160,16 @@ class SuggestionsItemWidget extends StatefulWidget {
 }
 
 class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
-  bool _isFocused = false;
+  bool _highlighted = false;
 
   @override
   Widget build(BuildContext context) {
     final theme = AppThemeProvider.of(context);
     final colors = theme.colors;
     final fonts = theme.fonts;
-
+ 
     final accentColor = colors.backgroundBasic.color();
-
-    final textColor = _isFocused
-        ? colors.textStaticWhite.color()
-        : colors.textPrimary.color();
+    final textColor = _highlighted ? colors.textStaticWhite.color() : colors.textPrimary.color();
 
     return SizedBox(
       width: 104.0,
@@ -181,11 +178,15 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
         borderRadius: BorderRadius.circular(8.0),
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
+          onHighlightChanged: (highlighted) {
+            setState(() {
+              _highlighted = highlighted;
+            });
+          },
           onTap: () {
             // ignore: avoid_print
             print("tapped");
           },
-          onHighlightChanged: (isHovered) => setFocused(isHovered),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
             child: Column(
@@ -209,14 +210,6 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
         ),
         color: accentColor,
       ),
-    );
-  }
-
-  setFocused(bool isFocused) {
-    setState(
-      () {
-        _isFocused = isFocused;
-      },
     );
   }
 }
