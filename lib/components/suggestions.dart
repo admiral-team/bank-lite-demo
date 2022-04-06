@@ -160,7 +160,7 @@ class SuggestionsItemWidget extends StatefulWidget {
 }
 
 class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
-  double _opacity = 1.0;
+  bool _highlighted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -168,8 +168,8 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
     final colors = theme.colors;
     final fonts = theme.fonts;
  
-    final accentColor = colors.backgroundBasic.color(opacity: _opacity);
-    final textColor = colors.textPrimary.color(opacity: _opacity);
+    final accentColor = colors.backgroundBasic.color();
+    final textColor = _highlighted ? colors.textStaticWhite.color() : colors.textPrimary.color();
 
     return SizedBox(
       width: 104.0,
@@ -178,6 +178,11 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
         borderRadius: BorderRadius.circular(8.0),
         child: InkWell(
           borderRadius: BorderRadius.circular(8),
+          onHighlightChanged: (highlighted) {
+            setState(() {
+              _highlighted = highlighted;
+            });
+          },
           onTap: () {
             // ignore: avoid_print
             print("tapped");
@@ -205,14 +210,6 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
         ),
         color: accentColor,
       ),
-    );
-  }
-
-  setHighlighted(bool highlighted) {
-    setState(
-      () {
-        _opacity = highlighted ? 0.7 : 1.0;
-      },
     );
   }
 }
