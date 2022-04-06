@@ -4,8 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../generated/assets.gen.dart';
-
 class ThemeSettingsScreen extends StatefulWidget {
   const ThemeSettingsScreen({
     Key? key,
@@ -29,11 +27,8 @@ class _ThemeSettingsScreenState extends State<ThemeSettingsScreen> {
         titleTextStyle: fonts.navbar.toTextStyle(colors.textPrimary.color()),
         centerTitle: true,
         leading: CupertinoButton(
-          child: Assets.lib.assets.images.icBack
-              .svg(height: 40.0, color: colors.elementsAccent.color()),
-          onPressed: () => {
-            Navigator.of(context).pop(),
-          },
+          child: const Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.of(context).pop(),
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,

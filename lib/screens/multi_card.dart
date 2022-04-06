@@ -1,5 +1,4 @@
 import 'package:bank_lite/components/map/map.dart';
-import 'package:bank_lite/generated/assets.gen.dart';
 import 'package:bank_lite/screens/estimate_app.dart';
 import 'package:bank_lite/screens/settings_screen.dart';
 import 'package:bank_lite/screens/status_screen.dart';
@@ -75,10 +74,7 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
         titleTextStyle: fonts.navbar.toTextStyle(colors.textPrimary.color()),
         centerTitle: true,
         leading: CupertinoButton(
-          child: Assets.lib.assets.images.icBack.svg(
-            height: 40,
-            color: colors.elementsAccent.color(),
-          ),
+          child: const Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.of(context).pop(),
         ),
         bottomOpacity: 0.0,

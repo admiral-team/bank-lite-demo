@@ -53,7 +53,6 @@ class _StatusWidgetState extends State<StatusWidget> {
           child: widget.model.image,
         ),
         SizedBox(
-          height: widget.model.titleContainerHeight,
           child: Text(
             widget.model.title,
             textAlign: TextAlign.center,

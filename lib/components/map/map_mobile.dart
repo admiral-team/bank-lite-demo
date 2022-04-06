@@ -77,10 +77,7 @@ class _MapScreenMobileState extends MapWidgetState<MapScreenMobile> {
           titleTextStyle: fonts.navbar.toTextStyle(colors.textPrimary.color()),
           centerTitle: true,
           leading: CupertinoButton(
-            child: Assets.lib.assets.images.icBack.svg(
-              height: 40,
-              color: colors.elementsAccent.color(),
-            ),
+            child: const Icon(Icons.arrow_back_ios),
             onPressed: () => Navigator.of(context).pop(),
           ),
           bottomOpacity: 0.0,

@@ -21,31 +21,28 @@ class InProgress extends StatelessWidget {
           ? null
           : AppBar(
               leading: CupertinoButton(
-                child: Assets.lib.assets.images.icBack.svg(
-                  height: 40,
-                  color: colors.elementsAccent.color(),
-                ),
+                child: const Icon(Icons.arrow_back_ios),
                 onPressed: () => Navigator.of(context).pop(),
               ),
               bottomOpacity: 0.0,
               elevation: 0.0,
-              backgroundColor: colors.backgroundAdditional.color(),
+              backgroundColor: colors.backgroundBasic.color(),
             ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        color: colors.backgroundAdditional.color(),
+        color: colors.backgroundBasic.color(),
         padding: const EdgeInsets.all(16.0),
         child: StatusWidget(
           model: StatusWidgetModel(
             title: AppLocalizations.of(context).sectionIsUnderDevelopment,
-            description: "\n\n",
+            description: "",
             image: Assets.lib.assets.images.luckStatus.svg(
               color: colors.elementsAccent.color(),
               width: 65,
               height: 53,
             ),
-            imageContainer: BoundingBox(width: 100.0, height: 100.0),
+            imageContainer: BoundingBox(width: 100.0, height: 120.0),
             titleContainerHeight: 64,
           ),
         ),

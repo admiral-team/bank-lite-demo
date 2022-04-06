@@ -17,10 +17,7 @@ class StatusScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: CupertinoButton(
-          child: Assets.lib.assets.images.icBack.svg(
-            height: 40.0,
-            color: colors.elementsAccent.color(),
-          ),
+          child: const Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.of(context).pop(),
         ),
         bottomOpacity: 0.0,
