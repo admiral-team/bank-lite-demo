@@ -41,11 +41,11 @@ class _RootScreenState extends State<RootScreen> {
     ];
 
     return Stack(children: [
-       _currentScreen(context),
+      _currentScreen(context),
       SafeArea(
           child: Container(
         alignment: Alignment.bottomCenter,
-        padding: const EdgeInsets.only(bottom: 8),
+        padding: EdgeInsets.only(bottom: _safeAreaBottomInset(8)),
         child: Airbar(
           selectedIndex: _selectedIndex,
           items: items,
@@ -89,5 +89,14 @@ class _RootScreenState extends State<RootScreen> {
         }
       },
     );
+  }
+
+  double _safeAreaBottomInset(double value) {
+    if (kIsWeb) {
+      // TODO: Find a way to fix Safari WPA safe area bug
+      return 34.0 + value;
+    } else {
+      return value;
+    }
   }
 }

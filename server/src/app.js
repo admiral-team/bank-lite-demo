@@ -19,8 +19,8 @@ app.use(express.static(app_folder));
 
 // Listen request
 app.listen(port, async function () {
-    const url = await ngrok.connect(port);
-    console.log(`Ngrok public-url ${url}`)
+    //const url = await ngrok.connect(port);
+    //console.log(`Ngrok public-url ${url}`)
     console.log('Server start ' + os.hostname + ":" + port);
 });
 
