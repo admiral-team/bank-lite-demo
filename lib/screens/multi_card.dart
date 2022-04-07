@@ -117,39 +117,39 @@ class _MultiCardScreenState extends State<MultiCardScreen> {
         return LeadingCellWidget(
             title: _model.title,
             onPressed: () {
-              _router.pushScreen(context, MapWidget.instance);
+              _router.pushScreen(context, (_) => MapWidget.instance);
             });
 
       case _MultiCardActionType.estimate:
         return LeadingCellWidget(
             title: _model.title,
             onPressed: () {
-              _router.pushScreen(context, const EstimateApp());
+              _router.pushScreen(context, (_) => const EstimateApp());
             });
 
       case _MultiCardActionType.addRequest:
         return LeadingCellWidget(
             title: _model.title,
             onPressed: () {
-              _router.pushScreen(context, const StatusScreen());
+              _router.pushScreen(context, (_) => const StatusScreen());
             });
       case _MultiCardActionType.transactions:
         return LeadingCellWidget(
             title: _model.title,
             onPressed: () {
-              _router.pushScreen(context, const InProgress());
+              _router.pushScreen(context, (_) => const InProgress());
             });
       case _MultiCardActionType.themeSettings:
         return LeadingCellWidget(
             title: _model.title,
             onPressed: () {
-              _router.pushScreen(context, const ThemeSettingsScreen());
+              _router.pushScreen(context, (_) => const ThemeSettingsScreen());
             });
       case _MultiCardActionType.changeLanguage:
         return LeadingCellWidget(
             title: _model.title,
             onPressed: () {
-              _router.pushScreen(context, const LanguageSettingsScreen());
+              _router.pushScreen(context, (_) => const LanguageSettingsScreen());
             });
     }
   }

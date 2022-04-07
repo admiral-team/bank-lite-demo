@@ -69,11 +69,11 @@ class _CardsWidgetState extends State<CardsWidget> {
     );
 
     return Container(
+      clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         color: colors.backgroundAdditional.color(),
         borderRadius: BorderRadius.circular(8.0),
       ),
-      padding: const EdgeInsets.symmetric(vertical: 14),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,24 +83,28 @@ class _CardsWidgetState extends State<CardsWidget> {
             onTapUp: (_) => setHighlighted(false),
             onTapDown: (_) => setHighlighted(true),
             onTapCancel: () => setHighlighted(false),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(width: 16),
-                Text(
-                  AppLocalizations.of(context).linkedCards,
-                  style: fonts.subtitle1.toTextStyle(
-                    colors.textPrimary.color(opacity: _opacity),
+            child: Container(
+              padding: const EdgeInsets.only(top: 14),
+              color: colors.backgroundAdditional.color(),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(width: 16),
+                  Text(
+                    AppLocalizations.of(context).linkedCards,
+                    style: fonts.subtitle1.toTextStyle(
+                      colors.textPrimary.color(opacity: _opacity),
+                    ),
                   ),
-                ),
-                const SizedBox(width: 6),
-                (_collapsed ? arrowDown : arrowUp).svg(
-                  color: colors.elementsSecondary.color(opacity: _opacity),
-                  height: 24.0,
-                  width: 24.0,
-                ),
-                const Spacer()
-              ],
+                  const SizedBox(width: 6),
+                  (_collapsed ? arrowDown : arrowUp).svg(
+                    color: colors.elementsSecondary.color(opacity: _opacity),
+                    height: 24.0,
+                    width: 24.0,
+                  ),
+                  const Spacer()
+                ],
+              ),
             ),
           ),
           Collapsible(
@@ -114,6 +118,7 @@ class _CardsWidgetState extends State<CardsWidget> {
               children: widgets,
             ),
           ),
+          const SizedBox(height: 14)
         ],
       ),
     );

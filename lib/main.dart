@@ -1,3 +1,4 @@
+import 'package:bank_lite/theme/app_theme.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:bank_lite/web_theme/web_theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -56,12 +57,15 @@ class Application extends StatelessWidget {
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               theme: CupertinoThemeData(
-                brightness: Brightness.light, 
+                brightness: theme.brightness, 
                 barBackgroundColor: colors.backgroundBasic.color(),
                 scaffoldBackgroundColor: colors.backgroundBasic.color(),
               ),
-              home: const Scaffold(
-                body: RootScreen(),
+              home: Scaffold(
+                body: AnnotatedRegion<SystemUiOverlayStyle>(
+                  child: const RootScreen(), 
+                  value: theme.overlayStyle
+                ),
                 resizeToAvoidBottomInset: false,
               ),
             );

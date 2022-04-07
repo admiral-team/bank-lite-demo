@@ -80,13 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
             AppBarMain(
               count: 6,
               onPressedLeftButton: () {
-                _router.pushScreen(context, const ThemeSettingsScreen());
+                _router.pushScreen(context, (_) => const ThemeSettingsScreen());
               },
               onPressedRightButton: () {
-                _router.pushScreen(context, const InProgress());
+                _router.pushScreen(context, (_) => const InProgress());
               },
               onPressedSettings: () {
-                _router.pushScreen(context, const MultiCardScreen());
+                _router.pushScreen(context, (_) => const MultiCardScreen());
               },
             ),
             Expanded(
@@ -128,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: BannerWidget(
           onTap: () {
-            _router.pushScreen(context, const InProgress());
+            _router.pushScreen(context,  (_) => const InProgress());
           },
           onClosePressed: () {
             setState(
@@ -154,10 +154,10 @@ class _HomeScreenState extends State<HomeScreen> {
           cardNumber: item.cardNumber,
           icon: item.icon,
           addPressed: () {
-            _router.pushScreen(context, const InProgress());
+            _router.pushScreen(context, (_) => const InProgress());
           },
           sendPressed: () {
-            _router.pushScreen(context, const InProgress());
+            _router.pushScreen(context, (_) => const InProgress());
           });
     } else if (item is CardsWidgetModel) {
       return CardsWidget(
@@ -170,10 +170,10 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
         onRecommendPressed: () {
-          _router.pushScreen(context, const InProgress());
+          _router.pushScreen(context, (_) => const InProgress());
         },
         onCardPressed: (cardModel) {
-          _router.pushScreen(context, const InProgress());
+          _router.pushScreen(context, (_) => const InProgress());
         },
       );
     } else if (item is SuggestionsCellModel) {
