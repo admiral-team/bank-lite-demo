@@ -41,7 +41,7 @@ class _RootScreenState extends State<RootScreen> {
     ];
 
     return Stack(children: [
-      _currentScreen(context),
+       _currentScreen(context),
       SafeArea(
           child: Container(
         alignment: Alignment.bottomCenter,

@@ -4,6 +4,7 @@ import 'package:bank_lite/components/map/map.dart';
 import 'package:bank_lite/components/map/models/map_point.dart';
 import 'package:bank_lite/components/map/models/mock_points.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
+import 'package:bank_lite/helpers/router.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,7 @@ class _MapScreenWebState extends MapWidgetState<MapScreenWeb> {
     var theme = AppThemeProvider.of(context);
     var colors = theme.colors;
     var fonts = theme.fonts;
+    const router = BaseRouter();
 
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
@@ -70,7 +72,7 @@ class _MapScreenWebState extends MapWidgetState<MapScreenWeb> {
         centerTitle: true,
         leading: CupertinoButton(
           child: const Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => router.popScreen(context),
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,

@@ -1,6 +1,7 @@
 import 'package:bank_lite/components/action_window.dart';
 import 'package:bank_lite/components/status_widget.dart';
 import 'package:bank_lite/generated/assets.gen.dart';
+import 'package:bank_lite/helpers/router.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,12 +14,13 @@ class EstimateApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = AppThemeProvider.of(context);
     var colors = theme.colors;
+    const router = BaseRouter();
 
     return Scaffold(
       appBar: AppBar(
         leading: CupertinoButton(
           child: const Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => router.popScreen(context),
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,
@@ -32,7 +34,7 @@ class EstimateApp extends StatelessWidget {
         child: Center(
           child: ActionWindowWidget(
             onClosePressed: () {
-              Navigator.of(context).pop();
+              router.popScreen(context);
             },
             statusWidgetModel: StatusWidgetModel(
               title: AppLocalizations.of(context).rateTheApp,

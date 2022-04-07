@@ -10,7 +10,6 @@ import 'package:bank_lite/screens/multi_card.dart';
 import 'package:bank_lite/screens/theme_settings_screen.dart';
 import 'package:bank_lite/service/settings.dart';
 import 'package:bank_lite/theme/app_theme_provider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -20,6 +19,7 @@ import '../components/cards_widget.dart';
 import '../components/expanded_cell.dart';
 import '../model/home_model.dart';
 import '../services/notification_service.dart';
+import '../helpers/router.dart';
 
 class HomeScreen extends StatefulWidget {
   final Future<List<HomeScreenModel>> Function() request;
@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<HomeScreenModel> _items = [];
   bool _expanded = true;
   bool get _isReleased => Settings.release;
+  final _router = const BaseRouter();
 
   @override
   void initState() {
@@ -79,13 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
             AppBarMain(
               count: 6,
               onPressedLeftButton: () {
-                _pushScreen(const ThemeSettingsScreen());
+                _router.pushScreen(context, const ThemeSettingsScreen());
               },
               onPressedRightButton: () {
-                _pushScreen(const InProgress());
+                _router.pushScreen(context, const InProgress());
               },
               onPressedSettings: () {
-                _pushScreen(const MultiCardScreen());
+                _router.pushScreen(context, const MultiCardScreen());
               },
             ),
             Expanded(
@@ -127,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: BannerWidget(
           onTap: () {
-            _pushScreen(const InProgress());
+            _router.pushScreen(context, const InProgress());
           },
           onClosePressed: () {
             setState(
@@ -153,10 +154,10 @@ class _HomeScreenState extends State<HomeScreen> {
           cardNumber: item.cardNumber,
           icon: item.icon,
           addPressed: () {
-            _pushScreen(const InProgress());
+            _router.pushScreen(context, const InProgress());
           },
           sendPressed: () {
-            _pushScreen(const InProgress());
+            _router.pushScreen(context, const InProgress());
           });
     } else if (item is CardsWidgetModel) {
       return CardsWidget(
@@ -169,10 +170,10 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
         onRecommendPressed: () {
-          _pushScreen(const InProgress());
+          _router.pushScreen(context, const InProgress());
         },
         onCardPressed: (cardModel) {
-          _pushScreen(const InProgress());
+          _router.pushScreen(context, const InProgress());
         },
       );
     } else if (item is SuggestionsCellModel) {
@@ -184,12 +185,5 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
     return Container();
-  }
-
-  void _pushScreen(Widget widget) {
-    Navigator.push(
-      context,
-      CupertinoPageRoute(builder: (context) => widget),
-    );
   }
 }

@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../helpers/router.dart';
+
 class ThemeSettingsScreen extends StatefulWidget {
   const ThemeSettingsScreen({
     Key? key,
@@ -19,6 +21,7 @@ class _ThemeSettingsScreenState extends State<ThemeSettingsScreen> {
     var theme = AppThemeProvider.of(context);
     var colors = theme.colors;
     var fonts = theme.fonts;
+    const router = BaseRouter();
 
     return Scaffold(
       backgroundColor: colors.backgroundBasic.color(),
@@ -28,7 +31,7 @@ class _ThemeSettingsScreenState extends State<ThemeSettingsScreen> {
         centerTitle: true,
         leading: CupertinoButton(
           child: const Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => router.popScreen(context),
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,
