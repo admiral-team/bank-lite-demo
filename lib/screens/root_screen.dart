@@ -8,6 +8,7 @@ import '../generated/assets.gen.dart';
 import 'in_progress.dart';
 import '../l10n/locale_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class RootScreen extends StatefulWidget {
   const RootScreen({Key? key}) : super(key: key);
@@ -22,15 +23,7 @@ class _RootScreenState extends State<RootScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var futureLanguage = LanguageStorage().getLocaleFromStorage();
-    futureLanguage.then(
-      (value) => {
-        if (value != null)
-          {
-            context.read<LocaleProvider>().setLocaleByString(value),
-          },
-      },
-    );
+    _configureLanguage();
 
     final items = [
       AirbarItem(
@@ -83,5 +76,18 @@ class _RootScreenState extends State<RootScreen> {
     }
 
     throw Exception('Screen not found');
+  }
+
+  void _configureLanguage() {
+    if (kIsWeb) {
+      return;
+    }
+    final futureLanguage = LanguageStorage().getLocaleFromStorage();
+    futureLanguage.then((value) {
+        if (value != null) {
+          context.read<LocaleProvider>().setLocaleByString(value);
+        }
+      },
+    );
   }
 }
