@@ -141,8 +141,9 @@ class _HomeScreenState extends State<HomeScreen> {
     } else if (item is AddNewModel) {
       return AddNewWidget(onPressed: () {
         Future.delayed(const Duration(seconds: 3), () {
-          NotificationService.showNotification(
-              title: 'Успешно!', body: 'Ваша карта выпущена');
+          // NotificationService.showNotification(
+          //   title: 'Успешно!', body: 'Ваша карта выпущена'
+          // );
         });
       });
     } else if (item is CardCellModel) {

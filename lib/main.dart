@@ -1,6 +1,8 @@
 import 'package:bank_lite/theme/app_theme_provider.dart';
+import 'package:bank_lite/web_theme/web_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
@@ -44,19 +46,27 @@ class Application extends StatelessWidget {
     return AppThemeProviderWrapper(
       child: ChangeNotifierProvider<LocaleProvider>(
           create: (context) => LocaleProvider(),
-          child: Builder(
-            builder: (context) => CupertinoApp(
+          child: Builder(builder: (context) {
+            final theme = AppThemeProvider.of(context);
+            final colors = theme.colors;
+            changeWebTheme(theme);
+            return CupertinoApp(
               locale: Provider.of<LocaleProvider>(context, listen: true).locale,
               debugShowCheckedModeBanner: false,
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
-              theme: const CupertinoThemeData(brightness: Brightness.light),
+              theme: CupertinoThemeData(
+                brightness: Brightness.light, 
+                barBackgroundColor: colors.backgroundBasic.color(),
+                scaffoldBackgroundColor: colors.backgroundBasic.color(),
+              ),
               home: const Scaffold(
                 body: RootScreen(),
                 resizeToAvoidBottomInset: false,
               ),
-            ),
-          )),
+            );
+          })),
     );
   }
 }
+

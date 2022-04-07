@@ -39,7 +39,7 @@ flutter:
   generate: true
   assets:
     - lib/assets/images/
-    - lib/assets/json/
+    - lib/assets/json/items.json
   fonts:
     - family: sfProDisplay
       fonts:

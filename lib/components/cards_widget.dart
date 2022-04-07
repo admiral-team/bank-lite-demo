@@ -99,6 +99,7 @@ class _CardsWidgetState extends State<CardsWidget> {
                   height: 24.0,
                   width: 24.0,
                 ),
+                const Spacer()
               ],
             ),
           ),

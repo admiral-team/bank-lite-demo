@@ -20,6 +20,10 @@
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
 
+  <!-- Web meta theme colors -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FFFFFF">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#000000">
+
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -99,6 +103,11 @@
     } else {
       // Service workers not supported. Just drop the <script> tag.
       loadMainDartJs();
+    }
+  </script>
+  <script>
+    function setMetaThemeColor(color) {
+      document.querySelector('meta[name="theme-color"]').setAttribute("content", color);
     }
   </script>
 </body>

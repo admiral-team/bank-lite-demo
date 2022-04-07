@@ -1,0 +1,17 @@
+{
+  "name": "bank-lite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "admiral",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.3",
+    "morgan": "^1.10.0",
+    "ngrok": "^4.3.1"
+  }
+}
