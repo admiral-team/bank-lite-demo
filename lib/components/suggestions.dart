@@ -159,57 +159,76 @@ class SuggestionsItemWidget extends StatefulWidget {
   State<SuggestionsItemWidget> createState() => _SuggestionsItemWidgetState();
 }
 
-class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> {
+class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> with TickerProviderStateMixin {
   bool _highlighted = false;
-
+  static const _animationDuration = 200;
+  
   @override
   Widget build(BuildContext context) {
     final theme = AppThemeProvider.of(context);
     final colors = theme.colors;
     final fonts = theme.fonts;
  
-    final accentColor = colors.backgroundBasic.color();
     final textColor = _highlighted ? colors.textStaticWhite.color() : colors.textPrimary.color();
+    final backgroundColor = _highlighted ? colors.elementsAccent.color() : colors.backgroundBasic.color();
 
-    return SizedBox(
-      width: 104.0,
-      height: 120.0,
-      child: Material(
-        borderRadius: BorderRadius.circular(8.0),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(8),
-          onHighlightChanged: (highlighted) {
-            setState(() {
-              _highlighted = highlighted;
-            });
-          },
-          onTap: () {
-            // ignore: avoid_print
-            print("tapped");
-          },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                widget.content.svg(height: 40.0, width: 40.0),
-                const Spacer(),
-                Text(
-                  widget.title,
-                  textAlign: TextAlign.left,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                  style: fonts.subhead3.toTextStyle(textColor),
-                ),
-              ],
+    return GestureDetector(
+      child: SizedBox(
+        width: 104.0,
+        height: 120.0,
+        child: Material(
+          borderRadius: BorderRadius.circular(8.0),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: _animationDuration),
+            curve: Curves.easeInOut,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: backgroundColor
+            ),
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  widget.content.svg(height: 40.0, width: 40.0),
+                  const Spacer(),
+                  Text(
+                    widget.title,
+                    textAlign: TextAlign.left,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: fonts.subhead3.toTextStyle(textColor),
+                  ),
+                ],
+              ),
             ),
           ),
-          splashColor: Colors.transparent,
-          highlightColor: colors.elementsAccent.color(),
         ),
-        color: accentColor,
       ),
+      onTapUp: (_) => _setHighlighted(false),
+      onTapDown: (_) => _setHighlighted(true),
+      onTapCancel: () => _setHighlighted(false),
+      onTap: () {
+        //setHighlighted(false);
+        // ignore: avoid_print
+        print("tapped");
+      },
     );
+  }
+
+  _setHighlighted(bool highlighted) {
+    if (highlighted) {
+      setState(() {
+        _highlighted = true;
+      }); 
+    } else {
+      Future.delayed(const Duration(milliseconds: _animationDuration)).then((_) {
+        setState(() {
+          _highlighted = false;
+        });
+      });
+    }
   }
 }

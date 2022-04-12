@@ -92,11 +92,12 @@ class _RootScreenState extends State<RootScreen> {
   }
 
   double _safeAreaBottomInset(double value) {
-    if (kIsWeb) {
-      // TODO: Find a way to fix Safari WPA safe area bug
-      return 34.0 + value;
-    } else {
-      return value;
-    }
+    return value;
+    // if (kIsWeb) {
+    //   // TODO: Find a way to fix Safari WPA safe area bug
+    //   return 34.0 + value;
+    // } else {
+    //   return value;
+    // }
   }
 }

@@ -11,7 +11,7 @@ class ExpandedCell extends StatefulWidget {
     required this.expanded,
     required this.child,
     required this.completion,
-    this.duration = const Duration(seconds: 1),
+    this.duration = const Duration(milliseconds: 330),
   }) : super(key: key);
 
   @override
@@ -32,13 +32,13 @@ class _ExpandedCellState extends State<ExpandedCell> with SingleTickerProviderSt
     _sizeAnimation = Tween<double>(begin: 0.0, end: 1.0)
       .animate(CurvedAnimation(
         parent: _expandController, 
-        curve: const Interval(0.0, 0.5, curve: Curves.easeInOut)
+        curve: const Interval(0.0, 1.0, curve: Curves.linear)
       )
     );
     _opactityAnimation = Tween<double>(begin: 0.0, end: 1.0)
       .animate(CurvedAnimation(
         parent: _expandController, 
-        curve: const Interval(0.5, 1.0, curve: Curves.easeInOut)
+        curve: const Interval(0.0, 1.0, curve: Curves.linear)
       )
     );
     _runExpandCheck();

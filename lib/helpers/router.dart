@@ -4,15 +4,24 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 class BaseRouter {
   const BaseRouter();
 
-  void pushScreen(BuildContext context, WidgetBuilder builder) {
+  void pushScreen(BuildContext context, WidgetBuilder builder) async {
+    final screen = await _builder(context, builder);
     Navigator.push(
       context,
-      CupertinoPageRoute(builder: builder)
+      CupertinoPageRoute(builder: (context) {
+        return screen;
+      })
     );
   }
 
   void popScreen(BuildContext context) {
     Navigator.maybePop(context);
+  }
+
+  Future<Widget> _builder(BuildContext context, WidgetBuilder builder) async {
+     return Future.microtask(() {
+        return builder(context);
+    });
   }
 }
 
