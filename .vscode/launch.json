@@ -13,13 +13,15 @@
             "name": "bank-lite-demo (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "args": ["--cache-sksl", "--purge-persistent-cache"]
         },
         {
             "name": "bank-lite-demo (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "args": ["--cache-sksl", "--purge-persistent-cache"]
         }
     ]
 }

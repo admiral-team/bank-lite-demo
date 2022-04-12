@@ -1,16 +1,1 @@
-<svg width="38" height="28" viewBox="0 0 38 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0_2_3301" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="38" height="28">
-<rect width="38" height="28" rx="4" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0_2_3301)">
-<rect width="38" height="28" fill="#0B1D37"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 0L12.8984 11H16.5V0Z" fill="#43495C"/>
-<path d="M9.89424 0L9.89424 11H2.23438L5.49999 0H9.89424Z" fill="#2556BF"/>
-<path d="M12.8984 11H16.9026L20.5 0H16.5L12.8984 11Z" fill="#2556BF"/>
-<path d="M12 28L15.5925 17H8.58984V28H12Z" fill="#2556BF"/>
-<path d="M5.59243 17L2 28H-1V17H5.59243Z" fill="#2556BF"/>
-<path d="M0 11H2.23045L5.5 0H0V11Z" fill="#0F3993"/>
-<path d="M5 28L8.58535 17V28H5Z" fill="#0F3993"/>
-<path d="M13.3965 0L9.89648 11V0H13.3965Z" fill="#0F3993"/>
-</g>
-</svg>
+<svg width="38" height="28" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="a" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="38" height="28"><rect width="38" height="28" rx="4" fill="#C4C4C4"/></mask><g mask="url(#a)"><path fill="#0B1D37" d="M0 0h38v28H0z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 0l-3.602 11H16.5V0z" fill="#43495C"/><path d="M9.894 0v11h-7.66L5.5 0h4.394zM12.898 11h4.005L20.5 0h-4l-3.602 11zM12 28l3.592-11H8.59v11H12zM5.592 17L2 28h-3V17h6.592z" fill="#2556BF"/><path d="M0 11h2.23L5.5 0H0v11zM5 28l3.585-11v11H5zM13.396 0l-3.5 11V0h3.5z" fill="#0F3993"/></g></svg>

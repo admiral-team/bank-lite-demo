@@ -181,11 +181,13 @@ class _SuggestionsItemWidgetState extends State<SuggestionsItemWidget> with Tick
           child: AnimatedContainer(
             duration: const Duration(milliseconds: _animationDuration),
             curve: Curves.easeInOut,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: backgroundColor
             ),
             child: Container(
+              color: backgroundColor,
               padding:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
               child: Column(
