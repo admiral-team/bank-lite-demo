@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "cardVisa.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
